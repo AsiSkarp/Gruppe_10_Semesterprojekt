@@ -11,8 +11,6 @@ public class CrewMember {
         this.name = name;
         this.role = role;
         this.castCrewId = castCrewId;
-
-
-
+        System.out.println("HamidTest");
     }
 }
