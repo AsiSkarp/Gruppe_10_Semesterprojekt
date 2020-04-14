@@ -22,7 +22,11 @@ public abstract class User {
     //SUPERADMIN METHODS:
     //Still don't know how to add a reference to the new object created
     public void addAdmin(String name, String email, String password){
-        Admin a = new Admin(name, email, password);
+        if(getIsSuperAdmin()){
+            Admin a = new Admin(name, email, password);
+        } else {
+            System.out.println(txt);
+        }
     }
 
     public void removeAdmin(Admin admin) {
@@ -34,12 +38,16 @@ public abstract class User {
     }
 
     //PRODUCER METHODS:
-    public void addProduction(String title, int productionId, ArrayList<CrewMember> productionCrewMList, Producer producerId){
+    //THIS IS THE METHOD WHERE I ADDED A REFERENCE VARIABLE BUT ASSIGN NULL IF ACCESS IS DENIED
+    public Production addProduction(String title, ArrayList<CrewMember> productionCrewMList, int producerId){
+        Production a = null;
         if(getIsProducer()){
-            Production a = new Production(title, productionId, productionCrewMList, producerId);
+            a = new Production(title, productionCrewMList, producerId);
         } else {
             System.out.println("You can't do that!");
         }
+        return a;
+
     }
 
     public void removeProduction(Production production) {
