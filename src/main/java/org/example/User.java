@@ -9,7 +9,7 @@ public abstract class User {
     private String email;
     private String password;
 
-    //STRING FOR TXT
+    //STRING SO I DON'T HAVE TO WRITE THE SAME PIECE OF TEXT MULTIPLE TIMES
     private String txt = "You can't do that!";
 
     public User(String name, String email, String password) {
@@ -44,7 +44,7 @@ public abstract class User {
         if(getIsProducer()){
             a = new Production(title, productionCrewMList, producerId);
         } else {
-            System.out.println("You can't do that!");
+            System.out.println(txt);
         }
         return a;
 
