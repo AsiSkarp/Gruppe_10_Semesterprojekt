@@ -6,13 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
- * JavaFX App ----  123 test
+ * JavaFX App
  */
-public class App extends Application {
+public class
+App extends Application {
 
     private static Scene scene;
 
@@ -33,6 +38,11 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        //Start credit system and File I/O
+        CreditSystem creditSystem = new CreditSystem();
+        creditSystem.readFromFile(); //Not implemented
+
+        //Launch GUI
         launch();
 
         }

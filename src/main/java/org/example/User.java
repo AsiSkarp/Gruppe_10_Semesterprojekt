@@ -8,6 +8,7 @@ public abstract class User {
     private static int idCounter = 1;
     private String email;
     private String password;
+    private CreditSystem creditSystem = new CreditSystem();
 
     //STRING SO I DON'T HAVE TO WRITE THE SAME PIECE OF TEXT MULTIPLE TIMES
     private String txt = "You can't do that!";
@@ -22,12 +23,14 @@ public abstract class User {
     //SUPERADMIN METHODS:
     //Still don't know how to add a reference to the new object created
     public void addAdmin(String name, String email, String password){
-        if(getIsSuperAdmin()){
+    /*    if(getIsSuperAdmin()){
             Admin a = new Admin(name, email, password);
         } else {
             System.out.println(txt);
-        }
+        }*/
+        creditSystem.addAdminToSystem(name, email, password);
     }
+
 
     public void removeAdmin(Admin admin) {
         if(getIsSuperAdmin()) {
@@ -74,6 +77,8 @@ public abstract class User {
             System.out.println(txt);
         }
     }
+
+
 
 
     //TO TEST THE AUTO ID ASSIGN
