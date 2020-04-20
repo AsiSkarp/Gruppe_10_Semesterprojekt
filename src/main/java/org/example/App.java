@@ -38,12 +38,11 @@ App extends Application {
     }
 
     public static void main(String[] args) {
-        //Start credit system and File I/O
         CreditSystem creditSystem = new CreditSystem();
-        creditSystem.readFromFile(); //Not implemented
-
+        creditSystem.addCrewMember("Hamid", "hhhhhhhh", 123);
         //Launch GUI
         launch();
+
 
         }
 

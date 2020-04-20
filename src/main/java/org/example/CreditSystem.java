@@ -61,6 +61,18 @@ public class CreditSystem implements Persistance{
     public void removeProductionFromSystem(String title, int producerId) {
 
     }
+
+    @Override
+    public void addCrewMember(String name, String email, int castCrewId) {
+        CrewMember crewMember = new CrewMember(name, email, castCrewId);
+        crewMemberList.add(crewMember);
+//        System.out.println("name" + crewMemberList);
+    }
+
+    @Override
+    public void removeCrewMember(String name, int castCrewId) {
+
+    }
 }
 
 

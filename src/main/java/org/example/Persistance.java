@@ -17,5 +17,7 @@ public interface Persistance {
 
     void removeProductionFromSystem(String title,int producerId);
 
+    void addCrewMember(String name, String email, int castCrewId);
 
+    void removeCrewMember(String name, int castCrewId);
 }

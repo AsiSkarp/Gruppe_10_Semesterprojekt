@@ -3,14 +3,27 @@ package org.example;
 import java.util.HashMap;
 
 public class CrewMember {
-    private String name;
-    private HashMap<Production, String> role;
-    private int castCrewId;
 
-    public CrewMember(String name, HashMap<Production, String> role, int castCrewId) {
+    private String name;
+    private HashMap<String, Production> role;
+    private int castCrewId;
+    private String email;
+
+    public CrewMember(String name, String email, int castCrewId) {
         this.name = name;
-        this.role = role;
         this.castCrewId = castCrewId;
-        System.out.println("HamidTest");
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCastCrewId() {
+        return castCrewId;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
