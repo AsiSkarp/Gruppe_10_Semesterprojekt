@@ -12,7 +12,6 @@ public class CreditSystem implements Persistance{
     ArrayList<ArrayList> creditSystemList = new ArrayList<>();
 
 
-
     public CreditSystem() {
     }
 
@@ -74,6 +73,3 @@ public class CreditSystem implements Persistance{
 
     }
 }
-
-
-
