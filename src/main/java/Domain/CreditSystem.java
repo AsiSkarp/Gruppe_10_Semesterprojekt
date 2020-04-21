@@ -14,10 +14,10 @@ public class CreditSystem implements Persistance, Serializable{
     String filePath = directory + File.separator + fileName;
 
     public CreditSystem() {
-        System.out.println("Du er kraftædme dum");
     }
 
     public void writeToFile(){
+
         try {
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
             ObjectOutputStream outputStream = new ObjectOutputStream(bufferedOutputStream);
@@ -30,17 +30,23 @@ public class CreditSystem implements Persistance, Serializable{
         }
     }
 
-    public void readFromFile(){
+     public void readFromFile(){
         try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(filePath))) {
-            //int ch = bufferedInputStream.read();
-
+            ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+            userList = (ArrayList<User>) objectInputStream.readObject();
+            for(int i = 0; i < userList.size(); i++){
+                System.out.println(userList.get(i).toString());
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
+
 
     @Override
     public void addAdminToSystem(String name, String email, String password) {

@@ -35,8 +35,8 @@ App extends Application {
 
     public static void main(String[] args) {
         CreditSystem creditSystem = new CreditSystem();
-        creditSystem.addAdminToSystem("Kevin", "kevin@kevin", "123123");
-        //creditSystem.writeToFile();
+        creditSystem.addProducerToSystem("Casper", "casper@kevin", "123123");
+        creditSystem.readFromFile();
 
         //Launch GUI
         launch();
