@@ -1,8 +1,9 @@
 package Domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class User {
+public abstract class User implements Serializable {
     private String name;
     private int id;
     private static int idCounter = 1;
@@ -76,6 +77,11 @@ public abstract class User {
         } else {
             System.out.println(txt);
         }
+    }
+
+    @Override
+    public String toString(){
+        return "id: " + id + ", name: " + name + ", email: " + email + ", password: " + password + ", type: " + this.getClass();
     }
 
 
