@@ -1,25 +1,47 @@
-package org.example;
+package Domain;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class CreditSystem implements Persistance{
+public class CreditSystem implements Persistance, Serializable{
 
     ArrayList<User> userList = new ArrayList<>();
     ArrayList<Production> productionList = new ArrayList<>();
     ArrayList<CrewMember> crewMemberList = new ArrayList<>();
     ArrayList<ArrayList> creditSystemList = new ArrayList<>();
-
+    String directory = System.getProperty("user.home");
+    String fileName = "Credit_System.dat";
+    String filePath = directory + File.separator + fileName;
 
 
     public CreditSystem() {
     }
+/*
+    public void writeToFile(){
+        try {
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
+            ObjectOutputStream outputStream = new ObjectOutputStream(bufferedOutputStream);
+            outputStream.writeObject(userList);
+            outputStream.flush();
+                }
 
-    public void readFromFile(){
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void readFromFile(){
+        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(filePath))) {
+            //int ch = bufferedInputStream.read();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+*/
     @Override
     public void addAdminToSystem(String name, String email, String password) {
         String newName = name;
