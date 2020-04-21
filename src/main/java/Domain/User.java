@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class User implements Serializable {
+
     private String name;
     private int id;
     private static int idCounter = 1;
@@ -32,6 +33,9 @@ public abstract class User implements Serializable {
         creditSystem.addAdminToSystem(name, email, password);
     }
 
+    public String getName() {
+        return name;
+    }
 
     public void removeAdmin(Admin admin) {
         if(getIsSuperAdmin()) {
