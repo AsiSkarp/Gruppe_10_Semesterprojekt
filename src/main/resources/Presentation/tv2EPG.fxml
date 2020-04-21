@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Tv2EPG">
+   <children>
+      <TabPane layoutY="-1.0" prefHeight="482.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="EPG    " />
+          <Tab text="Search" />
+        </tabs>
+      </TabPane>
+      <ListView layoutX="12.0" layoutY="44.0" prefHeight="422.0" prefWidth="354.0" />
+      <ImageView fitHeight="158.0" fitWidth="272.0" layoutX="378.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
