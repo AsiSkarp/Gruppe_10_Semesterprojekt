@@ -101,4 +101,12 @@ public class CreditSystem implements Persistance, Serializable{
     public void removeCrewMember(String name, int castCrewId) {
 
     }
+
+    public void accessRestriction(User user){
+        if(user.getIsAdmin() == true) {
+            System.out.println(user.getName() + " is an admin and may execute this command!");
+        } else {
+            System.out.println(user.getName() + " is not an admin. Access restricted.");
+        }
+    }
 }
