@@ -1,4 +1,4 @@
-package org.example;
+package Presentation;
 
 import Domain.Admin;
 import Domain.CreditSystem;

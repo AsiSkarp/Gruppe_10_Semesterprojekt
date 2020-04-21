@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.loginController">
+   <children>
+      <AnchorPane layoutX="250.0" layoutY="58.0" prefHeight="268.0" prefWidth="200.0" style="-fx-background-color: #A8A8A8;">
+         <children>
+            <Label layoutX="77.0" layoutY="24.0" text="Sign In" />
+            <TextField fx:id="emailText" layoutX="26.0" layoutY="51.0" onAction="#emailTextonAction" promptText="email" />
+            <PasswordField fx:id="passText" layoutX="26.0" layoutY="100.0" onAction="#passTextonAction" promptText="password" />
+            <Button fx:id="btnLogin" layoutX="61.0" layoutY="147.0" mnemonicParsing="false" onAction="#btnLoginonAction" prefHeight="25.0" prefWidth="77.0" text="login" />
+            <Label layoutX="58.0" layoutY="193.0" text="Login som guest:" />
+            <Button fx:id="btnGuest" layoutX="65.0" layoutY="221.0" mnemonicParsing="false" onAction="#btnGuestonAction" text="Guest login" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+   </children>
+</AnchorPane>
