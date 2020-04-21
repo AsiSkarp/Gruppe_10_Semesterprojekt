@@ -1,4 +1,4 @@
-package org.example;
+package Domain;
 
 import java.util.ArrayList;
 
