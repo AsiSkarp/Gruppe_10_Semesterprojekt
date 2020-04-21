@@ -15,18 +15,19 @@ public class CreditSystem implements Persistance, Serializable{
 
 
     public CreditSystem() {
+        System.out.println("Du er kraftædme dum");
     }
-/*
+
     public void writeToFile(){
         try {
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
             ObjectOutputStream outputStream = new ObjectOutputStream(bufferedOutputStream);
             outputStream.writeObject(userList);
             outputStream.flush();
-                }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+                } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
     }
 
@@ -41,7 +42,7 @@ public class CreditSystem implements Persistance, Serializable{
             e.printStackTrace();
         }
     }
-*/
+
     @Override
     public void addAdminToSystem(String name, String email, String password) {
         String newName = name;

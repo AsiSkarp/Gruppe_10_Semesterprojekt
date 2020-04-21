@@ -1,4 +1,4 @@
-package Presentation;
+package org.example;
 
 import Domain.CreditSystem;
 import javafx.application.Application;
