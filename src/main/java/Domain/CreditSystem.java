@@ -13,7 +13,6 @@ public class CreditSystem implements Persistance, Serializable{
     String fileName = "Credit_System.dat";
     String filePath = directory + File.separator + fileName;
 
-
     public CreditSystem() {
         System.out.println("Du er kraftædme dum");
     }
@@ -97,6 +96,3 @@ public class CreditSystem implements Persistance, Serializable{
 
     }
 }
-
-
-
