@@ -5,19 +5,19 @@ import java.util.ArrayList;
 public interface Persistance {
 
 
-    Admin addAdminToSystem(String name, String email, String password);
+    void addAdminToSystem(String name, String email, String password, User user);
 
-    void removeAdminFromSystem(String name);
+    void removeAdminFromSystem(String name, User user);
 
-    Producer addProducerToSystem(String name, String email, String password);
+    void addProducerToSystem(String name, String email, String password, User user);
 
-    void removeProducerFromSystem(String name);
+    void removeProducerFromSystem(String name, User user);
 
-    Production addProductionToSystem(String title, ArrayList<CrewMember> productionCrewMList, int producerId);
+    void addProductionToSystem(String title, int producerId, User user);
 
-    void removeProductionFromSystem(String title,int producerId);
+    void removeProductionFromSystem(String title, User user);
 
-    void addCrewMember(String name, String email, int castCrewId);
+    void addCrewMember(String name, String email, int castCrewId, User user);
 
-    void removeCrewMember(String name, int castCrewId);
+    void removeCrewMember(String name, int castCrewId, User user);
 }

@@ -9,10 +9,9 @@ public class Production {
     private ArrayList<CrewMember> productionCrewMList;
     private int producerId;
 
-    public Production(String title, ArrayList<CrewMember> productionCrewMList, int producerId) {
+    public Production(String title,  int producerId) {
         this.title = title;
         this.productionId = productionIdCounter++;
-        this.productionCrewMList = productionCrewMList;
         this.producerId = producerId;
 
     }

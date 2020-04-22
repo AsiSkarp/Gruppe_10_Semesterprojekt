@@ -1,5 +1,9 @@
 package Pre;
 
+import Domain.CreditSystem;
+import Domain.Producer;
+import Domain.SuperAdmin;
+import Domain.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,16 +37,17 @@ App extends Application {
     }
 
     public static void main(String[] args) {
-      //  CreditSystem creditSystem = new CreditSystem();
+        CreditSystem creditSystem = new CreditSystem();
         /*creditSystem.addProducerToSystem("Casper", "casper@kevin", "123123");
         creditSystem.readFromFile(); */
 
         //Login System Launches here....
-//        User user1 = new Admin("Bingi", "Slyngi", "Sjøræningi");
-//        User user2 = new Producer("Rassi", "Slyngi", "Sjøræningi");
+        User user1 = new SuperAdmin("Bingi", "Slyngi", "Sjøræningi");
+        User user2 = new Producer("Rassi", "Slyngi", "Sjøræningi");
 //
-//        creditSystem.accessRestriction(user1);
-//        creditSystem.accessRestriction(user2);
+        creditSystem.addAdminToSystem("jauns","blarg","sicko", user2);
+        creditSystem.addAdminToSystem("55","asdda","ggagg", user2);
+
 
         //Launch GUI
         launch();

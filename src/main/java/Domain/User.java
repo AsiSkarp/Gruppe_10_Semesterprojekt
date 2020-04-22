@@ -23,36 +23,36 @@ public abstract class User implements Serializable {
     }
 
     //SUPERADMIN METHODS:
-    public void addAdmin(String name, String email, String password){
+    /*public void addAdmin(String name, String email, String password){
         if(getIsSuperAdmin()){
             creditSystem.addAdminToSystem(name, email, password);
         } else {
             System.out.println(txt);
         }
 
-    }
+    }*/
 
     public String getName() {
         return name;
     }
 
-    public void removeAdmin(Admin admin) {
+    /*public void removeAdmin(Admin admin) {
         if(getIsSuperAdmin()) {
             admin = null;
         } else {
             System.out.println(txt);
         }
-    }
+    }*/
 
     //PRODUCER METHODS:
-    public void addProduction(String title, ArrayList<CrewMember> productionCrewMList, int producerId){
+    /*public void addProduction(String title, ArrayList<CrewMember> productionCrewMList, int producerId){
         if(getIsProducer()){
             creditSystem.addProductionToSystem(title, productionCrewMList, producerId);
         } else {
             System.out.println(txt);
         }
 
-    }
+    }/*
 
     public void removeProduction(Production production) {
         if(getIsProducer()) {
@@ -77,7 +77,7 @@ public abstract class User implements Serializable {
         } else {
             System.out.println(txt);
         }
-    }
+    }*/
 
     @Override
     public String toString(){
