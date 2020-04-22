@@ -3,5 +3,6 @@ module org.example {
     requires javafx.fxml;
 
     opens Domain to javafx.fxml;
-    exports Presentation;
+    exports org.example
+            ;
 }

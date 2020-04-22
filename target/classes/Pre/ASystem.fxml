@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.ASystemController">
+   <children>
+      <Button layoutX="365.0" layoutY="86.0" mnemonicParsing="false" onAction="#switchToProducerSystem" prefHeight="26.0" prefWidth="168.0" text="Producer System" AnchorPane.bottomAnchor="287.6" AnchorPane.rightAnchor="67.0" />
+      <Button layoutX="365.0" layoutY="138.0" mnemonicParsing="false" onAction="#switchToProductionSystem" prefHeight="26.0" prefWidth="168.0" text="Production System" AnchorPane.bottomAnchor="235.6" AnchorPane.rightAnchor="67.0" />
+      <Button layoutX="365.0" layoutY="186.0" mnemonicParsing="false" onAction="#SwitchToCrewMemberSystem" prefHeight="26.0" prefWidth="168.0" text="Crew Member System" AnchorPane.bottomAnchor="187.6" AnchorPane.rightAnchor="67.0" />
+      <Button layoutX="449.0" layoutY="316.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="88.0" text="Back" AnchorPane.bottomAnchor="57.60000000000002" AnchorPane.rightAnchor="63.0" />
+      <ImageView fitHeight="165.0" fitWidth="290.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.875" AnchorPane.rightAnchor="310.0">
+         <image>
+            <Image url="@tv2_logo.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

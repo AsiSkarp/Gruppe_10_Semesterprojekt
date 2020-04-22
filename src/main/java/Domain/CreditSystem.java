@@ -76,7 +76,7 @@ public class CreditSystem implements Persistance, Serializable{
     public Production addProductionToSystem(String title, ArrayList<CrewMember> productionCrewMList, int producerId) {
         Production newProduction = new Production(title, productionCrewMList , producerId);
         productionList.add(newProduction);
-        return newProduction
+        return newProduction;
     }
 
     @Override

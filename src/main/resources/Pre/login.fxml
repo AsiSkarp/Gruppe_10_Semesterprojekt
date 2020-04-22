@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.loginController">
+   <children>
+      <AnchorPane layoutX="209.0" prefHeight="400.0" prefWidth="205.0" >
+         <children>
+            <Label layoutX="80.0" layoutY="59.0" text="Login">
+               <font>
+                  <Font name="Arial Bold Italic" size="14.0" />
+               </font></Label>
+            <Button fx:id="btnLogin" layoutX="35.0" layoutY="174.0" mnemonicParsing="false" onAction="#btnLoginonAction" prefHeight="20.0" prefWidth="131.0" text="login" />
+            <Label layoutX="42.0" layoutY="217.0" text="Login as a guest:">
+               <font>
+                  <Font name="Arial Bold Italic" size="14.0" />
+               </font></Label>
+            <Button fx:id="btnGuest" layoutX="45.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="26.0" prefWidth="115.0" text="Guest login" />
+            <ImageView fitHeight="114.0" fitWidth="199.0" layoutX="2.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../java/org/example/tv2_logo.jpg" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="RIGHT" layoutX="57.0" layoutY="22.0" text="TV2 System" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial Bold Italic" size="16.0" />
+               </font>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="MOVE" />
+               </cursor>
+            </Label>
+            <TextField fx:id="emailText" layoutX="29.0" layoutY="101.0" promptText="E-mail" onAction="#emailTextonAction"/>
+            <PasswordField fx:id="passwordText" layoutX="26.0" layoutY="139.0" promptText="Password" onAction="#passTextonAction" />
+   </children>
+</AnchorPane>

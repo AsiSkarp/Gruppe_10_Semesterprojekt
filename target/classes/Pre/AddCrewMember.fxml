@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddCrewMemberController">
+   <children>
+      <TableView layoutX="6.0" layoutY="40.0" prefHeight="359.0" prefWidth="348.0">
+        <columns>
+          <TableColumn prefWidth="125.5999755859375" text="Name" />
+          <TableColumn prefWidth="173.60003662109375" text="E-mail" />
+            <TableColumn prefWidth="55.20001220703125" text="Id" />
+        </columns>
+      </TableView>
+      <TextField fx:id="searchCrewM" layoutX="7.0" layoutY="6.0" prefHeight="26.0" prefWidth="348.0" promptText="søge efter person" />
+      <Button layoutX="366.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Add" />
+      <Label layoutX="366.0" layoutY="49.0" text="intest oplysninger:" />
+      <TextField layoutX="366.0" layoutY="74.0" prefHeight="26.0" prefWidth="213.0" promptText="Name" />
+      <TextField layoutX="366.0" layoutY="106.0" prefHeight="26.0" prefWidth="214.0" promptText="E-mail" />
+      <TextField layoutX="364.0" layoutY="140.0" prefHeight="26.0" prefWidth="214.0" promptText="Id" />
+      <Button layoutX="495.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Delete" />
+      <Button layoutX="521.0" layoutY="335.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="372.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Search" />
+      <Button layoutX="366.0" layoutY="211.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Edit" />
+   </children>
+</AnchorPane>
