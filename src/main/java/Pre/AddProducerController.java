@@ -1,4 +1,4 @@
-package org.example;
+package Pre;
 
 public class AddProducerController {
 }
