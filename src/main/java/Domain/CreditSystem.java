@@ -49,12 +49,10 @@ public class CreditSystem implements Persistance, Serializable{
 
 
     @Override
-    public void addAdminToSystem(String name, String email, String password) {
-        String newName = name;
-        String newEmail = email;
-        String newPassword = password;
-        User newAdmin = new Admin(newName, newEmail, newPassword);
+    public Admin addAdminToSystem(String name, String email, String password) {
+        Admin newAdmin = new Admin(name, email, password);
         userList.add(newAdmin);
+        return newAdmin;
     }
 
     @Override
@@ -63,12 +61,10 @@ public class CreditSystem implements Persistance, Serializable{
     }
 
     @Override
-    public void addProducerToSystem(String name, String email, String password) {
-        String newName = name;
-        String newEmail = email;
-        String newPassword = password;
-        User newProducer = new Producer(newName,newEmail,newPassword);
+    public Producer addProducerToSystem(String name, String email, String password) {
+        Producer newProducer = new Producer(name, email, password);
         userList.add(newProducer);
+        return newProducer;
     }
 
     @Override
@@ -77,12 +73,10 @@ public class CreditSystem implements Persistance, Serializable{
     }
 
     @Override
-    public void addProductionToSystem(String title, ArrayList<CrewMember> productionCrewMList, int producerId) {
-        String newTitle = title;
-        int newId = producerId;
-        ArrayList<CrewMember> crewMemberList = productionCrewMList;
-        Production newProduction = new Production(newTitle,crewMemberList,producerId);
+    public Production addProductionToSystem(String title, ArrayList<CrewMember> productionCrewMList, int producerId) {
+        Production newProduction = new Production(title, productionCrewMList , producerId);
         productionList.add(newProduction);
+        return newProduction
     }
 
     @Override

@@ -23,14 +23,13 @@ public abstract class User implements Serializable {
     }
 
     //SUPERADMIN METHODS:
-    //Still don't know how to add a reference to the new object created
     public void addAdmin(String name, String email, String password){
-    /*    if(getIsSuperAdmin()){
-            Admin a = new Admin(name, email, password);
+        if(getIsSuperAdmin()){
+            creditSystem.addAdminToSystem(name, email, password);
         } else {
             System.out.println(txt);
-        }*/
-        creditSystem.addAdminToSystem(name, email, password);
+        }
+
     }
 
     public String getName() {
@@ -46,15 +45,12 @@ public abstract class User implements Serializable {
     }
 
     //PRODUCER METHODS:
-    //THIS IS THE METHOD WHERE I ADDED A REFERENCE VARIABLE BUT ASSIGN NULL IF ACCESS IS DENIED
-    public Production addProduction(String title, ArrayList<CrewMember> productionCrewMList, int producerId){
-        Production a = null;
+    public void addProduction(String title, ArrayList<CrewMember> productionCrewMList, int producerId){
         if(getIsProducer()){
-            a = new Production(title, productionCrewMList, producerId);
+            creditSystem.addProductionToSystem(title, productionCrewMList, producerId);
         } else {
             System.out.println(txt);
         }
-        return a;
 
     }
 
@@ -69,7 +65,7 @@ public abstract class User implements Serializable {
     //ADMIN METHODS:
     public void addProducer(String name, String email, String password){
         if(getIsAdmin()){
-            Producer a = new Producer(name, email, password);
+            creditSystem.addProducerToSystem(name, email, password);
         } else {
             System.out.println(txt);
         }
