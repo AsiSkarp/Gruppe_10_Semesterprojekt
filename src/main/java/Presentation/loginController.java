@@ -1,10 +1,12 @@
-package org.example;
+package Presentation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class loginController {
 
@@ -28,6 +30,7 @@ public class loginController {
     }
 
 
-    public void btnGuestonAction(ActionEvent actionEvent) {
+    public void btnGuestonAction(ActionEvent actionEvent) throws IOException {
+        App.setRoot("GuestAndRD");
     }
 }

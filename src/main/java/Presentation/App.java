@@ -22,7 +22,7 @@ App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         stage.show();
     }
@@ -42,11 +42,11 @@ App extends Application {
         creditSystem.readFromFile(); */
 
         //Login System Launches here....
-        User user1 = new Admin("Bingi", "Slyngi", "Sjøræningi");
-        User user2 = new Producer("Rassi", "Slyngi", "Sjøræningi");
-
-        creditSystem.accessRestriction(user1);
-        creditSystem.accessRestriction(user2);
+//        User user1 = new Admin("Bingi", "Slyngi", "Sjøræningi");
+//        User user2 = new Producer("Rassi", "Slyngi", "Sjøræningi");
+//
+//        creditSystem.accessRestriction(user1);
+//        creditSystem.accessRestriction(user2);
 
         //Launch GUI
         launch();
