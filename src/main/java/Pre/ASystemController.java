@@ -18,7 +18,7 @@ public class ASystemController {
         App.setRoot("AddCrewMember");
     }
 
-    public void goBack(ActionEvent actionEvent) {
-
+    public void goBack(ActionEvent actionEvent) throws IOException {
+        App.setRoot("login");
     }
 }

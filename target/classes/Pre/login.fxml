@@ -23,7 +23,7 @@
             <Button fx:id="btnGuest" layoutX="45.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="26.0" prefWidth="115.0" text="Guest login" />
             <ImageView fitHeight="114.0" fitWidth="199.0" layoutX="2.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@tv2_logo.jpg" />
+                  <Image url="@../Images/tv2_logo.jpg" />
                </image>
             </ImageView>
             <Label contentDisplay="RIGHT" layoutX="57.0" layoutY="22.0" text="TV2 System" textOverrun="CLIP">

@@ -10,7 +10,7 @@ public abstract class User implements Serializable {
     private static int idCounter = 1;
     private String email;
     private String password;
-    private CreditSystem creditSystem = new CreditSystem();
+    //private CreditSystem creditSystem = new CreditSystem();
 
     //STRING SO I DON'T HAVE TO WRITE THE SAME PIECE OF TEXT MULTIPLE TIMES
     private String txt = "You can't do that!";

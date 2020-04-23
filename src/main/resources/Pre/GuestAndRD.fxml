@@ -14,12 +14,12 @@
       <Button layoutX="373.0" layoutY="173.0" mnemonicParsing="false" onAction="#switchToCrewMember" prefHeight="26.0" prefWidth="126.0" text="Crew Members" />
       <ImageView fitHeight="136.0" fitWidth="286.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@sduLogo.png" />
+            <Image url="@../Images/sduLogo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="155.0" fitWidth="254.0" layoutX="346.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@tv2_logo.jpg" />
+            <Image url="@../Images/tv2_logo.jpg" />
          </image>
       </ImageView>
       <Label layoutX="46.0" layoutY="108.0" text="If you are looking after a Program" />

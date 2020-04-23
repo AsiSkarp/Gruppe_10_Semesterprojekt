@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddProducerController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddProducerController">
    <children>
       <TableView layoutX="7.0" layoutY="47.0" prefHeight="352.0" prefWidth="331.0">
         <columns>
@@ -25,7 +20,7 @@
       <Button layoutX="374.0" layoutY="223.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Add" />
       <Button layoutX="481.0" layoutY="223.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Delete" />
       <Button layoutX="374.0" layoutY="264.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Edit" />
-      <Button layoutX="481.0" layoutY="338.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Back" />
+      <Button layoutX="481.0" layoutY="338.0" mnemonicParsing="false" onAction="#goBackBtnHandler" prefHeight="26.0" prefWidth="82.0" text="Back" />
       <PasswordField layoutX="360.0" layoutY="168.0" prefHeight="18.0" prefWidth="204.0" promptText="Password" />
    </children>
 </AnchorPane>

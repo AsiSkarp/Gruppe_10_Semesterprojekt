@@ -19,6 +19,7 @@ public class
 App extends Application {
 
     private static Scene scene;
+    private static String currentRoom;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -36,17 +37,16 @@ App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
-        CreditSystem creditSystem = new CreditSystem();
-        /*creditSystem.addProducerToSystem("Casper", "casper@kevin", "123123");
-        creditSystem.readFromFile(); */
+    public static String getCurrentRoom() {
+        return currentRoom;
+    }
 
-        //Login System Launches here....
-        User user1 = new SuperAdmin("Bingi", "Slyngi", "Sjøræningi");
-        User user2 = new Producer("Rassi", "Slyngi", "Sjøræningi");
-//
-        creditSystem.addAdminToSystem("jauns","blarg","sicko", user2);
-        creditSystem.addAdminToSystem("55","asdda","ggagg", user2);
+    public static void setCurrentRoom(String currentRoom) {
+        App.currentRoom = currentRoom;
+    }
+
+    public static void main(String[] args) {
+
 
 
         //Launch GUI

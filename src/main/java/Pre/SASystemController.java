@@ -23,6 +23,7 @@ public class SASystemController {
         App.setRoot("AddProducer");
     }
     @FXML
-    public void goBack(ActionEvent actionEvent) {
+    public void goBack(ActionEvent actionEvent) throws IOException {
+        App.setRoot("login");
     }
 }

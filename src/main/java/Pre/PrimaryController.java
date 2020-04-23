@@ -1,6 +1,8 @@
 package Pre;
 
 import java.io.IOException;
+
+import Domain.CreditSystem;
 import javafx.fxml.FXML;
 
 public class PrimaryController {

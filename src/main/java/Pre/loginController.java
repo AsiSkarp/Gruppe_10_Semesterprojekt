@@ -1,5 +1,6 @@
 package Pre;
 
+import Domain.CreditSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+
+import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
 
@@ -27,7 +30,7 @@ public class loginController {
 
     @FXML
     public void btnLoginonAction(ActionEvent actionEvent) throws IOException {
-//        //try {
+//        try {
 //            if (emailText.getText().trim().matches("superAdmin") && passwordText.getText().trim().equals("superAdminpassword")) {
 //                Parent root = null;
 //                try {
@@ -60,7 +63,9 @@ public class loginController {
 ////            }
 //        //} catch (IOException ex) {
 //        }
-        App.setRoot("ASystem");
+        App.setCurrentRoom("SASystem");
+        App.setRoot("SASystem");
+
     }
 
     @FXML
@@ -69,6 +74,7 @@ public class loginController {
     }
 
     public void emailTextonAction(ActionEvent actionEvent) {
+
     }
 
     public void passTextonAction(ActionEvent actionEvent) {

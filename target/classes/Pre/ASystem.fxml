@@ -12,7 +12,7 @@
       <Button layoutX="449.0" layoutY="316.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="88.0" text="Back" AnchorPane.bottomAnchor="57.60000000000002" AnchorPane.rightAnchor="63.0" />
       <ImageView fitHeight="165.0" fitWidth="290.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.875" AnchorPane.rightAnchor="310.0">
          <image>
-            <Image url="@tv2_logo.jpg" />
+            <Image url="@../Images/tv2_logo.jpg" />
          </image>
       </ImageView>
    </children>
