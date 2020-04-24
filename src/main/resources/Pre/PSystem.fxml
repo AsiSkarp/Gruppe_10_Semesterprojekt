@@ -22,7 +22,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="412.0" layoutY="312.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" text="Back" />
+      <Button layoutX="412.0" layoutY="312.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" text="Log ud" />
       <ImageView fitHeight="151.0" fitWidth="282.0" layoutX="57.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />

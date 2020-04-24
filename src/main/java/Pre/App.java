@@ -3,6 +3,8 @@ package Pre;
 
 import Domain.CreditSystem;
 import Domain.Login;
+import Domain.SuperAdmin;
+import Domain.User;
 import Persistance.CreditSystemFileIO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -47,18 +49,8 @@ App extends Application {
 
     public static void main(String[] args) {
 
-//        CreditSystem.getCreditSystem().addProducerToSystem("John", "hello", "78");
-//        CreditSystem.getCreditSystem().addCrewMember("John","kevin@kevin", 94464);
-//        CreditSystem.getCreditSystem().addCrewMember("n","kekevin", 1231);
-//        CreditSystem.getCreditSystem().addCrewMember("awdn","kekevin", 1231);
-//        CreditSystem.getCreditSystem().addCrewMember("nawd","kekevin", 1231);
-//        CreditSystem.getCreditSystem().addAdminToSystem("Popopop", "asssaaassa","123456");
-//        CreditSystem.getCreditSystem().addProductionToSystem("Bagedysten", 78);
-////          CreditSystem.getCreditSystem().readFromPersistance();
-//        CreditSystem.getCreditSystem().writeToPersistance();
-        //Login.getLogin().login("asssaaassa", "123456");
-
-//        System.out.println(CreditSystem.getCreditSystem().getCrewMemberList());
+//CALL THE STATEMENT UNDER THIS SENTENCE FIRST TIME YOU RUN THE PROGRAM. COMMENT IT OUT IF YOU'RE GONNA RESTART THE PROGRAM
+        CreditSystem.getCreditSystem().addSuperAdmin("SysAdm", "system", "admin");
 
         //Launch GUI
         launch(args);

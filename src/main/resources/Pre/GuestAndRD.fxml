@@ -37,6 +37,6 @@
          <font>
             <Font name="Verdana" size="18.0" />
          </font></Label>
-      <Button layoutX="500.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="70.0" text="Back" />
+      <Button layoutX="500.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="70.0" text="Log ud" />
    </children>
 </AnchorPane>

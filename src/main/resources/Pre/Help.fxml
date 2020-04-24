@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.loginController">
+   <children>
+      <Label layoutX="282.0" layoutY="31.0" text="Help Center" textFill="WHITE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="100.0" layoutY="83.0" prefHeight="275.0" prefWidth="507.0" text="Her Skrives alle de vigitge ting som kan hjælpe brugeren med at køre programmet godt:&#10;" />
+   </children>
+</AnchorPane>

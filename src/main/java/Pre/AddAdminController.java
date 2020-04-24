@@ -56,7 +56,6 @@ public class AddAdminController implements Initializable {
     public ObservableList<User> getAdmin() {
 
         ObservableList<User> adminObser = FXCollections.observableArrayList();
-        adminObser.add(new Admin("awd", "SDU", "12"));
 //        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
         ArrayList<User> fetchCrew = adminList.get(0);
         for (User c : fetchCrew) {

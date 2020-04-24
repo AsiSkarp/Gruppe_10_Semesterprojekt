@@ -15,8 +15,7 @@ public class CreditSystem implements Persistance, Serializable {
     ArrayList<ArrayList> creditSystemList = new ArrayList<ArrayList>(Arrays.asList(userList,productionList,crewMemberList));
 
     //Dummy user to avoid null exeption
-    User currentUser = new SuperAdmin("john", "lort", "123");
-
+    private User currentUser;
 
     //Reference to single instance of CreditSystem class
     private static CreditSystem creditSystem = null;
@@ -32,6 +31,8 @@ public class CreditSystem implements Persistance, Serializable {
         }
         return creditSystem;
     }
+
+    public User getCurrentUser() { return this.currentUser; }
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
@@ -159,6 +160,13 @@ public class CreditSystem implements Persistance, Serializable {
         }
     }
 
+    public void addSuperAdmin(String name, String email, String password) {
+            setUserList();
+            User sysAdm = new SuperAdmin(name, email, password);
+            userList.add(sysAdm);
+            writeToPersistance();
+    }
+
     //TEST CLASS FOR ACCESS CONTROL
     public void accessRestriction(User user){
         if(user.getIsAdmin()) {
@@ -197,4 +205,7 @@ public class CreditSystem implements Persistance, Serializable {
         crewMemberList = creditSystemList.get(2);
     }
 
+    public void logout() {
+        currentUser = null;
+    }
 }
