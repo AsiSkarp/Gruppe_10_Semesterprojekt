@@ -7,8 +7,20 @@ import java.io.IOException;
 
 public class SASystemController {
     @FXML
+    public void goBack(ActionEvent actionEvent) throws IOException {
+        App.setRoot("login");
+    }
+    @FXML
     public void SwitchToAdminSystem(ActionEvent actionEvent) throws IOException {
         App.setRoot("AddAdmin");
+    }
+    @FXML
+    public void SwitchToProducerSystem(ActionEvent actionEvent)  {
+        try {
+            App.setRoot("AddProducer");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void SwitchToCrewMemberSystem(ActionEvent actionEvent) throws IOException {
@@ -18,12 +30,5 @@ public class SASystemController {
     public void SwitchToProductionSystem(ActionEvent actionEvent) throws IOException {
         App.setRoot("Production");
     }
-    @FXML
-    public void SwitchToProducerSystem(ActionEvent actionEvent) throws IOException {
-        App.setRoot("AddProducer");
-    }
-    @FXML
-    public void goBack(ActionEvent actionEvent) throws IOException {
-        App.setRoot("login");
-    }
+
 }

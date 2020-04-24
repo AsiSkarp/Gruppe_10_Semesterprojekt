@@ -21,11 +21,14 @@ public class loginController {
     @FXML
     public TextField emailText;
     @FXML
-    public PasswordField passwordText;
-    @FXML
     public Button btnLogin;
     @FXML
     public Button btnGuest;
+    @FXML
+    public Button btnReset;
+    @FXML
+    public TextField passwordText;
+    private ActionEvent actionEvent;
 
 
     @FXML
@@ -78,5 +81,9 @@ public class loginController {
     }
 
     public void passTextonAction(ActionEvent actionEvent) {
+
+    }
+
+    public void btnResetAction(ActionEvent actionEvent) {
     }
 }
