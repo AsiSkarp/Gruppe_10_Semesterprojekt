@@ -21,6 +21,7 @@ public class ASystemController {
     }
 
     public void goBack(ActionEvent actionEvent) throws IOException {
+        CreditSystem.getCreditSystem().logout();
         App.setRoot("login");
     }
 }

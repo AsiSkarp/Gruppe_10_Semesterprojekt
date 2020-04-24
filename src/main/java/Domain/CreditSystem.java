@@ -17,7 +17,6 @@ public class CreditSystem implements Persistance, Serializable {
     //Dummy user to avoid null exeption
     private User currentUser;
 
-
     //Reference to single instance of CreditSystem class
     private static CreditSystem creditSystem = null;
 
@@ -161,6 +160,13 @@ public class CreditSystem implements Persistance, Serializable {
         }
     }
 
+    public void addSuperAdmin(String name, String email, String password) {
+            setUserList();
+            User sysAdm = new SuperAdmin(name, email, password);
+            userList.add(sysAdm);
+            writeToPersistance();
+    }
+
     //TEST CLASS FOR ACCESS CONTROL
     public void accessRestriction(User user){
         if(user.getIsAdmin()) {
@@ -199,4 +205,7 @@ public class CreditSystem implements Persistance, Serializable {
         crewMemberList = creditSystemList.get(2);
     }
 
+    public void logout() {
+        currentUser = null;
+    }
 }

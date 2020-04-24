@@ -53,7 +53,6 @@ public class AddProducerController implements Initializable {
 
     public ObservableList<User> getPro() {
         ObservableList<User> proObser = FXCollections.observableArrayList();
-        proObser.add(new Producer("awd", "SDU", "12"));
 //        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
         ArrayList<User> fetchCrew = proList.get(0);
         for (User c : fetchCrew) {

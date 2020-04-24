@@ -1,5 +1,6 @@
 package Pre;
 
+import Domain.CreditSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -8,6 +9,7 @@ import java.io.IOException;
 public class SASystemController {
     @FXML
     public void goBack(ActionEvent actionEvent) throws IOException {
+        CreditSystem.getCreditSystem().logout();
         App.setRoot("login");
     }
     @FXML

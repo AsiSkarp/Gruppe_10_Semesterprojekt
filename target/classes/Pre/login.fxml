@@ -18,7 +18,7 @@
       </AnchorPane>
       <AnchorPane layoutX="350.0" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #8494a4;">
          <children>
-            <TextField fx:id="emailText" layoutX="73.0" layoutY="101.0" onAction="#emailTextonAction" prefHeight="25.0" prefWidth="205.0" promptText="E-mail">
+            <TextField fx:id="emailText" layoutX="73.0" layoutY="101.0" prefHeight="25.0" prefWidth="205.0" promptText="E-mail">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>

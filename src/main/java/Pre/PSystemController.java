@@ -1,5 +1,6 @@
 package Pre;
 
+import Domain.CreditSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -15,6 +16,8 @@ public class PSystemController {
         App.setRoot("AddCrewMember");
     }
 
-    public void goBack(ActionEvent actionEvent) {
+    public void goBack(ActionEvent actionEvent) throws IOException {
+        CreditSystem.getCreditSystem().logout();
+        App.setRoot("login");
     }
 }

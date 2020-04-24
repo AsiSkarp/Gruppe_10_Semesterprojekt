@@ -39,7 +39,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="544.0" layoutY="279.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="103.0" text="Back" />
+      <Button layoutX="544.0" layoutY="279.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="103.0" text="Log ud" />
       <ImageView fitHeight="131.0" fitWidth="327.0" layoutX="53.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />

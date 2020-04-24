@@ -39,19 +39,25 @@ public class loginController {
 
     @FXML
     public void btnLoginonAction(ActionEvent actionEvent) throws IOException {
-        if(emailText.getText() == null || passwordText.getText() == null){
+        if(emailText.getText().equals("") || passwordText.getText().equals("")){
             System.out.println("You need to enter email and password");
+//            App.setRoot("SASystem");
+//            App.setCurrentRoom("SASystem");
         } else {
             Login.getLogin().login(emailText.getText(), passwordText.getText());
-            if(CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
-                App.setCurrentRoom("SASystem");
-                App.setRoot("SASystem");
-            } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()) {
-                App.setCurrentRoom("ASystem");
-                App.setRoot("ASystem");
-            } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsProducer()) {
-                App.setCurrentRoom("PSystem");
-                App.setRoot("PSystem");
+            if(CreditSystem.getCreditSystem().getCurrentUser() != null) {
+                if(CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
+                    App.setCurrentRoom("SASystem");
+                    App.setRoot("SASystem");
+                } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()) {
+                    App.setCurrentRoom("ASystem");
+                    App.setRoot("ASystem");
+                } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsProducer()) {
+                    App.setCurrentRoom("PSystem");
+                    App.setRoot("PSystem");
+                } else {
+                    System.out.println("Email and password doesn't match");
+                }
             }
         }
 

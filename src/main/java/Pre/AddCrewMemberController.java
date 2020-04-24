@@ -69,7 +69,6 @@ public class AddCrewMemberController implements Initializable {
     public ObservableList<CrewMember> getCrewMember() {
 
         ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
-        crewMembers.add(new CrewMember("Hamid", "SDU", 12));
 //        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
         ArrayList<CrewMember> fetchCrew = fetchList.get(2);
         for (CrewMember c : fetchCrew) {
@@ -96,14 +95,14 @@ public class AddCrewMemberController implements Initializable {
 //    }
 
     public void deletebtnHandler(ActionEvent actionEvent) {
-        ObservableList<CrewMember> selectCrew, AllCrew;
-        AllCrew = tableView.getItems();
-        selectCrew = tableView.getSelectionModel().getSelectedItems();
-        for (CrewMember crew : selectCrew) {
-            AllCrew.remove(crew);
-        }
-        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
-        CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
+//        ObservableList<CrewMember> selectCrew, AllCrew;
+//        AllCrew = tableView.getItems();
+//        selectCrew = tableView.getSelectionModel().getSelectedItems();
+//        for (CrewMember crew : AllCrew) {
+//            AllCrew.remove(crew);
+//        }
+//        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+//        CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
     }
 
     public void backbtnHandler(ActionEvent actionEvent) throws IOException {
