@@ -20,6 +20,6 @@ public class AllProductionsController {
     }
 
     public void backButtonAction(ActionEvent actionEvent) throws IOException {
-        App.setRoot(App.getCurrentRoom());
+        App.setRoot("GuestAndRD");
     }
 }
