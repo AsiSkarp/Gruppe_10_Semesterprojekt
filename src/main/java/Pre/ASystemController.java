@@ -2,6 +2,8 @@ package Pre;
 
 import javafx.event.ActionEvent;
 import Domain.CreditSystem;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 

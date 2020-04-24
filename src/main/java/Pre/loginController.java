@@ -3,6 +3,7 @@ package Pre;
 import Domain.CreditSystem;
 import Domain.Login;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,9 +13,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import javax.security.auth.login.CredentialException;
 import java.io.IOException;
+
+import static Pre.App.loadFXML;
 
 
 public class loginController {
@@ -29,8 +33,9 @@ public class loginController {
     public Button btnReset;
     @FXML
     public TextField passwordText;
-    private ActionEvent actionEvent;
 
+    private ActionEvent actionEvent;
+    public boolean isHelpOpen;
 
     @FXML
     public void btnLoginonAction(ActionEvent actionEvent) throws IOException {
@@ -69,4 +74,21 @@ public class loginController {
         emailText.clear();
         passwordText.clear();
     }
+
+    public void helpButtonAction(ActionEvent actionEvent) throws IOException {
+        if (!isHelpOpen) {
+            Stage stageHelp = new Stage();
+            Scene sceneHelp = new Scene(loadFXML("Help"));
+            stageHelp.show();
+            stageHelp.setScene(sceneHelp);
+            this.isHelpOpen = true;
+            stageHelp.setOnCloseRequest(helpEventClose);
+        }
+    }
+    EventHandler<WindowEvent> helpEventClose = new EventHandler<WindowEvent>() {
+        @Override
+        public void handle(WindowEvent event) {
+            isHelpOpen = false;
+        }
+    };
 }

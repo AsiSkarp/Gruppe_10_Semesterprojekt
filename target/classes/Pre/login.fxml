@@ -25,7 +25,7 @@
             </TextField>
             <Button fx:id="btnLogin" layoutX="73.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnLoginonAction" prefHeight="25.0" prefWidth="61.0" text="Login" />
             <Button layoutX="217.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnResetAction" prefHeight="25.0" prefWidth="61.0" text="Reset" />
-            <Button fx:id="btnGuest" layoutX="133.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="25.0" prefWidth="86.0" text="Guest login" />
+            <Button fx:id="btnGuest" layoutX="133.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="27.0" prefWidth="86.0" text="Guest login" />
             <Label layoutX="97.0" layoutY="37.0" text="TV2 Credit System">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -42,6 +42,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </PasswordField>
+            <Button layoutX="134.0" layoutY="332.0" mnemonicParsing="false" onAction="#helpButtonAction" prefHeight="25.0" prefWidth="86.0" text="Help" />
          </children>
       </AnchorPane>
    </children>
