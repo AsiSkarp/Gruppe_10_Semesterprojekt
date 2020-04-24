@@ -1,5 +1,6 @@
 package Pre;
 
+import Domain.CreditSystem;
 import Domain.CrewMember;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddCrewMemberController implements Initializable {
@@ -33,6 +35,7 @@ public class AddCrewMemberController implements Initializable {
     @FXML
     public TextField IdField;
 
+    ArrayList<ArrayList> fetchList = CreditSystem.getCreditSystem().readFromPersistance();
 
 //    ObservableList<CrewMember> columnList;
 
@@ -53,13 +56,38 @@ public class AddCrewMemberController implements Initializable {
     public void addbtnhandler(ActionEvent actionEvent) {
         CrewMember newCrewMember = new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
         tableView.getItems().add(newCrewMember);
+        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
+        CreditSystem.getCreditSystem().writeToPersistance();
     }
 
     public ObservableList<CrewMember> getCrewMember() {
+
         ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
         crewMembers.add(new CrewMember("Hamid", "SDU", 12));
+//        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
+        ArrayList<CrewMember> fetchCrew = fetchList.get(2);
+        for (CrewMember c : fetchCrew) {
+            String name = c.getName();
+            String email = c.getEmail();
+            int id = c.getCastCrewId();
+            crewMembers.add(new CrewMember(name,email,id));
+        }
         return crewMembers;
     }
+
+//    public ObservableList<CrewMember> getCrewMembers() {
+//        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
+//        ArrayList<CrewMember> fetchCrew = fetchList.get(2);
+////        //System.out.println(fetchCrew);
+//        for (CrewMember c : fetchCrew) {
+//            String name = c.getName();
+//            String email = c.getEmail();
+//            int id = c.getCastCrewId();
+//            //crew.add(new CrewMember(name,email,id));
+//            System.out.println(name + "  " + email + "  " + id);
+//        }
+//        return crew;
+//    }
 
     public void deletebtnHandler(ActionEvent actionEvent) {
         ObservableList<CrewMember> selectCrew, AllCrew;

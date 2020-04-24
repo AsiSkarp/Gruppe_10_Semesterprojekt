@@ -16,26 +16,29 @@ public class Login {
         } return login;
     }
 
-    //I AM USING USERLIST HERE BUT IF I UNDERSTAND THE CODE RIGHT IT DOESNT GET UPDATED WHEN STARTING THE PROGRAM
-    //BUT I DONT KNOW HOW TO GET ONLY THE USER OBJECTS FROM THE ARRAYLIST OF ARRAYLISTS
+    ArrayList<ArrayList> tempList = CreditSystem.getCreditSystem().readFromPersistance();
+
+
     public void login(String email, String password) {
-        for(User user : CreditSystemFileIO.getCsfio().getUserList()) {
-            if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                if(user.getIsSuperAdmin()){
-                    //DO SOMETHING
-                    break;
-                } else if (user.getIsAdmin()) {
-                    //DO SOMETHING
-                    break;
-                } else if (user.getIsProducer()) {
-                    //DO SOMETHING
-                    break;
+        ArrayList<User> fetchUser = tempList.get(0);
+        for (User u : fetchUser) {
+                if(u.getEmail().equals(email) && u.getPassword().equals(password)){
+                    if(u.getIsSuperAdmin()){
+                        System.out.println("current user: SuperAdmin");
+                        break;
+                    } else if (u.getIsAdmin()) {
+                        System.out.println("current user: Admin");
+                        break;
+                    } else if (u.getIsProducer()) {
+                        System.out.println("current user: Producer");
+                        break;
+                    }
+                } else {
+                    //THIS IS GONNA BE PRINTED MULTIPLE TIMES ATM
+                    System.out.println("Username and Password doesn't match");
                 }
-            } else {
-                //THIS IS GONNA BE PRINTED MULTIPLE TIMES ATM
-                System.out.println("Username and Password doesn't match");
             }
         }
 
-    }
+
 }

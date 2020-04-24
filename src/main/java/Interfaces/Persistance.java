@@ -1,8 +1,7 @@
 package Interfaces;
 
-import Domain.User;
 
-import java.util.ArrayList;
+
 
 public interface Persistance {
 
@@ -21,5 +20,5 @@ public interface Persistance {
 
     void addCrewMember(String name, String email, int castCrewId);
 
-    void removeCrewMember(String name, int castCrewId);
+    void removeCrewMember(String email);
 }

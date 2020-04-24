@@ -1,8 +1,9 @@
 package Domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Production {
+public class Production implements Serializable {
     private String title;
     private static int productionIdCounter = 1;
     private int productionId;
@@ -18,5 +19,10 @@ public class Production {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public String toString(){
+        return "title: " + title + ", productionID: " + productionId + ", producerID: " + producerId;
     }
 }

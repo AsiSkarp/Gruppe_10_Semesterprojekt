@@ -1,15 +1,15 @@
 package Persistance;
 
-import Domain.CrewMember;
-import Domain.Production;
-import Domain.User;
+
+import Domain.*;
+
 import Interfaces.CreditSystemPersistance;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CreditSystemFileIO implements CreditSystemPersistance {
+public class CreditSystemFileIO implements CreditSystemPersistance, Serializable {
 
     ArrayList<User> userList = new ArrayList<>();
     ArrayList<Production> productionList = new ArrayList<>();
@@ -37,6 +37,8 @@ public class CreditSystemFileIO implements CreditSystemPersistance {
 
     //TO DO : Make ArrayList<ArrayList> an input parameter
     public void writeData(ArrayList<ArrayList> arrayList){
+        creditSystemList = arrayList;
+        System.out.println(creditSystemList);
         try {
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
             ObjectOutputStream outputStream = new ObjectOutputStream(bufferedOutputStream);
@@ -51,13 +53,13 @@ public class CreditSystemFileIO implements CreditSystemPersistance {
 
     //TO DO: Make method return ArrayList<ArryList>
     public ArrayList<ArrayList> readData(){
-        ArrayList<ArrayList> tempArrayList = new ArrayList<>();
+        ArrayList<ArrayList> tempArrayList = new ArrayList<ArrayList>();
         try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(filePath))) {
             ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
-            creditSystemList = (ArrayList<ArrayList>) objectInputStream.readObject();
-            for(int i = 0; i < creditSystemList.size(); i++){
-                System.out.println(creditSystemList.get(i).toString());
-            }
+            tempArrayList = (ArrayList<ArrayList>) objectInputStream.readObject();
+//            for(int i = 0; i < creditSystemList.size(); i++){
+//                System.out.println(creditSystemList.get(i).toString());
+//            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import Persistance.CreditSystemFileIO;
 
-public class CreditSystem implements Persistance, Serializable{
+public class CreditSystem implements Persistance, Serializable {
 
     ArrayList<User> userList = new ArrayList<>();
     ArrayList<Production> productionList = new ArrayList<>();
@@ -39,21 +39,25 @@ public class CreditSystem implements Persistance, Serializable{
 
     //Creates a binary file and writes the arraylist to it. NEEDS IF STATEMENT TO AVOID OVERWRITE
     public void writeToPersistance(){
+
         CreditSystemFileIO.getCsfio().writeData(creditSystemList);
     }
 
     //Reads the object from binary file and assigns to the arraylist. FOR LOOP ONLY FOR TESTING
-    public void readFromPersistance(){
+    public ArrayList<ArrayList> readFromPersistance(){
+//        creditSystemList.clear();
         creditSystemList = CreditSystemFileIO.getCsfio().readData();
+//        System.out.println(creditSystemList);
+        return creditSystemList;
     }
 
     //TO DO
     @Override
     public void addAdminToSystem(String name, String email, String password) {
         if(currentUser.getIsSuperAdmin()) {
+            setUserList();
             Admin newAdmin = new Admin(name, email, password);
             userList.add(newAdmin);
-            System.out.println(creditSystemList.toString());
         } else {
             System.out.println("Access Restricted!");
         }
@@ -77,6 +81,7 @@ public class CreditSystem implements Persistance, Serializable{
     @Override
     public void addProducerToSystem(String name, String email, String password) {
         if(currentUser.getIsAdmin()) {
+            setUserList();
             Producer newProducer = new Producer(name, email, password);
             userList.add(newProducer);
         } else {
@@ -102,6 +107,7 @@ public class CreditSystem implements Persistance, Serializable{
     @Override
     public void addProductionToSystem(String title, int producerId) {
         if(currentUser.getIsProducer()) {
+            setProductionList();
             Production newProduction = new Production(title, producerId);
             productionList.add(newProduction);
         } else {
@@ -127,6 +133,7 @@ public class CreditSystem implements Persistance, Serializable{
     @Override
     public void addCrewMember(String name, String email, int castCrewId) {
         if(currentUser.getIsProducer()) {
+            setCrewMemberList();
             CrewMember crewMember = new CrewMember(name, email, castCrewId);
             crewMemberList.add(crewMember);
         } else {
@@ -136,14 +143,16 @@ public class CreditSystem implements Persistance, Serializable{
 
     //TO DO
     @Override
-    public void removeCrewMember(String name, int castCrewId) {
-    /*   if(user.getIsAdmin()) {
-       String n = name;
-       int c = castCrewId;
-            for()
-    //    } else {
-    //        System.out.println("Access Restricted!");
-    //    } */
+    public void removeCrewMember(String email) {
+        if(currentUser.getIsProducer()) {
+            for (CrewMember crewMember : crewMemberList) {
+                if (crewMember.getEmail().equals(email)) {
+                    userList.remove(crewMember);
+                }
+            }
+        } else {
+            System.out.println("Access Restricted!");
+        }
     }
 
     //TEST CLASS FOR ACCESS CONTROL
@@ -155,8 +164,33 @@ public class CreditSystem implements Persistance, Serializable{
         }
     }
 
+    public ArrayList<Production> getProductionList() {
+        return productionList;
+    }
+
     //TEST CLASS FOR ARRAYLISTS
     public void printList(){
         System.out.println(creditSystemList.toString());
     }
+
+    public ArrayList<CrewMember> getCrewMemberList() {
+        return crewMemberList;
+    }
+
+    public void setCreditSystemList(ArrayList<User> userList, ArrayList<Production> productionList, ArrayList<CrewMember>crewMemberList) {
+        this.creditSystemList = new ArrayList<ArrayList>(Arrays.asList(userList,productionList,crewMemberList));
+    }
+
+    public void setUserList() {
+        userList = creditSystemList.get(0);
+    }
+
+    public void setProductionList() {
+        productionList = creditSystemList.get(1);
+    }
+
+    public void setCrewMemberList() {
+        crewMemberList = creditSystemList.get(2);
+    }
+
 }
