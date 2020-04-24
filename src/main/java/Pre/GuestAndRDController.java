@@ -18,4 +18,8 @@ public class GuestAndRDController {
     public void switchToCrewMember(ActionEvent actionEvent) throws IOException {
         App.setRoot("CrewMembers");
     }
+
+    public void backButtonguest(ActionEvent actionEvent) throws IOException {
+        App.setRoot("login");
+    }
 }

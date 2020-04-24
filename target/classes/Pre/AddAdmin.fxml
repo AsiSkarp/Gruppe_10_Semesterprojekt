@@ -6,19 +6,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddAdminController">
    <children>
-      <TableView fx:id="tableviewAdmin" layoutX="10.0" layoutY="45.0" prefHeight="345.0" prefWidth="453.0" style="-fx-background-color: #7a9ca6;">
+      <TableView fx:id="adminTable" layoutX="10.0" layoutY="45.0" prefHeight="345.0" prefWidth="453.0" style="-fx-background-color: #7a9ca6;">
         <columns>
-          <TableColumn fx:id="nameColumnAdmin" prefWidth="128.0" text="Name" />
-          <TableColumn fx:id="emailColumnAmin" prefWidth="206.0" text="E-mail" />
-            <TableColumn fx:id="passwordColumnAdmin" prefWidth="118.0" text="Password" />
+          <TableColumn fx:id="adminTableName" prefWidth="128.0" text="Name" />
+          <TableColumn fx:id="adminTableEmail" prefWidth="206.0" text="E-mail" />
+            <TableColumn fx:id="adminTablePassword" prefWidth="118.0" text="Password" />
         </columns>
       </TableView>
       <TextField fx:id="searchField" layoutX="10.0" layoutY="14.0" prefHeight="26.0" prefWidth="374.0" promptText="Search" />
-      <TextField fx:id="name" layoutX="486.0" layoutY="83.0" prefHeight="26.0" prefWidth="193.0" promptText="Name">
+      <TextField fx:id="adminName" layoutX="486.0" layoutY="83.0" prefHeight="26.0" prefWidth="193.0" promptText="Name">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <TextField fx:id="email" layoutX="486.0" layoutY="122.0" prefHeight="26.0" prefWidth="194.0" promptText="E_mail">
+      <TextField fx:id="adminEmail" layoutX="486.0" layoutY="122.0" prefHeight="26.0" prefWidth="194.0" promptText="E_mail">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
@@ -27,8 +27,7 @@
       <Button layoutX="608.0" layoutY="360.0" mnemonicParsing="false" onAction="#backBtnHanlder" prefHeight="26.0" prefWidth="70.0" text="Back" />
       <Button layoutX="608.0" layoutY="207.0" mnemonicParsing="false" onAction="#deleteBtnHandler" prefHeight="26.0" prefWidth="69.0" text="Delete" />
       <Label layoutX="485.0" layoutY="51.0" text="Insert the following information" textFill="WHITE" />
-      <Button layoutX="486.0" layoutY="248.0" mnemonicParsing="false" onAction="#editBtnHandler" prefHeight="26.0" prefWidth="70.0" text="Edit" />
-      <PasswordField fx:id="password" layoutX="486.0" layoutY="160.0" prefHeight="26.0" prefWidth="194.0" promptText="Password">
+      <PasswordField fx:id="adminPassword" layoutX="486.0" layoutY="160.0" prefHeight="26.0" prefWidth="194.0" promptText="Password">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></PasswordField>

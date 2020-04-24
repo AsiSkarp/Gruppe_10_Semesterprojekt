@@ -23,12 +23,12 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ImageView fitHeight="49.0" fitWidth="193.0" layoutX="112.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="49.0" fitWidth="193.0" layoutX="112.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/sdu-logo-png-3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="125.0" fitWidth="297.0" layoutX="339.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="125.0" fitWidth="297.0" layoutX="339.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />
          </image>
@@ -37,5 +37,6 @@
          <font>
             <Font name="Verdana" size="18.0" />
          </font></Label>
+      <Button layoutX="500.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="70.0" text="Back" />
    </children>
 </AnchorPane>

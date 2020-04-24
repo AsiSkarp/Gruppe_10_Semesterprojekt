@@ -77,5 +77,4 @@ public class AddAdminController implements Initializable {
 
     public void SearchBtnhandler(ActionEvent actionEvent) {
     }
-
 }

@@ -54,7 +54,7 @@ App extends Application {
 //        CreditSystem.getCreditSystem().addCrewMember("nawd","kekevin", 1231);
 //        CreditSystem.getCreditSystem().addAdminToSystem("Popopop", "asssaaassa","123456");
 //        CreditSystem.getCreditSystem().addProductionToSystem("Bagedysten", 78);
-//          CreditSystem.getCreditSystem().readFromPersistance();
+          CreditSystem.getCreditSystem().readFromPersistance();
 //        CreditSystem.getCreditSystem().writeToPersistance();
         //Login.getLogin().login("asssaaassa", "123456");
 

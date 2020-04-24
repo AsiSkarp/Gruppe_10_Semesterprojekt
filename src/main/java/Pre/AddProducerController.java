@@ -1,7 +1,6 @@
 package Pre;
 
 import Domain.CreditSystem;
-import Domain.CrewMember;
 import Domain.Producer;
 import Domain.User;
 import javafx.collections.FXCollections;
@@ -45,7 +44,7 @@ public class AddProducerController implements Initializable {
     }
 
 
-    public void addPro(ActionEvent actionEvent) {
+    public void addButtonAction(ActionEvent actionEvent) {
         User newPro = new Producer(proName.getText(), proEmail.getText(), proPassword.getText());
         proTable.getItems().add(newPro);
         CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
@@ -66,15 +65,11 @@ public class AddProducerController implements Initializable {
         return proObser;
     }
 
-    public void deletePro(ActionEvent actionEvent) {
+    public void DeleteButtonAction(ActionEvent actionEvent) {
     }
 
 
     public void goBackBtnHandler(ActionEvent actionEvent) throws IOException {
         App.setRoot(App.getCurrentRoom());
     }
-
-
-
-
 }
