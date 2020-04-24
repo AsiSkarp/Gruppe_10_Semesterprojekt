@@ -6,6 +6,16 @@ import java.util.ArrayList;
 
 public class Login {
 
+    private static Login login;
+
+    private Login() {};
+
+    public static Login getLogin() {
+        if(login == null) {
+            login = new Login();
+        } return login;
+    }
+
     //I AM USING USERLIST HERE BUT IF I UNDERSTAND THE CODE RIGHT IT DOESNT GET UPDATED WHEN STARTING THE PROGRAM
     //BUT I DONT KNOW HOW TO GET ONLY THE USER OBJECTS FROM THE ARRAYLIST OF ARRAYLISTS
     public void login(String email, String password) {
