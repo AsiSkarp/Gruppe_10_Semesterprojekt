@@ -4,4 +4,6 @@ module org.example {
 
     opens Domain to javafx.fxml;
     exports Pre;
+    opens Pre to javafx.fxml;
+    exports Domain;
 }

@@ -70,4 +70,8 @@ public class CreditSystemFileIO implements CreditSystemPersistance, Serializable
         }
         return tempArrayList;
     }
+
+    public ArrayList<User> getUserList() {
+        return userList;
+    }
 }

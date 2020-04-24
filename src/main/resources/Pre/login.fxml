@@ -1,52 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.loginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.loginController">
    <children>
-      <AnchorPane layoutX="209.0" prefHeight="400.0" prefWidth="205.0" >
+      <AnchorPane prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #04445c;">
          <children>
-            <Label layoutX="80.0" layoutY="59.0" text="Login">
-               <font>
-                  <Font name="Arial Bold Italic" size="14.0" />
-               </font></Label>
-            <Button fx:id="btnLogin" layoutX="35.0" layoutY="174.0" mnemonicParsing="false" onAction="#btnLoginonAction" prefHeight="20.0" prefWidth="131.0" text="login" />
-            <Label layoutX="42.0" layoutY="217.0" text="Login as a guest:">
-               <font>
-                  <Font name="Arial Bold Italic" size="14.0" />
-               </font></Label>
-            <Button fx:id="btnGuest" layoutX="45.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="26.0" prefWidth="115.0" text="Guest login" />
-            <ImageView fitHeight="114.0" fitWidth="199.0" layoutX="2.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="164.0" fitWidth="350.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/tv2_logo.jpg" />
+                  <Image url="@../Images/TV2Logo.png" />
                </image>
             </ImageView>
-            <Label contentDisplay="RIGHT" layoutX="57.0" layoutY="22.0" text="TV2 System" textOverrun="CLIP">
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="350.0" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #8494a4;">
+         <children>
+            <TextField fx:id="emailText" layoutX="73.0" layoutY="101.0" onAction="#emailTextonAction" prefHeight="25.0" prefWidth="205.0" promptText="E-mail">
                <font>
-                  <Font name="Arial Bold Italic" size="16.0" />
+                  <Font name="System Italic" size="12.0" />
                </font>
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="MOVE" />
-               </cursor>
+            </TextField>
+            <TextField fx:id="passwordText" layoutX="73.0" layoutY="146.0" onAction="#passTextonAction" prefHeight="25.0" prefWidth="205.0" promptText="Password">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnLogin" layoutX="73.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnLoginonAction" prefHeight="25.0" prefWidth="61.0" text="Login" />
+            <Button fx:id="btnReset" layoutX="217.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnResetAction" prefHeight="25.0" prefWidth="61.0" text="Reset" />
+            <Button fx:id="btnGuest" layoutX="133.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="25.0" prefWidth="86.0" text="Guest login" />
+            <Label layoutX="97.0" layoutY="37.0" text="TV2 Credit System">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
             </Label>
-            <TextField fx:id="emailText" layoutX="29.0" layoutY="101.0" promptText="E-mail" onAction="#emailTextonAction"/>
-            <PasswordField fx:id="passwordText" layoutX="26.0" layoutY="139.0" promptText="Password" onAction="#passTextonAction" />
-   </children>
+            <Label layoutX="73.0" layoutY="72.0" text="Login" />
+            <Label layoutX="126.0" layoutY="253.0" text="Login as guest:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>

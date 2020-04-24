@@ -1,64 +1,76 @@
 package Pre;
 
-import Domain.CreditSystem;
 import Domain.CrewMember;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class AddCrewMemberController implements Initializable {
 
-public class AddCrewMemberController {
+    @FXML public TableView<CrewMember> tableView;
+    @FXML public TableColumn<CrewMember, String> firstNameColumn;
+    @FXML public TableColumn<CrewMember, String> emailColumn;
+    @FXML public TableColumn<CrewMember, Integer> IdColumn;
 
     @FXML
     public TextField searchCrewM;
     @FXML
-    public TableView<CrewMember> crewMemberTable;
+    public TextField nameField;
     @FXML
-    public TableColumn<CrewMember, String> nameColumn;
+    public TextField emailField;
     @FXML
-    public TableColumn<CrewMember, String> emailColumn;
-    @FXML
-    public TableColumn<CrewMember, Integer> idColumn;
+    public TextField IdField;
 
 
-    //ProducerA c = new ProducerA("john", "kevin@kevin", 01);
+//    ObservableList<CrewMember> columnList;
 
-
-    ArrayList<ArrayList> fetchList = CreditSystem.getCreditSystem().readFromPersistance();
-
-    public void addBtnHandler(ActionEvent actionEvent) {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
-        idColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
+        IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
+        tableView.setItems(getCrewMember());
 
-        //crewMemberTable.setItems(getProducerA());
-        //System.out.println(fetchList);
-
-        //crewMemberTable.setItems(getCrewMembers());
-        //getCrewMembers();
-        crewMemberTable.getItems().add(new CrewMember("john","doe", 01));
+        tableView.setEditable(true);
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        IdColumn.setCellValueFactory(Integer.parseInt());
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    //crew.addAll(fetchCrew);
+    public void addbtnhandler(ActionEvent actionEvent) {
+        CrewMember newCrewMember = new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
+        tableView.getItems().add(newCrewMember);
+    }
 
-    public ObservableList<CrewMember> getCrewMembers() {
-        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
-       ArrayList<CrewMember> fetchCrew = fetchList.get(2);
-//        //System.out.println(fetchCrew);
-        for (CrewMember c : fetchCrew) {
-            String name = c.getName();
-            String email = c.getEmail();
-            int id = c.getCastCrewId();
-        //crew.add(new CrewMember(name,email,id));
-            System.out.println(name + "  " + email + "  " + id);
+    public ObservableList<CrewMember> getCrewMember() {
+        ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
+        crewMembers.add(new CrewMember("Hamid", "SDU", 12));
+        return crewMembers;
+    }
+
+    public void deletebtnHandler(ActionEvent actionEvent) {
+        ObservableList<CrewMember> selectCrew, AllCrew;
+        AllCrew = tableView.getItems();
+        selectCrew = tableView.getSelectionModel().getSelectedItems();
+        for (CrewMember crew : selectCrew) {
+            AllCrew.remove(crew);
         }
-        return crew;
+    }
+
+    public void backbtnHandler(ActionEvent actionEvent) throws IOException {
+        App.setRoot(App.getCurrentRoom());
     }
 }

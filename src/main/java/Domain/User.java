@@ -92,6 +92,13 @@ public abstract class User implements Serializable {
         return id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     //Access Restriction:
     public abstract boolean getIsSuperAdmin();

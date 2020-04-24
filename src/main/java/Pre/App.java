@@ -1,9 +1,5 @@
 package Pre;
 
-import Domain.CreditSystem;
-import Domain.Producer;
-import Domain.SuperAdmin;
-import Domain.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +28,7 @@ App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
@@ -46,11 +42,7 @@ App extends Application {
     }
 
     public static void main(String[] args) {
-
-
         //Launch GUI
-        launch();
-
-        }
-
+        launch(args);
+    }
 }
