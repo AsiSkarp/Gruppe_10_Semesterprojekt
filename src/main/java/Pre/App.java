@@ -47,7 +47,6 @@ App extends Application {
 
     public static void main(String[] args) {
 
-//        CreditSystem.getCreditSystem().addProductionToSytem("Bagedysten", 78);
 //        CreditSystem.getCreditSystem().addProducerToSystem("John", "hello", "78");
 //        CreditSystem.getCreditSystem().addCrewMember("John","kevin@kevin", 94464);
 //        CreditSystem.getCreditSystem().addCrewMember("n","kekevin", 1231);
@@ -58,6 +57,8 @@ App extends Application {
 //          CreditSystem.getCreditSystem().readFromPersistance();
 //        CreditSystem.getCreditSystem().writeToPersistance();
         //Login.getLogin().login("asssaaassa", "123456");
+
+        System.out.println(CreditSystem.getCreditSystem().getCrewMemberList());
 
         //Launch GUI
         launch(args);

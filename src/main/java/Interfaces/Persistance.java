@@ -20,5 +20,5 @@ public interface Persistance {
 
     void addCrewMember(String name, String email, int castCrewId);
 
-    void removeCrewMember(String name, int castCrewId);
+    void removeCrewMember(String email);
 }
