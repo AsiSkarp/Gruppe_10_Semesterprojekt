@@ -40,11 +40,12 @@ public class CreditSystemFileIO implements CreditSystemPersistance, Serializable
         creditSystemList = arrayList;
         System.out.println(creditSystemList);
         try {
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath));
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(fileName));
             ObjectOutputStream outputStream = new ObjectOutputStream(bufferedOutputStream);
             outputStream.writeObject(creditSystemList);
             outputStream.flush();
         } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("File not found.");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
             ioException.printStackTrace();
@@ -54,13 +55,14 @@ public class CreditSystemFileIO implements CreditSystemPersistance, Serializable
     //TO DO: Make method return ArrayList<ArryList>
     public ArrayList<ArrayList> readData(){
         ArrayList<ArrayList> tempArrayList = new ArrayList<ArrayList>();
-        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(filePath))) {
+        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(fileName))) {
             ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
             tempArrayList = (ArrayList<ArrayList>) objectInputStream.readObject();
 //            for(int i = 0; i < creditSystemList.size(); i++){
 //                System.out.println(creditSystemList.get(i).toString());
 //            }
         } catch (FileNotFoundException e) {
+            System.out.println("File not found");
             e.printStackTrace();
 
         } catch (IOException e) {

@@ -37,14 +37,20 @@ public class AddCrewMemberController implements Initializable {
 
     ArrayList<ArrayList> fetchList = CreditSystem.getCreditSystem().readFromPersistance();
 
+
 //    ObservableList<CrewMember> columnList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        TableView.TableViewSelectionModel<CrewMember> viewSelectionModel = tableView.getSelectionModel();
+//        viewSelectionModel.setSelectionMode(SelectionMode.SINGLE);
+
+
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         tableView.setItems(getCrewMember());
+
 
         tableView.setEditable(true);
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -57,7 +63,7 @@ public class AddCrewMemberController implements Initializable {
         CrewMember newCrewMember = new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
         tableView.getItems().add(newCrewMember);
         CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
-        CreditSystem.getCreditSystem().writeToPersistance();
+//      CreditSystem.getCreditSystem().writeToPersistance();
     }
 
     public ObservableList<CrewMember> getCrewMember() {
@@ -96,6 +102,8 @@ public class AddCrewMemberController implements Initializable {
         for (CrewMember crew : selectCrew) {
             AllCrew.remove(crew);
         }
+        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+        CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
     }
 
     public void backbtnHandler(ActionEvent actionEvent) throws IOException {

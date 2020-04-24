@@ -136,6 +136,7 @@ public class CreditSystem implements Persistance, Serializable {
             setCrewMemberList();
             CrewMember crewMember = new CrewMember(name, email, castCrewId);
             crewMemberList.add(crewMember);
+            writeToPersistance();
         } else {
             System.out.println("Access Restricted!");
         }
@@ -145,9 +146,12 @@ public class CreditSystem implements Persistance, Serializable {
     @Override
     public void removeCrewMember(String email) {
         if(currentUser.getIsProducer()) {
+            setCrewMemberList();
             for (CrewMember crewMember : crewMemberList) {
                 if (crewMember.getEmail().equals(email)) {
-                    userList.remove(crewMember);
+                    crewMemberList.remove(crewMember);
+                    setCreditSystemList(userList,productionList,crewMemberList);
+                    writeToPersistance();
                 }
             }
         } else {
