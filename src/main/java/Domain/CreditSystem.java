@@ -55,6 +55,7 @@ public class CreditSystem implements Persistance, Serializable {
     @Override
     public void addAdminToSystem(String name, String email, String password) {
         if(currentUser.getIsSuperAdmin()) {
+            setUserList();
             Admin newAdmin = new Admin(name, email, password);
             userList.add(newAdmin);
         } else {
@@ -80,6 +81,7 @@ public class CreditSystem implements Persistance, Serializable {
     @Override
     public void addProducerToSystem(String name, String email, String password) {
         if(currentUser.getIsAdmin()) {
+            setUserList();
             Producer newProducer = new Producer(name, email, password);
             userList.add(newProducer);
         } else {
@@ -105,6 +107,7 @@ public class CreditSystem implements Persistance, Serializable {
     @Override
     public void addProductionToSystem(String title, int producerId) {
         if(currentUser.getIsProducer()) {
+            setProductionList();
             Production newProduction = new Production(title, producerId);
             productionList.add(newProduction);
         } else {
@@ -178,7 +181,16 @@ public class CreditSystem implements Persistance, Serializable {
         this.creditSystemList = new ArrayList<ArrayList>(Arrays.asList(userList,productionList,crewMemberList));
     }
 
+    public void setUserList() {
+        userList = creditSystemList.get(0);
+    }
+
+    public void setProductionList() {
+        productionList = creditSystemList.get(1);
+    }
+
     public void setCrewMemberList() {
         crewMemberList = creditSystemList.get(2);
     }
+
 }

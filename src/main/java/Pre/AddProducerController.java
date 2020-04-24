@@ -48,6 +48,8 @@ public class AddProducerController implements Initializable {
     public void addPro(ActionEvent actionEvent) {
         User newPro = new Producer(proName.getText(), proEmail.getText(), proPassword.getText());
         proTable.getItems().add(newPro);
+        CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
+        CreditSystem.getCreditSystem().writeToPersistance();
     }
 
     public ObservableList<User> getPro() {

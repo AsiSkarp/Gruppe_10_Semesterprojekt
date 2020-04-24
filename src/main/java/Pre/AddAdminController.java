@@ -49,6 +49,8 @@ public class AddAdminController implements Initializable {
     public void addBtnHandler(ActionEvent actionEvent) {
         User newAdmin = new Producer(adminName.getText(), adminEmail.getText(), adminPassword.getText());
         adminTable.getItems().add(newAdmin);
+        CreditSystem.getCreditSystem().addAdminToSystem(adminName.getText(), adminEmail.getText(), adminPassword.getText());
+        CreditSystem.getCreditSystem().writeToPersistance();
 
     }
     public ObservableList<User> getAdmin() {
