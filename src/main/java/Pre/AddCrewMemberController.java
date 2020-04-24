@@ -56,6 +56,8 @@ public class AddCrewMemberController implements Initializable {
     public void addbtnhandler(ActionEvent actionEvent) {
         CrewMember newCrewMember = new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
         tableView.getItems().add(newCrewMember);
+        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
+        CreditSystem.getCreditSystem().writeToPersistance();
     }
 
     public ObservableList<CrewMember> getCrewMember() {

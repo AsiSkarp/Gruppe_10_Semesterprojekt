@@ -47,14 +47,18 @@ App extends Application {
 
     public static void main(String[] args) {
 
-//        CreditSystem.getCreditSystem().addProductionToSytem("Bagedysten", 78);
 //        CreditSystem.getCreditSystem().addProducerToSystem("John", "hello", "78");
 //        CreditSystem.getCreditSystem().addCrewMember("John","kevin@kevin", 94464);
+//        CreditSystem.getCreditSystem().addCrewMember("n","kekevin", 1231);
+//        CreditSystem.getCreditSystem().addCrewMember("awdn","kekevin", 1231);
+//        CreditSystem.getCreditSystem().addCrewMember("nawd","kekevin", 1231);
 //        CreditSystem.getCreditSystem().addAdminToSystem("Popopop", "asssaaassa","123456");
 //        CreditSystem.getCreditSystem().addProductionToSystem("Bagedysten", 78);
 //          CreditSystem.getCreditSystem().readFromPersistance();
 //        CreditSystem.getCreditSystem().writeToPersistance();
         //Login.getLogin().login("asssaaassa", "123456");
+
+        System.out.println(CreditSystem.getCreditSystem().getCrewMemberList());
 
         //Launch GUI
         launch(args);

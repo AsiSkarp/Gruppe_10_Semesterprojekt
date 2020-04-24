@@ -45,9 +45,9 @@ public class CreditSystem implements Persistance, Serializable {
 
     //Reads the object from binary file and assigns to the arraylist. FOR LOOP ONLY FOR TESTING
     public ArrayList<ArrayList> readFromPersistance(){
-        creditSystemList.clear();
+//        creditSystemList.clear();
         creditSystemList = CreditSystemFileIO.getCsfio().readData();
-        System.out.println(creditSystemList);
+//        System.out.println(creditSystemList);
         return creditSystemList;
     }
 
@@ -130,6 +130,7 @@ public class CreditSystem implements Persistance, Serializable {
     @Override
     public void addCrewMember(String name, String email, int castCrewId) {
         if(currentUser.getIsProducer()) {
+            setCrewMemberList();
             CrewMember crewMember = new CrewMember(name, email, castCrewId);
             crewMemberList.add(crewMember);
         } else {
@@ -139,14 +140,16 @@ public class CreditSystem implements Persistance, Serializable {
 
     //TO DO
     @Override
-    public void removeCrewMember(String name, int castCrewId) {
-    /*   if(user.getIsAdmin()) {
-       String n = name;
-       int c = castCrewId;
-            for()
-    //    } else {
-    //        System.out.println("Access Restricted!");
-    //    } */
+    public void removeCrewMember(String email) {
+        if(currentUser.getIsProducer()) {
+            for (CrewMember crewMember : crewMemberList) {
+                if (crewMember.getEmail().equals(email)) {
+                    userList.remove(crewMember);
+                }
+            }
+        } else {
+            System.out.println("Access Restricted!");
+        }
     }
 
     //TEST CLASS FOR ACCESS CONTROL
@@ -165,5 +168,17 @@ public class CreditSystem implements Persistance, Serializable {
     //TEST CLASS FOR ARRAYLISTS
     public void printList(){
         System.out.println(creditSystemList.toString());
+    }
+
+    public ArrayList<CrewMember> getCrewMemberList() {
+        return crewMemberList;
+    }
+
+    public void setCreditSystemList(ArrayList<User> userList, ArrayList<Production> productionList, ArrayList<CrewMember>crewMemberList) {
+        this.creditSystemList = new ArrayList<ArrayList>(Arrays.asList(userList,productionList,crewMemberList));
+    }
+
+    public void setCrewMemberList() {
+        crewMemberList = creditSystemList.get(2);
     }
 }
