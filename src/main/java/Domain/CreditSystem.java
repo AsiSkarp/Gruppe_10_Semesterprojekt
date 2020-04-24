@@ -15,7 +15,7 @@ public class CreditSystem implements Persistance, Serializable {
     ArrayList<ArrayList> creditSystemList = new ArrayList<ArrayList>(Arrays.asList(userList,productionList,crewMemberList));
 
     //Dummy user to avoid null exeption
-    User currentUser = new SuperAdmin("john", "lort", "123");
+    private User currentUser;
 
 
     //Reference to single instance of CreditSystem class
@@ -32,6 +32,8 @@ public class CreditSystem implements Persistance, Serializable {
         }
         return creditSystem;
     }
+
+    public User getCurrentUser() { return this.currentUser; }
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;

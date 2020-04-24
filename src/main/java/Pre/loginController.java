@@ -1,6 +1,7 @@
 package Pre;
 
 import Domain.CreditSystem;
+import Domain.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -33,41 +34,21 @@ public class loginController {
 
     @FXML
     public void btnLoginonAction(ActionEvent actionEvent) throws IOException {
-//        try {
-//            if (emailText.getText().trim().matches("superAdmin") && passwordText.getText().trim().equals("superAdminpassword")) {
-//                Parent root = null;
-//                try {
-//                    root = FXMLLoader.load(getClass().getResource("SASystem"));
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                Scene scene = new Scene(root);
-//                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
-//                stage.setTitle("SuperAdmin system");
-//        } else if (emailText.getText().trim().matches("admin") && passwordText.getText().trim().equals("123")) {
-//            Parent root = FXMLLoader.load(getClass().getResource("ASystem"));
-//            Scene scene = new Scene(root);
-//            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.setTitle("Admin system");
-//            } else if (emailText.getText().trim().matches("producer1") || emailText.getText().trim().matches("producent2")&& passwordText.getText().trim().equals("producentpassword")) {
-//                Parent root = FXMLLoader.load(getClass().getResource("PSystem"));
-//                Scene scene = new Scene(root);
-//                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//                stage.setScene(scene);
-//                stage.setTitle("Producent system");
-//
-//
-////            }
-////            else {
-////                JOptionPane.showMessageDialog(null, "Wrong e-mail or Password!!");
-////
-////            }
-//        //} catch (IOException ex) {
-//        }
-        App.setCurrentRoom("SASystem");
-        App.setRoot("SASystem");
+        if(emailText.getText() == null || passwordText.getText() == null){
+            System.out.println("You need to enter email and password");
+        } else {
+            Login.getLogin().login(emailText.getText(), passwordText.getText());
+            if(CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
+                App.setCurrentRoom("SASystem");
+                App.setRoot("SASystem");
+            } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()) {
+                App.setCurrentRoom("ASystem");
+                App.setRoot("ASystem");
+            } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsProducer()) {
+                App.setCurrentRoom("PSystem");
+                App.setRoot("PSystem");
+            }
+        }
 
     }
 
