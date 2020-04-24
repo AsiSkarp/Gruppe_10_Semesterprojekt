@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AllProductionsController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #3b647c;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AllProductionsController">
    <children>
-      <TableView layoutX="8.0" layoutY="46.0" prefHeight="355.0" prefWidth="406.0">
+      <TableView fx:id="tableviewAllProduction" layoutX="16.0" layoutY="46.0" prefHeight="340.0" prefWidth="555.0" style="-fx-background-color: #7a9ca6;">
         <columns>
-          <TableColumn prefWidth="109.60003662109375" text="Title" />
-          <TableColumn prefWidth="114.39996337890625" text="Crew Members" />
-            <TableColumn prefWidth="90.4000244140625" text="Production Id" />
-            <TableColumn prefWidth="91.199951171875" text="Producer Id" />
+          <TableColumn fx:id="tiltleCoulnmPro" prefWidth="134.0" text="Title" />
+          <TableColumn fx:id="crewMemberCoulmnPro" prefWidth="180.0" text="Crew Members" />
+            <TableColumn fx:id="productionIdColunmPro" prefWidth="123.0" text="Production Id" />
+            <TableColumn fx:id="producerIdColumnPro" prefWidth="117.0" text="Producer Id" />
         </columns>
       </TableView>
-      <Label layoutX="513.0" layoutY="18.0" text="Productions" />
-      <Button layoutX="441.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="Search" />
-      <Button layoutX="486.0" layoutY="304.0" mnemonicParsing="false" text="Eksportere data" />
-      <Button layoutX="486.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" text="Back" />
-      <TextField layoutX="8.0" layoutY="14.0" prefHeight="26.0" prefWidth="406.0" promptText="Search" />
+      <Label layoutX="595.0" layoutY="46.0" text="Productions" textFill="WHITE" />
+      <Button layoutX="483.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Search" />
+      <Button contentDisplay="TOP" layoutX="577.0" layoutY="113.0" mnemonicParsing="false" onAction="#exportButtonData" prefHeight="87.0" prefWidth="112.0" text="Eksportere data">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/export2logo.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="577.0" layoutY="360.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="26.0" prefWidth="112.0" text="Back" />
+      <TextField layoutX="16.0" layoutY="14.0" prefHeight="26.0" prefWidth="468.0" promptText="Search" />
    </children>
 </AnchorPane>

@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.GuestAndRDController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.GuestAndRDController">
    <children>
-      <Label layoutX="203.0" layoutY="32.0" text="Some text " />
-      <Button layoutX="373.0" layoutY="104.0" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="26.0" prefWidth="126.0" text="Programs" />
-      <Button layoutX="373.0" layoutY="173.0" mnemonicParsing="false" onAction="#switchToCrewMember" prefHeight="26.0" prefWidth="126.0" text="Crew Members" />
-      <ImageView fitHeight="136.0" fitWidth="286.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+      <Button contentDisplay="TOP" layoutX="118.0" layoutY="97.0" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="106.0" prefWidth="167.0" text="Programs">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/programmerLogo.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button contentDisplay="TOP" layoutX="403.0" layoutY="97.0" mnemonicParsing="false" onAction="#switchToCrewMember" prefHeight="106.0" prefWidth="167.0" text="Crew Members">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/CrewMemberLogo.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="49.0" fitWidth="193.0" layoutX="112.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/sduLogo.png" />
+            <Image url="@../Images/sdu-logo-png-3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="155.0" fitWidth="254.0" layoutX="346.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="125.0" fitWidth="297.0" layoutX="339.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/tv2_logo.jpg" />
+            <Image url="@../Images/TV2Logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="46.0" layoutY="108.0" text="If you are looking after a Program" />
-      <Label layoutX="272.0" layoutY="108.0" text="Please clicce on:" />
-      <Label layoutX="46.0" layoutY="177.0" text="If you are looking after a crew member" />
-      <Label layoutX="272.0" layoutY="177.0" text="Please clicce on:" />
+      <Label layoutX="230.0" layoutY="37.0" text="You are logged in as guest" textFill="WHITE">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></Label>
+      <Button layoutX="500.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="70.0" text="Back" />
    </children>
 </AnchorPane>

@@ -3,18 +3,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SASystemController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SASystemController">
    <children>
-      <Button layoutX="373.0" layoutY="150.0" mnemonicParsing="false" onAction="#SwitchToCrewMemberSystem" prefHeight="26.0" prefWidth="182.0" text="Crew Member System" />
-      <Button layoutX="373.0" layoutY="187.0" mnemonicParsing="false" onAction="#SwitchToProductionSystem" prefHeight="26.0" prefWidth="182.0" text="Production System" />
-      <Button layoutX="372.0" layoutY="79.0" mnemonicParsing="false" onAction="#SwitchToAdminSystem" prefHeight="26.0" prefWidth="181.0" text="Admin System" textAlignment="CENTER" />
-      <Button layoutX="373.0" layoutY="116.0" mnemonicParsing="false" onAction="#SwitchToProducerSystem" prefHeight="26.0" prefWidth="182.0" text="Producer System" />
-      <Button layoutX="451.0" layoutY="350.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="103.0" text="Back" />
-      <ImageView fitHeight="177.0" fitWidth="284.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+      <Button contentDisplay="TOP" layoutX="365.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToCrewMemberSystem" prefHeight="73.0" prefWidth="127.0" text="Crew Member System">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/CrewMemberLogo.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button contentDisplay="TOP" layoutX="520.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToProductionSystem" prefHeight="73.0" prefWidth="127.0" text="Production System">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Productionlogo.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button contentDisplay="TOP" layoutX="55.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToAdminSystem" prefHeight="73.0" prefWidth="127.0" text="Admin System" textAlignment="CENTER">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/AdminLogo.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button contentDisplay="TOP" layoutX="208.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToProducerSystem" prefHeight="73.0" prefWidth="127.0" text="Producer System">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/ProducerLogo1.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="544.0" layoutY="279.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="103.0" text="Back" />
+      <ImageView fitHeight="131.0" fitWidth="327.0" layoutX="53.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/tv2_logo.jpg" />
+            <Image url="@../Images/TV2Logo.png" />
          </image>
       </ImageView>
+      <Label layoutX="182.0" layoutY="42.0" text="Welcome to TV2 Credit System" textFill="WHITE">
+         <font>
+            <Font name="Constantia" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
