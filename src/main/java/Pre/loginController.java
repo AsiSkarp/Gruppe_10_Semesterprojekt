@@ -85,5 +85,7 @@ public class loginController {
     }
 
     public void btnResetAction(ActionEvent actionEvent) {
+        emailText.setText("");
+        passwordText.setText("");
     }
 }

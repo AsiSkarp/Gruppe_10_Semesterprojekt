@@ -4,11 +4,19 @@ import Domain.CreditSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
 public class AddAdminController {
+
+    //tableview Admin
+    @FXML public TableView tableviewAdmin;
+    @FXML public TableColumn nameColumnAdmin;
+    @FXML public TableColumn emailColumnAmin;
+    @FXML public TableColumn passwordColumnAdmin;
 
     @FXML
     public TextField name;
@@ -18,6 +26,8 @@ public class AddAdminController {
     public TextField email;
     @FXML
     public TextField searchField;
+
+
 
     public void addBtnHandler(ActionEvent actionEvent) {
         CreditSystem.getCreditSystem().addAdminToSystem(name.getText(), email.getText(), password.getText());

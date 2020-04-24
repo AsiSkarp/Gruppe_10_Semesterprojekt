@@ -4,31 +4,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddAdminController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddAdminController">
    <children>
-      <TableView layoutX="7.0" layoutY="52.0" prefHeight="341.0" prefWidth="332.0">
+      <TableView fx:id="tableviewAdmin" layoutX="10.0" layoutY="45.0" prefHeight="345.0" prefWidth="453.0" style="-fx-background-color: #7a9ca6;">
         <columns>
-          <TableColumn prefWidth="116.79998779296875" text="Name" />
-          <TableColumn prefWidth="113.60003662109375" text="E-mail" />
-            <TableColumn prefWidth="105.5999755859375" text="Password" />
+          <TableColumn fx:id="nameColumnAdmin" prefWidth="128.0" text="Name" />
+          <TableColumn fx:id="emailColumnAmin" prefWidth="206.0" text="E-mail" />
+            <TableColumn fx:id="passwordColumnAdmin" prefWidth="118.0" text="Password" />
         </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="7.0" layoutY="14.0" prefHeight="26.0" prefWidth="332.0" promptText="Search" />
-      <TextField fx:id="name" layoutX="370.0" layoutY="76.0" prefHeight="26.0" prefWidth="193.0" promptText="Name">
+      <TextField fx:id="searchField" layoutX="10.0" layoutY="14.0" prefHeight="26.0" prefWidth="374.0" promptText="Search" />
+      <TextField fx:id="name" layoutX="486.0" layoutY="83.0" prefHeight="26.0" prefWidth="193.0" promptText="Name">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <TextField fx:id="email" layoutX="370.0" layoutY="115.0" prefHeight="26.0" prefWidth="194.0" promptText="E_mail">
+      <TextField fx:id="email" layoutX="486.0" layoutY="122.0" prefHeight="26.0" prefWidth="194.0" promptText="E_mail">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <Button layoutX="367.0" layoutY="14.0" mnemonicParsing="false" onAction="#SearchBtnhandler" prefHeight="26.0" prefWidth="69.0" text="Search" />
-      <Button layoutX="370.0" layoutY="200.0" mnemonicParsing="false" onAction="#addBtnHandler" prefHeight="26.0" prefWidth="70.0" text="Add" />
-      <Button layoutX="492.0" layoutY="328.0" mnemonicParsing="false" onAction="#backBtnHanlder" prefHeight="26.0" prefWidth="70.0" text="Back" />
-      <Button layoutX="492.0" layoutY="200.0" mnemonicParsing="false" onAction="#deleteBtnHandler" prefHeight="26.0" prefWidth="69.0" text="Delete" />
-      <Label layoutX="369.0" layoutY="52.0" text="Intast oplysninger:" />
-      <Button layoutX="370.0" layoutY="241.0" mnemonicParsing="false" onAction="#editBtnHandler" prefHeight="26.0" prefWidth="70.0" text="Edit" />
-      <PasswordField fx:id="password" layoutX="370.0" layoutY="153.0" prefHeight="26.0" prefWidth="194.0" promptText="Password">
+      <Button layoutX="384.0" layoutY="14.0" mnemonicParsing="false" onAction="#SearchBtnhandler" prefHeight="26.0" prefWidth="78.0" text="Search" />
+      <Button layoutX="486.0" layoutY="207.0" mnemonicParsing="false" onAction="#addBtnHandler" prefHeight="26.0" prefWidth="70.0" text="Add" />
+      <Button layoutX="608.0" layoutY="360.0" mnemonicParsing="false" onAction="#backBtnHanlder" prefHeight="26.0" prefWidth="70.0" text="Back" />
+      <Button layoutX="608.0" layoutY="207.0" mnemonicParsing="false" onAction="#deleteBtnHandler" prefHeight="26.0" prefWidth="69.0" text="Delete" />
+      <Label layoutX="485.0" layoutY="51.0" text="Insert the following information" textFill="WHITE" />
+      <Button layoutX="486.0" layoutY="248.0" mnemonicParsing="false" onAction="#editBtnHandler" prefHeight="26.0" prefWidth="70.0" text="Edit" />
+      <PasswordField fx:id="password" layoutX="486.0" layoutY="160.0" prefHeight="26.0" prefWidth="194.0" promptText="Password">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></PasswordField>
