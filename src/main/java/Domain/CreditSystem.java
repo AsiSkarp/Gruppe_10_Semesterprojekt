@@ -39,13 +39,15 @@ public class CreditSystem implements Persistance, Serializable {
 
     //Creates a binary file and writes the arraylist to it. NEEDS IF STATEMENT TO AVOID OVERWRITE
     public void writeToPersistance(){
+
         CreditSystemFileIO.getCsfio().writeData(creditSystemList);
     }
 
     //Reads the object from binary file and assigns to the arraylist. FOR LOOP ONLY FOR TESTING
     public ArrayList<ArrayList> readFromPersistance(){
+        creditSystemList.clear();
         creditSystemList = CreditSystemFileIO.getCsfio().readData();
-
+        System.out.println(creditSystemList);
         return creditSystemList;
     }
 

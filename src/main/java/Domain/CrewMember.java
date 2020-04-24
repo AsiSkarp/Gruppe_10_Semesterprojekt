@@ -2,7 +2,9 @@ package Domain;
 
 //import java.util.HashMap;
 
-public class CrewMember {
+import java.io.Serializable;
+
+public class CrewMember implements Serializable {
 
     private String name;
     private String email;

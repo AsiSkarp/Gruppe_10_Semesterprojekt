@@ -1,8 +1,7 @@
 package Interfaces;
 
-import Domain.User;
 
-import java.util.ArrayList;
+
 
 public interface Persistance {
 

@@ -1,5 +1,8 @@
 package Pre;
 
+
+import Domain.CreditSystem;
+import Persistance.CreditSystemFileIO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,6 +45,15 @@ App extends Application {
     }
 
     public static void main(String[] args) {
+
+//        CreditSystem.getCreditSystem().addProductionToSystem("Bagedysten", 78);
+//        CreditSystem.getCreditSystem().addProducerToSystem("John", "hello", "78");
+//        CreditSystem.getCreditSystem().addCrewMember("John","kevin@kevin", 94464);
+//        CreditSystem.getCreditSystem().addAdminToSystem("Popopop", "asssaaassa","123456");
+//        CreditSystem.getCreditSystem().addProductionToSystem("Bagedysten", 78);
+        CreditSystem.getCreditSystem().readFromPersistance();
+//        CreditSystem.getCreditSystem().writeToPersistance();
+//        CreditSystemFileIO.getCsfio().readData();
         //Launch GUI
         launch(args);
     }
