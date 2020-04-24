@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import Persistance.CreditSystemFileIO;
 
-public class CreditSystem implements Persistance, Serializable{
+public class CreditSystem implements Persistance, Serializable {
 
     ArrayList<User> userList = new ArrayList<>();
     ArrayList<Production> productionList = new ArrayList<>();
@@ -43,8 +43,10 @@ public class CreditSystem implements Persistance, Serializable{
     }
 
     //Reads the object from binary file and assigns to the arraylist. FOR LOOP ONLY FOR TESTING
-    public void readFromPersistance(){
+    public ArrayList<ArrayList> readFromPersistance(){
         creditSystemList = CreditSystemFileIO.getCsfio().readData();
+
+        return creditSystemList;
     }
 
     //TO DO
@@ -53,7 +55,6 @@ public class CreditSystem implements Persistance, Serializable{
         if(currentUser.getIsSuperAdmin()) {
             Admin newAdmin = new Admin(name, email, password);
             userList.add(newAdmin);
-            System.out.println(creditSystemList.toString());
         } else {
             System.out.println("Access Restricted!");
         }
@@ -153,6 +154,10 @@ public class CreditSystem implements Persistance, Serializable{
         } else {
             System.out.println(user.getName() + " is not an admin. Access restricted.");
         }
+    }
+
+    public ArrayList<Production> getProductionList() {
+        return productionList;
     }
 
     //TEST CLASS FOR ARRAYLISTS

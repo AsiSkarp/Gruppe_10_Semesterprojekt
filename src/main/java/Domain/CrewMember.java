@@ -1,8 +1,9 @@
 package Domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class CrewMember {
+public class CrewMember implements Serializable {
 
     private String name;
     private HashMap<String, Production> role;
@@ -25,5 +26,10 @@ public class CrewMember {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString(){
+        return "Name: " + name + "CrewID: " + castCrewId + "email: " + email;
     }
 }
