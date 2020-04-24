@@ -58,7 +58,7 @@ App extends Application {
 //        CreditSystem.getCreditSystem().writeToPersistance();
         //Login.getLogin().login("asssaaassa", "123456");
 
-        System.out.println(CreditSystem.getCreditSystem().getCrewMemberList());
+//        System.out.println(CreditSystem.getCreditSystem().getCrewMemberList());
 
         //Launch GUI
         launch(args);
