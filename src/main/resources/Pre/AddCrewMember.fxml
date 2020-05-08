@@ -8,8 +8,8 @@
    <children>
       <TableView fx:id="tableView" layoutX="14.0" layoutY="46.0" prefHeight="339.0" prefWidth="505.0" style="-fx-background-color: #7a9ca6;">
         <columns>
-          <TableColumn fx:id="firstNameColumn" prefWidth="105.0" text="Name" />
-          <TableColumn fx:id="emailColumn" prefWidth="244.0" text="E-mail" />
+          <TableColumn fx:id="firstNameColumn" onEditCommit="#updateName" prefWidth="105.0" text="Name" />
+          <TableColumn fx:id="emailColumn" onEditCommit="#updateEmail" prefWidth="244.0" text="E-mail" />
             <TableColumn fx:id="IdColumn" prefWidth="109.0" text="Id" />
         </columns>
       </TableView>

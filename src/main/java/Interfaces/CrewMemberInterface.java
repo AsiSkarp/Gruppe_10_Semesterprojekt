@@ -16,6 +16,6 @@ public interface CrewMemberInterface {
     void updateCrewMember(String name, String email, int castCrewId);
 
     //Delete
-    void removeCrewMember(String email);
+    void removeCrewMember(int id);
 
 }

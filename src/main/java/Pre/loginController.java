@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -37,16 +39,13 @@ public class loginController {
     private ActionEvent actionEvent;
     public boolean isHelpOpen;
 
-    @FXML
-    public void btnLoginonAction(ActionEvent actionEvent) throws IOException {
+    public void login() throws IOException {
         if(emailText.getText().equals("") || passwordText.getText().equals("")){
             System.out.println("You need to enter email and password");
-//            App.setRoot("SASystem");
-//            App.setCurrentRoom("SASystem");
         } else {
             Login.getLogin().login(emailText.getText(), passwordText.getText());
-            if(CreditSystem.getCreditSystem().getCurrentUser() != null) {
-                if(CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
+            if (CreditSystem.getCreditSystem().getCurrentUser() != null) {
+                if (CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
                     App.setCurrentRoom("SASystem");
                     App.setRoot("SASystem");
                 } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()) {
@@ -55,12 +54,17 @@ public class loginController {
                 } else if (CreditSystem.getCreditSystem().getCurrentUser().getIsProducer()) {
                     App.setCurrentRoom("PSystem");
                     App.setRoot("PSystem");
-                } else {
-                    System.out.println("Email and password doesn't match");
                 }
+            } else {
+                System.out.println("Email and password doesn't match");
             }
         }
 
+    }
+
+    @FXML
+    public void btnLoginonAction(ActionEvent actionEvent) throws IOException {
+        login();
     }
 
     @FXML
@@ -97,4 +101,16 @@ public class loginController {
             isHelpOpen = false;
         }
     };
+
+    public void smartLoginPassword(KeyEvent keyEvent) throws IOException {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            login();
+        }
+    }
+
+    public void smartLoginEmail(KeyEvent keyEvent) throws IOException {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            login();
+        }
+    }
 }

@@ -71,23 +71,46 @@ public class AddCrewMemberController implements Initializable {
     public void deletebtnHandler(ActionEvent actionEvent) {
         ObservableList<CrewMember> selectedCrew = tableView.getSelectionModel().getSelectedItems();
         ObservableList<CrewMember> allCrewMembers = tableView.getItems();
+        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+
+        if (tempCrew != null) {
+            CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getCastCrewId());
+        } else {
+            System.out.println("List is empty.");
+        }
 
         if (selectedCrew != null) {
             ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
             rows.forEach(row -> tableView.getItems().remove(row));
-        }
 
-        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
-
-        //Null Pointer Exception NEEDS If statement.
-        if (tempCrew != null) {
-            CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
-        } else {
-            System.out.println("List is empty.");
         }
     }
 
     public void backbtnHandler(ActionEvent actionEvent) throws IOException {
         App.setRoot(App.getCurrentRoom());
+    }
+
+    public void updateName(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
+        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+        String newName = crewMemberStringCellEditEvent.getNewValue();
+
+        if(tempCrew != null){
+            CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail(), tempCrew.getCastCrewId());
+            tableView.setItems(getCrewMember());
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+
+    public void updateEmail(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
+        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+        String newEmail = crewMemberStringCellEditEvent.getNewValue();
+
+        if(tempCrew != null){
+            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail, tempCrew.getCastCrewId());
+            tableView.setItems(getCrewMember());
+        } else {
+            System.out.println("Element not found");
+        }
     }
 }

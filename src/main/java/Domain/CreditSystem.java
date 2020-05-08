@@ -98,10 +98,18 @@ public class CreditSystem implements Serializable {
     }
 
 
-    public void removeCrewMember(String email) {
+    public void removeCrewMember(int id) {
         if (currentUser.getIsProducer()) {
-            CreditSystemFileRepository.getCsfio().removeCrewMember(email);
+            CreditSystemFileRepository.getCsfio().removeCrewMember(id);
 
+        } else {
+            System.out.println("Access Restricted");
+        }
+    }
+
+    public void updateCrewMember(String name, String email, int id) {
+        if(currentUser.getIsProducer()) {
+            CreditSystemFileRepository.getCsfio().updateCrewMember(name, email, id);
         } else {
             System.out.println("Access Restricted");
         }

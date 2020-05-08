@@ -82,30 +82,38 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
 
     @Override
     public void updateCrewMember(String name, String email, int castCrewId) {
-        CrewMember updatedCrewMember = new CrewMember(name, email, castCrewId);
-        for (CrewMember c : crewMemberList) {
-            if (c.getName().equals(updatedCrewMember.getName())){
-                crewMemberList.set(crewMemberList.indexOf(c), updatedCrewMember);
-                writeToFile(crewMemberFileName, crewMemberList);
+        for(int i = 0; i < crewMemberList.size(); i++) {
+            if(crewMemberList.get(i).getCastCrewId() == castCrewId) {
+
+                //WE CAN ALSO USE SETTERS HERE IF WE DON'T WANNA REPLACE OUR CURRENT CREWMEMBER OBJECT
+                //BUT JUST UPDATE IT.
+                crewMemberList.get(i).setName(name);
+                crewMemberList.get(i).setEmail(email);
+//                crewMemberList.set(i, new CrewMember(name, email, castCrewId));
+                break;
             }
         }
+        writeToFile(crewMemberFileName, crewMemberList);
+
     }
 
-    //For Loops are NICER!
     @Override
-    public void removeCrewMember(String email) {
+    public void removeCrewMember(int id) {
         int removeIndex = -1;
         for (int i = 0; i < crewMemberList.size(); i++) {
-            if (crewMemberList.get(i).getEmail().equals(email)) {
+            if (crewMemberList.get(i).getCastCrewId() == id) {
                 removeIndex = i;
+                break;
             }
         }
         if (removeIndex != -1) {
+            System.out.println(removeIndex);
+            System.out.println(crewMemberList.get(removeIndex).getCastCrewId());
             crewMemberList.remove(removeIndex);
         } else {
             System.out.println("Element not found.");
         }
-            writeToFile(crewMemberFileName, crewMemberList);
+        writeToFile(crewMemberFileName, crewMemberList);
 
     }
 
