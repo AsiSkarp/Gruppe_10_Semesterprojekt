@@ -2,10 +2,6 @@ package Pre;
 
 
 import Domain.CreditSystem;
-import Domain.Login;
-import Domain.SuperAdmin;
-import Domain.User;
-import Persistance.CreditSystemFileIO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

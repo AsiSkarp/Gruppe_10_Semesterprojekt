@@ -1,18 +1,12 @@
 package Domain;
 
-import Interfaces.Persistance;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import Persistance.CreditSystemFileIO;
+import Persistance.CreditSystemFileRepository;
 
-public class CreditSystem implements Persistance, Serializable {
+public class CreditSystem implements Serializable {
 
-    ArrayList<User> userList = new ArrayList<>();
-    ArrayList<Production> productionList = new ArrayList<>();
-    ArrayList<CrewMember> crewMemberList = new ArrayList<>();
-    ArrayList<ArrayList> creditSystemList = new ArrayList<ArrayList>(Arrays.asList(userList,productionList,crewMemberList));
 
     //Dummy user to avoid null exeption
     private User currentUser;
@@ -38,133 +32,87 @@ public class CreditSystem implements Persistance, Serializable {
         this.currentUser = currentUser;
     }
 
-    //Creates a binary file and writes the arraylist to it. NEEDS IF STATEMENT TO AVOID OVERWRITE
-    public void writeToPersistance(){
 
-        CreditSystemFileIO.getCsfio().writeData(creditSystemList);
-    }
-
-    //Reads the object from binary file and assigns to the arraylist. FOR LOOP ONLY FOR TESTING
-    public ArrayList<ArrayList> readFromPersistance(){
-//        creditSystemList.clear();
-        creditSystemList = CreditSystemFileIO.getCsfio().readData();
-//        System.out.println(creditSystemList);
-        return creditSystemList;
-    }
-
-    //TO DO
-    @Override
     public void addAdminToSystem(String name, String email, String password) {
         if(currentUser.getIsSuperAdmin()) {
-            setUserList();
-            Admin newAdmin = new Admin(name, email, password);
-            userList.add(newAdmin);
+            CreditSystemFileRepository.getCsfio().addAdmin(name, email, password);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
     //NEEDS AUTHENTICATION RESTRICTION
-    @Override
+
     public void removeAdminFromSystem(String name) {
         if(currentUser.getIsSuperAdmin()) {
-            for (User u : userList) {
-                if (u.getName().equals(name)) {
-                    userList.remove(u);
-                }
-            }
+            CreditSystemFileRepository.getCsfio().removeUser(name);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
-    //THIS METHOD IS REDUNDANT
-    @Override
     public void addProducerToSystem(String name, String email, String password) {
         if(currentUser.getIsAdmin()) {
-            setUserList();
-            Producer newProducer = new Producer(name, email, password);
-            userList.add(newProducer);
+            CreditSystemFileRepository.getCsfio().addProducer(name, email, password);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
     //NEEDS AUTHENTICATION RESTRICTION
-    @Override
+
     public void removeProducerFromSystem(String name) {
         if(currentUser.getIsAdmin()) {
-            for (User u : userList) {
-                if (u.getName().equals(name)) {
-                    userList.remove(u);
-                }
-            }
+            CreditSystemFileRepository.getCsfio().removeUser(name);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
-    //TO DO
-    @Override
+
     public void addProductionToSystem(String title, int producerId) {
         if(currentUser.getIsProducer()) {
-            setProductionList();
-            Production newProduction = new Production(title, producerId);
-            productionList.add(newProduction);
+            CreditSystemFileRepository.getCsfio().addProduction(title,producerId);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
     //NEEDS AUTHENTICATION. NEEDS VALID PRODUCER ID IMPLEMENTATION
-    @Override
+
     public void removeProductionFromSystem(String title) {
         if(currentUser.getIsProducer()) {
-            for (Production production : productionList) {
-                if (production.getTitle().equals(title)) {
-                    userList.remove(title);
-                }
-            }
+            CreditSystemFileRepository.getCsfio().removeProduction(title);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
-    //TO DO
-    @Override
+
     public void addCrewMember(String name, String email, int castCrewId) {
         if(currentUser.getIsProducer()) {
-            setCrewMemberList();
-            CrewMember crewMember = new CrewMember(name, email, castCrewId);
-            crewMemberList.add(crewMember);
-            writeToPersistance();
+            CreditSystemFileRepository.getCsfio().addCrewMember(name, email,castCrewId);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
-    //TO DO
-    @Override
+
     public void removeCrewMember(String email) {
-        if(currentUser.getIsProducer()) {
-            setCrewMemberList();
-            for (CrewMember crewMember : crewMemberList) {
-                if (crewMember.getEmail().equals(email)) {
-                    crewMemberList.remove(crewMember);
-                    setCreditSystemList(userList,productionList,crewMemberList);
-                    writeToPersistance();
-                }
-            }
+        if (currentUser.getIsProducer()) {
+            CreditSystemFileRepository.getCsfio().removeCrewMember(email);
+
         } else {
-            System.out.println("Access Restricted!");
+            System.out.println("Access Restricted");
         }
+    }
+
+    public ArrayList<CrewMember> getCrewMembers(){
+        return CreditSystemFileRepository.getCsfio().getCrewMemberList();
     }
 
     public void addSuperAdmin(String name, String email, String password) {
-            setUserList();
-            User sysAdm = new SuperAdmin(name, email, password);
-            userList.add(sysAdm);
-            writeToPersistance();
+        CreditSystemFileRepository.getCsfio().addSuperAdmin(name, email, password);
     }
 
     //TEST CLASS FOR ACCESS CONTROL
@@ -177,33 +125,18 @@ public class CreditSystem implements Persistance, Serializable {
     }
 
     public ArrayList<Production> getProductionList() {
-        return productionList;
+        return CreditSystemFileRepository.getCsfio().getProductionList();
     }
 
-    //TEST CLASS FOR ARRAYLISTS
-    public void printList(){
-        System.out.println(creditSystemList.toString());
-    }
 
     public ArrayList<CrewMember> getCrewMemberList() {
-        return crewMemberList;
+        return CreditSystemFileRepository.getCsfio().getCrewMemberList();
     }
 
-    public void setCreditSystemList(ArrayList<User> userList, ArrayList<Production> productionList, ArrayList<CrewMember>crewMemberList) {
-        this.creditSystemList = new ArrayList<ArrayList>(Arrays.asList(userList,productionList,crewMemberList));
+    public ArrayList<User> getUserList(){
+        return CreditSystemFileRepository.getCsfio().getUserList();
     }
 
-    public void setUserList() {
-        userList = creditSystemList.get(0);
-    }
-
-    public void setProductionList() {
-        productionList = creditSystemList.get(1);
-    }
-
-    public void setCrewMemberList() {
-        crewMemberList = creditSystemList.get(2);
-    }
 
     public void logout() {
         currentUser = null;

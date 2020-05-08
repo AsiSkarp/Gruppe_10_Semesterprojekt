@@ -35,27 +35,17 @@ public class AddCrewMemberController implements Initializable {
     @FXML
     public TextField IdField;
 
-    ArrayList<ArrayList> fetchList = CreditSystem.getCreditSystem().readFromPersistance();
-
-
-//    ObservableList<CrewMember> columnList;
+    ArrayList<CrewMember> fetchList = CreditSystem.getCreditSystem().getCrewMemberList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        TableView.TableViewSelectionModel<CrewMember> viewSelectionModel = tableView.getSelectionModel();
-//        viewSelectionModel.setSelectionMode(SelectionMode.SINGLE);
-
-
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         tableView.setItems(getCrewMember());
-
-
         tableView.setEditable(true);
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        IdColumn.setCellValueFactory(Integer.parseInt());
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -63,14 +53,12 @@ public class AddCrewMemberController implements Initializable {
         CrewMember newCrewMember = new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
         tableView.getItems().add(newCrewMember);
         CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
-//      CreditSystem.getCreditSystem().writeToPersistance();
     }
 
     public ObservableList<CrewMember> getCrewMember() {
 
         ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
-//        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
-        ArrayList<CrewMember> fetchCrew = fetchList.get(2);
+        ArrayList<CrewMember> fetchCrew = fetchList;
         for (CrewMember c : fetchCrew) {
             String name = c.getName();
             String email = c.getEmail();
@@ -80,29 +68,23 @@ public class AddCrewMemberController implements Initializable {
         return crewMembers;
     }
 
-//    public ObservableList<CrewMember> getCrewMembers() {
-//        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
-//        ArrayList<CrewMember> fetchCrew = fetchList.get(2);
-////        //System.out.println(fetchCrew);
-//        for (CrewMember c : fetchCrew) {
-//            String name = c.getName();
-//            String email = c.getEmail();
-//            int id = c.getCastCrewId();
-//            //crew.add(new CrewMember(name,email,id));
-//            System.out.println(name + "  " + email + "  " + id);
-//        }
-//        return crew;
-//    }
-
     public void deletebtnHandler(ActionEvent actionEvent) {
-//        ObservableList<CrewMember> selectCrew, AllCrew;
-//        AllCrew = tableView.getItems();
-//        selectCrew = tableView.getSelectionModel().getSelectedItems();
-//        for (CrewMember crew : AllCrew) {
-//            AllCrew.remove(crew);
-//        }
-//        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
-//        CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
+        ObservableList<CrewMember> selectedCrew = tableView.getSelectionModel().getSelectedItems();
+        ObservableList<CrewMember> allCrewMembers = tableView.getItems();
+
+        if (selectedCrew != null) {
+            ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
+            rows.forEach(row -> tableView.getItems().remove(row));
+        }
+
+        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+
+        //Null Pointer Exception NEEDS If statement.
+        if (tempCrew != null) {
+            CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
+        } else {
+            System.out.println("List is empty.");
+        }
     }
 
     public void backbtnHandler(ActionEvent actionEvent) throws IOException {

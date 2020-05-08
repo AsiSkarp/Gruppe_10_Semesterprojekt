@@ -27,7 +27,7 @@ public class AddProducerController implements Initializable {
     @FXML public TextField proEmail;
     @FXML public PasswordField proPassword;
 
-    ArrayList<ArrayList> proList = CreditSystem.getCreditSystem().readFromPersistance();
+    ArrayList<User> proList = CreditSystem.getCreditSystem().getUserList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         proTableName.setCellValueFactory(new PropertyValueFactory<Producer, String>("name"));
@@ -48,14 +48,14 @@ public class AddProducerController implements Initializable {
         User newPro = new Producer(proName.getText(), proEmail.getText(), proPassword.getText());
         proTable.getItems().add(newPro);
         CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
-        CreditSystem.getCreditSystem().writeToPersistance();
+//        CreditSystem.getCreditSystem().writeToPersistance();
     }
 
     public ObservableList<User> getPro() {
         ObservableList<User> proObser = FXCollections.observableArrayList();
 //        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
-        ArrayList<User> fetchCrew = proList.get(0);
-        for (User c : fetchCrew) {
+        ArrayList<User> fetchedUser = proList;
+        for (User c : fetchedUser) {
             String name = c.getName();
             String email = c.getEmail();
             String password = c.getPassword();

@@ -1,7 +1,5 @@
 package Domain;
 
-import Persistance.CreditSystemFileIO;
-
 import java.util.ArrayList;
 
 public class Login {
@@ -16,11 +14,11 @@ public class Login {
         } return login;
     }
 
-    ArrayList<ArrayList> tempList = CreditSystem.getCreditSystem().readFromPersistance();
+    ArrayList<User> tempList = CreditSystem.getCreditSystem().getUserList();
 
 
     public void login(String email, String password) {
-        ArrayList<User> fetchUser = tempList.get(0);
+        ArrayList<User> fetchUser = tempList;
         for (User u : fetchUser) {
                 if(u.getEmail().equals(email) && u.getPassword().equals(password)){
                     if(u.getIsSuperAdmin()){

@@ -30,7 +30,7 @@ public class AddAdminController implements Initializable {
     @FXML public TextField adminEmail;
     @FXML public PasswordField adminPassword;
 
-    ArrayList<ArrayList> adminList = CreditSystem.getCreditSystem().readFromPersistance();
+    ArrayList<User> adminList = CreditSystem.getCreditSystem().getUserList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         adminTableName.setCellValueFactory(new PropertyValueFactory<Admin, String>("name"));
@@ -50,14 +50,14 @@ public class AddAdminController implements Initializable {
         User newAdmin = new Producer(adminName.getText(), adminEmail.getText(), adminPassword.getText());
         adminTable.getItems().add(newAdmin);
         CreditSystem.getCreditSystem().addAdminToSystem(adminName.getText(), adminEmail.getText(), adminPassword.getText());
-        CreditSystem.getCreditSystem().writeToPersistance();
+//        CreditSystem.getCreditSystem().writeToPersistance();
 
     }
     public ObservableList<User> getAdmin() {
 
         ObservableList<User> adminObser = FXCollections.observableArrayList();
 //        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
-        ArrayList<User> fetchCrew = adminList.get(0);
+        ArrayList<User> fetchCrew = adminList;
         for (User c : fetchCrew) {
             String name = c.getName();
             String email = c.getEmail();
