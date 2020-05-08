@@ -107,8 +107,6 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
             }
         }
         if (removeIndex != -1) {
-            System.out.println(removeIndex);
-            System.out.println(crewMemberList.get(removeIndex).getCastCrewId());
             crewMemberList.remove(removeIndex);
         } else {
             System.out.println("Element not found.");
