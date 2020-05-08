@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface CrewMemberInterface {
 
     //Create
-    void addCrewMember(String name, String email, int castCrewId);
+    boolean addCrewMember(String name, String email, int castCrewId);
 
     //Read
     ArrayList<CrewMember> getCrewMemberList();

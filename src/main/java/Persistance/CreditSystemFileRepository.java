@@ -51,9 +51,23 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void addCrewMember(String name, String email, int castCrewId) {
-        crewMemberList.add(new CrewMember(name, email, castCrewId));
-        writeToFile(crewMemberFileName, crewMemberList);
+    public boolean addCrewMember(String name, String email, int castCrewId) {
+        boolean add = true;
+
+        for(CrewMember c : crewMemberList){
+            if(c.getCastCrewId() == castCrewId || c.getEmail().equals(email)){
+                System.out.println("Email or ID already exist");
+                add = false;
+                break;
+            }
+        }
+
+        if(add){
+            crewMemberList.add(new CrewMember(name, email, castCrewId));
+            writeToFile(crewMemberFileName, crewMemberList);
+        }
+
+        return add;
     }
 
     @Override
@@ -84,12 +98,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     public void updateCrewMember(String name, String email, int castCrewId) {
         for(int i = 0; i < crewMemberList.size(); i++) {
             if(crewMemberList.get(i).getCastCrewId() == castCrewId) {
-
-                //WE CAN ALSO USE SETTERS HERE IF WE DON'T WANNA REPLACE OUR CURRENT CREWMEMBER OBJECT
-                //BUT JUST UPDATE IT.
                 crewMemberList.get(i).setName(name);
                 crewMemberList.get(i).setEmail(email);
-//                crewMemberList.set(i, new CrewMember(name, email, castCrewId));
                 break;
             }
         }

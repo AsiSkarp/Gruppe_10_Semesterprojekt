@@ -89,12 +89,16 @@ public class CreditSystem implements Serializable {
     }
 
 
-    public void addCrewMember(String name, String email, int castCrewId) {
+    public boolean addCrewMember(String name, String email, int castCrewId) {
+        boolean add = false;
+
         if(currentUser.getIsProducer()) {
-            CreditSystemFileRepository.getCsfio().addCrewMember(name, email,castCrewId);
+            add = CreditSystemFileRepository.getCsfio().addCrewMember(name, email,castCrewId);
         } else {
             System.out.println("Access Restricted!");
         }
+
+        return add;
     }
 
 

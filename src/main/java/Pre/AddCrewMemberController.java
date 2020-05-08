@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,10 +51,15 @@ public class AddCrewMemberController implements Initializable {
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
+    public void add() {
+        boolean add = CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
+        if(add) {
+            tableView.getItems().add(new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText())));
+        }
+    }
+
     public void addbtnhandler(ActionEvent actionEvent) {
-        CrewMember newCrewMember = new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
-        tableView.getItems().add(newCrewMember);
-        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
+        add();
     }
 
     public ObservableList<CrewMember> getCrewMember() {
@@ -111,6 +118,26 @@ public class AddCrewMemberController implements Initializable {
             tableView.setItems(getCrewMember());
         } else {
             System.out.println("Element not found");
+        }
+    }
+
+
+    //SMART METHODS
+    public void smartName(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+            add();
+        }
+    }
+
+    public void smartEmail(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+            add();
+        }
+    }
+
+    public void smartId(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)) {
+            add();
         }
     }
 }
