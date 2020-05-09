@@ -10,5 +10,5 @@ public interface UserInterface {
     ArrayList<User> getUserList();
 
     //Delete
-    void removeUser(String name);
+    void removeUser(String email);
 }
