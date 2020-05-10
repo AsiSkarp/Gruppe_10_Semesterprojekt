@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
@@ -19,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddCrewMemberController implements Initializable {
@@ -76,22 +74,33 @@ public class AddCrewMemberController implements Initializable {
     }
 
     public void deletebtnHandler(ActionEvent actionEvent) {
-        ObservableList<CrewMember> selectedCrew = tableView.getSelectionModel().getSelectedItems();
-        ObservableList<CrewMember> allCrewMembers = tableView.getItems();
-        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you sure that you wanna delete this person?");
 
-        if (tempCrew != null) {
-            CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getCastCrewId());
-        } else {
-            System.out.println("List is empty.");
-        }
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // ... user chose OK
+            ObservableList<CrewMember> selectedCrew = tableView.getSelectionModel().getSelectedItems();
+            ObservableList<CrewMember> allCrewMembers = tableView.getItems();
+            CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
 
-        if (selectedCrew != null) {
-            ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
-            rows.forEach(row -> tableView.getItems().remove(row));
-
+            if (tempCrew != null) {
+                CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getCastCrewId());
+            } else {
+                System.out.println("List is empty.");
+            }
+            if (selectedCrew != null) {
+                ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
+                rows.forEach(row -> tableView.getItems().remove(row));
+            } } else {
+            // ... user chose CANCEL or closed the dialog
+            System.out.println("user chose CANCEL or closed the dialog");
         }
     }
+
+
 
     public void backbtnHandler(ActionEvent actionEvent) throws IOException {
         App.setRoot(App.getCurrentRoom());
