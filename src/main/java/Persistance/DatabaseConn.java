@@ -1,4 +1,4 @@
-package Data;
+package Persistance;
 
 import com.sun.rowset.CachedRowSetImpl;
 import java.sql.*;
@@ -19,7 +19,7 @@ public class DatabaseConn {
         System.out.println("Postgresql driver is added:");
         System.out.println("The data has been send to the database:");
         try {
-            connection = DriverManager.getConnection(connectionStr, "postgres", "");
+            connection = DriverManager.getConnection(connectionStr, "postgres", "casperf81");
         } catch (SQLException e) {
             System.out.println("Connection failed " + e);
             throw e;
@@ -77,7 +77,7 @@ public class DatabaseConn {
             Connection connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/dbtv2",
                     "postgres",
-                    "");
+                    "casperf81");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();

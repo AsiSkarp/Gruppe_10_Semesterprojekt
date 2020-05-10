@@ -9,7 +9,7 @@
       <TableView fx:id="tableView" layoutX="14.0" layoutY="47.0" prefHeight="388.0" prefWidth="666.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
           <TableColumn fx:id="firstNameColumn" onEditCommit="#updateName" prefWidth="116.0" text="Name" />
-          <TableColumn fx:id="emailColumn" onEditCommit="#updateEmail" prefWidth="227.0" text="E-mail" />
+          <TableColumn fx:id="emailColumn" prefWidth="227.0" text="E-mail" />
             <TableColumn fx:id="roleColumn" minWidth="0.0" onEditCommit="#updateRole" prefWidth="178.0" text="Role" />
             <TableColumn fx:id="IdColumn" prefWidth="143.0" text="Id" />
         </columns>
@@ -36,11 +36,10 @@
       </TextField>
       <Button fx:id="AddCrewButton" layoutX="703.0" layoutY="203.0" mnemonicParsing="false" onAction="#addbtnhandler" prefHeight="25.0" prefWidth="171.0" text="Add" />
       <Button layoutX="703.0" layoutY="244.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="171.0" text="Del" />
-      <Button fx:id="backButton" layoutX="809.0" layoutY="410.0" mnemonicParsing="false" onAction="#addbtnhandler" prefHeight="25.0" prefWidth="68.0" text="Back" />
-      <TextField fx:id="searchCrewM" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="445.0" />
+      <Button fx:id="backButton" layoutX="809.0" layoutY="410.0" mnemonicParsing="false" onAction="#backBtnHandler" prefHeight="25.0" prefWidth="68.0" text="Back" />
+      <TextField fx:id="searchCrewM" layoutX="14.0" layoutY="14.0" onKeyPressed="#searchEnter" prefHeight="25.0" prefWidth="445.0" />
       <Label layoutX="702.0" layoutY="17.0" text="Insert the following information" textFill="WHITE" />
-      <Button fx:id="searchButton" layoutX="459.0" layoutY="14.0" mnemonicParsing="false" onAction="#addbtnhandler" prefHeight="25.0" prefWidth="76.0" text="Search" />
-      <Button fx:id="updateButton" layoutX="703.0" layoutY="284.0" mnemonicParsing="false" onAction="#addbtnhandler" prefHeight="25.0" prefWidth="171.0" text="Update" />
+      <Button fx:id="searchButton" layoutX="459.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="25.0" prefWidth="76.0" text="Search" />
       <Label fx:id="resultLabel" layoutX="703.0" layoutY="323.0" prefHeight="74.0" prefWidth="171.0" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Italic" size="12.0" />
