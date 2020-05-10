@@ -17,15 +17,6 @@ public class ProductionController {
     @FXML public TableColumn productionIdColumn;
     @FXML public TableColumn producerIdColumn;
 
-    //TextFields:
-    @FXML
-    public TextField titleField;
-    @FXML
-    public TextField crewmemberField;
-    @FXML
-    public TextField productionIdField;
-    @FXML
-    public TextField producerIdField;
 
 
     public void DeleteButtonOnAction(ActionEvent actionEvent) {

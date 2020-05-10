@@ -1,21 +1,29 @@
 package Domain;
 
-//import java.util.HashMap;
-
 import java.io.Serializable;
 
 public class CrewMember implements Serializable {
 
     private String name;
     private String email;
+    private String role;
     private int castCrewId;
-//    private HashMap<String, Production> role;
 
 
-    public CrewMember(String name, String email, int castCrewId) {
+    public CrewMember(String name, String email, String role, int castCrewId) {
         this.name = name;
-        this.castCrewId = castCrewId;
         this.email = email;
+        this.role = role;
+        this.castCrewId = castCrewId;
+
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getName() {
@@ -44,6 +52,6 @@ public class CrewMember implements Serializable {
 
     @Override
     public String toString() {
-        return name + " " + email + " " + castCrewId;
+        return name + " " + email + " " + role + " " + castCrewId;
     }
 }

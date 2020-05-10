@@ -6,6 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,7 +24,12 @@ App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        //stage.getIcons().add(new Image("src\\main\\resources\\Images\\TV2Logo.png"));
+        stage.setTitle("TV2 Credit System");
         scene = new Scene(loadFXML("login"));
+        //stage.sizeToScene();
+        //scene = new Scene(root, 900, 450);
+        //stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -47,7 +55,6 @@ App extends Application {
 
 //CALL THE STATEMENT UNDER THIS SENTENCE FIRST TIME YOU RUN THE PROGRAM. COMMENT IT OUT IF YOU'RE GONNA RESTART THE PROGRAM
         CreditSystem.getCreditSystem().addSuperAdmin("SysAdm", "system", "admin");
-
         //Launch GUI
         launch(args);
     }

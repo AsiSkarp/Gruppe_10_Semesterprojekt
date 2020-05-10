@@ -10,6 +10,15 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/bin/postgresql-42.2.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:14-ea+8" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:14-ea+8" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:14-ea+8" level="project" />
@@ -20,5 +29,6 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:14-ea+8" level="project" />
     <orderEntry type="library" name="Maven: com.openhtmltopdf:openhtmltopdf-core:0.0.1-RC9" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.2.134" level="project" />
+    <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:8.0.2" level="project" />
   </component>
 </module>
