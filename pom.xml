@@ -40,6 +40,11 @@
             <artifactId>h2</artifactId>
             <version>1.2.134</version>
         </dependency>
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>8.0.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

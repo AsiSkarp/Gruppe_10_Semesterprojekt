@@ -1,21 +1,19 @@
 package Interfaces;
 
 import Domain.CrewMember;
-
 import java.util.ArrayList;
 
 public interface CrewMemberInterface {
 
     //Create
-    boolean addCrewMember(String name, String email, int castCrewId);
+    void addCrewMember(String name, String email, String role, int castCrewId);
 
     //Read
     ArrayList<CrewMember> getCrewMemberList();
 
     //Update
-    void updateCrewMember(String name, String email, int castCrewId);
+    void updateCrewMember(String name, String email, String role, int castCrewId);
 
-    //Delete
+    //For Loops are NICER!
     void removeCrewMember(int id);
-
 }

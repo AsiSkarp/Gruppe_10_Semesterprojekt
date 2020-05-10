@@ -2,9 +2,7 @@ package Persistance;
 
 
 import Domain.*;
-
 import Interfaces.*;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -51,23 +49,9 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public boolean addCrewMember(String name, String email, int castCrewId) {
-        boolean add = true;
-
-        for(CrewMember c : crewMemberList){
-            if(c.getCastCrewId() == castCrewId || c.getEmail().equals(email)){
-                System.out.println("Email or ID already exist");
-                add = false;
-                break;
-            }
-        }
-
-        if(add){
-            crewMemberList.add(new CrewMember(name, email, castCrewId));
-            writeToFile(crewMemberFileName, crewMemberList);
-        }
-
-        return add;
+    public void addCrewMember(String name, String email, String role, int castCrewId) {
+        crewMemberList.add(new CrewMember(name, email, role, castCrewId));
+        writeToFile(crewMemberFileName, crewMemberList);
     }
 
     @Override
@@ -95,18 +79,17 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void updateCrewMember(String name, String email, int castCrewId) {
-        for(int i = 0; i < crewMemberList.size(); i++) {
-            if(crewMemberList.get(i).getCastCrewId() == castCrewId) {
-                crewMemberList.get(i).setName(name);
-                crewMemberList.get(i).setEmail(email);
-                break;
+    public void updateCrewMember(String name, String email, String role,int castCrewId) {
+        CrewMember updatedCrewMember = new CrewMember(name, email, role, castCrewId);
+        for (CrewMember c : crewMemberList) {
+            if (c.getName().equals(updatedCrewMember.getName())){
+                crewMemberList.set(crewMemberList.indexOf(c), updatedCrewMember);
+                writeToFile(crewMemberFileName, crewMemberList);
             }
         }
-        writeToFile(crewMemberFileName, crewMemberList);
-
     }
 
+    //For Loops are NICER!
     @Override
     public void removeCrewMember(int id) {
         int removeIndex = -1;
@@ -117,7 +100,7 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
             }
         }
         if (removeIndex != -1) {
-            crewMemberList.remove(removeIndex);
+           crewMemberList.remove(removeIndex);
         } else {
             System.out.println("Element not found.");
         }

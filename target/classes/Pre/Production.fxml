@@ -5,18 +5,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.ProductionController">
    <children>
-      <TableView fx:id="tableviewProduction" layoutX="14.0" layoutY="51.0" prefHeight="258.0" prefWidth="673.0" style="-fx-background-color: #7a9ca6;">
+      <TableView fx:id="tableviewProduction" layoutX="14.0" layoutY="51.0" prefHeight="289.0" prefWidth="673.0" style="-fx-background-color: #7a9ca6;">
         <columns>
-          <TableColumn fx:id="titleColumn" prefWidth="137.0" text="Title" />
-          <TableColumn fx:id="crewMemberColumn" prefWidth="240.0" text="Crew Member" />
-            <TableColumn fx:id="productionIdColumn" prefWidth="126.0" text="Production Id" />
-            <TableColumn fx:id="producerIdColumn" prefWidth="169.0" text="Producer Id" />
+          <TableColumn fx:id="titleColumn" prefWidth="215.0" text="Title" />
+            <TableColumn fx:id="productionIdColumn" prefWidth="225.0" text="Owner" />
+            <TableColumn fx:id="producerIdColumn" prefWidth="209.0" text="Date" />
         </columns>
       </TableView>
-      <TextField fx:id="titleField" layoutX="14.0" layoutY="317.0" prefHeight="25.0" prefWidth="160.0" promptText="Title" />
-      <TextField fx:id="crewmemberField" layoutX="184.0" layoutY="317.0" prefHeight="25.0" prefWidth="160.0" promptText="Crew Member" />
-      <TextField fx:id="productionIdField" layoutX="354.0" layoutY="317.0" prefHeight="25.0" prefWidth="160.0" promptText="Production Id" />
-      <TextField fx:id="producerIdField" layoutX="524.0" layoutY="317.0" prefHeight="25.0" prefWidth="160.0" promptText="Producer  Id" />
       <Label layoutX="512.0" layoutY="19.0" text="Insert the following information" textFill="WHITE" />
       <Button layoutX="621.0" layoutY="349.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="26.0" prefWidth="62.0" text="Back" />
       <Button layoutX="415.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Search" />

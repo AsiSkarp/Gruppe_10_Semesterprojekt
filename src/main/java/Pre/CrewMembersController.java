@@ -10,7 +10,6 @@ import java.io.IOException;
 public class CrewMembersController {
     //tableview Colunms:
     @FXML public TableView tableviewCrewmembers;
-    @FXML public TableColumn IDColumn;
     @FXML public TableColumn nameColumn;
     @FXML public TableColumn roleColumn;
     @FXML public TableColumn emailColunm;

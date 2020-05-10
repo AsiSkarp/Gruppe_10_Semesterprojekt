@@ -19,8 +19,6 @@ public class Login {
 
     public void login(String email, String password) {
         ArrayList<User> fetchUser = tempList;
-        boolean printText = false;
-
         for (User u : fetchUser) {
                 if(u.getEmail().equals(email) && u.getPassword().equals(password)){
                     if(u.getIsSuperAdmin()){
@@ -37,13 +35,9 @@ public class Login {
                         break;
                     }
                 } else {
-                    printText = true;
+                    //THIS IS GONNA BE PRINTED MULTIPLE TIMES ATM
+//                    System.out.println("Username and Password doesn't match");
                 }
             }
-        //THERE IS ALSO A SOUT IN THE LOGINCONTROLLER SO THIS IS NOT NECESSARY ATM
-//        if(printText) {
-//            System.out.println("Username and Password doesn't match");
-//        }
-
         }
 }

@@ -5,19 +5,14 @@ import Domain.Login;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import javax.security.auth.login.CredentialException;
 import java.io.IOException;
 
 import static Pre.App.loadFXML;
@@ -31,8 +26,6 @@ public class loginController {
     public Button btnLogin;
     @FXML
     public Button btnGuest;
-    @FXML
-    public Button btnReset;
     @FXML
     public TextField passwordText;
 
@@ -70,14 +63,6 @@ public class loginController {
     @FXML
     public void btnGuestonAction(ActionEvent actionEvent) throws IOException {
         App.setRoot("GuestAndRD");
-    }
-
-    public void emailTextonAction(ActionEvent actionEvent) {
-
-    }
-
-    public void passTextonAction(ActionEvent actionEvent) {
-
     }
 
     public void btnResetAction(ActionEvent actionEvent) {
