@@ -65,10 +65,48 @@ public class AddProducerController implements Initializable {
     }
 
     public void DeleteButtonAction(ActionEvent actionEvent) {
+        ObservableList<User> selectedUser = proTable.getSelectionModel().getSelectedItems();
+        User tempUser = proTable.getSelectionModel().getSelectedItem();
+
+        if (tempUser != null) {
+            CreditSystem.getCreditSystem().removeAdminFromSystem(tempUser.getEmail());
+        } else {
+            System.out.println("List is empty.");
+        }
+
+        if (selectedUser != null) {
+            ArrayList<User> rows = new ArrayList<>(selectedUser);
+            rows.forEach(row -> proTable.getItems().remove(row));
+
+        }
     }
 
 
     public void goBackBtnHandler(ActionEvent actionEvent) throws IOException {
         App.setRoot(App.getCurrentRoom());
+    }
+
+    public void updateName(TableColumn.CellEditEvent<Producer, String> producerStringCellEditEvent) {
+        User tempProducer = proTable.getSelectionModel().getSelectedItem();
+        String newName = producerStringCellEditEvent.getNewValue();
+
+        if(tempProducer != null){
+            CreditSystem.getCreditSystem().updateProducer(newName, tempProducer.getEmail(), tempProducer.getPassword());
+            proTable.setItems(getPro());
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+
+    public void updatePassword(TableColumn.CellEditEvent<Producer, String> producerStringCellEditEvent) {
+        User tempProducer = proTable.getSelectionModel().getSelectedItem();
+        String newPassword = producerStringCellEditEvent.getNewValue();
+
+        if(tempProducer != null){
+            CreditSystem.getCreditSystem().updateProducer(tempProducer.getName(), tempProducer.getEmail(), newPassword);
+            proTable.setItems(getPro());
+        } else {
+            System.out.println("Element not found");
+        }
     }
 }

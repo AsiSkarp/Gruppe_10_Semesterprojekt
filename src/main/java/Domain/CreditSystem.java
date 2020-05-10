@@ -42,11 +42,18 @@ public class CreditSystem implements Serializable {
 
     //NEEDS AUTHENTICATION RESTRICTION
 
-    public void removeAdminFromSystem(String name) {
+    public void removeAdminFromSystem(String email) {
         if(currentUser.getIsSuperAdmin()) {
-            CreditSystemFileRepository.getCsfio().removeUser(name);
+            CreditSystemFileRepository.getCsfio().removeUser(email);
         } else {
             System.out.println("Access Restricted!");
+        }
+    }
+    public void updateAdmin(String name, String email, String password) {
+        if(currentUser.getIsSuperAdmin()) {
+            CreditSystemFileRepository.getCsfio().updateAdmin(name, email, password);
+        } else {
+            System.out.println("Access Restricted");
         }
     }
 
@@ -60,11 +67,18 @@ public class CreditSystem implements Serializable {
 
     //NEEDS AUTHENTICATION RESTRICTION
 
-    public void removeProducerFromSystem(String name) {
+    public void removeProducerFromSystem(String email) {
         if(currentUser.getIsAdmin()) {
-            CreditSystemFileRepository.getCsfio().removeUser(name);
+            CreditSystemFileRepository.getCsfio().removeUser(email);
         } else {
             System.out.println("Access Restricted!");
+        }
+    }
+    public void updateProducer(String name, String email, String password) {
+        if(currentUser.getIsAdmin()) {
+            CreditSystemFileRepository.getCsfio().updateProducer(name, email, password);
+        } else {
+            System.out.println("Access Restricted");
         }
     }
 

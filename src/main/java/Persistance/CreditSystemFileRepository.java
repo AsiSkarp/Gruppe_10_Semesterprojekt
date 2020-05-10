@@ -41,11 +41,15 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     @Override
     public void updateAdmin(String name, String email, String password) {
         Admin updatedAdmin = new Admin(name, email, password);
-        for (User u : userList){
-            if (u.getName().equals(name)){
-                userList.set(userList.indexOf(u), updatedAdmin);
+        for(int i = 0; i < userList.size(); i++) {
+            if(userList.get(i).getEmail().equals(email)) {
+                userList.get(i).setName(name);
+                userList.get(i).setPassword(password);
+                break;
             }
         }
+        writeToFile(userFileName, userList);
+
     }
 
     @Override
@@ -117,22 +121,33 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     @Override
     public void updateProducer(String name, String email, String password) {
         Producer updatedProducer = new Producer(name, email, password);
-        for (User u : userList){
-            if (u.getName().equals(name)){
-                userList.set(userList.indexOf(u), updatedProducer);
-                writeToFile(userFileName,userList);
+        for(int i = 0; i < userList.size(); i++) {
+            if(userList.get(i).getEmail().equals(email)) {
+                userList.get(i).setName(name);
+                userList.get(i).setPassword(password);
+                break;
             }
         }
+        writeToFile(userFileName, userList);
+
     }
 
     @Override
-    public void removeUser(String name) {
-        for (User u : userList){
-            if (u.getName().equals(name)){
-                userList.remove(userList.indexOf(u));
-                writeToFile(userFileName, userList);
+    public void removeUser(String email) {
+        int removeIndex = -1;
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getEmail().equals(email)) {
+                removeIndex = i;
+                break;
             }
         }
+        if (removeIndex != -1) {
+            userList.remove(removeIndex);
+        } else {
+            System.out.println("Element not found.");
+        }
+        writeToFile(userFileName, userList);
+
     }
 
     @Override
