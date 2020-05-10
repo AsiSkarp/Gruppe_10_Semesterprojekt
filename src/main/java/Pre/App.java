@@ -24,7 +24,7 @@ App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.getIcons().add(new Image("src\\main\\resources\\Images\\TV2Logo.png"));
+        //stage.getIcons().add(new Image("src\\main\\resources\\Images\\TV2Logo.png"));
         stage.setTitle("TV2 Credit System");
         scene = new Scene(loadFXML("login"));
         //stage.sizeToScene();
