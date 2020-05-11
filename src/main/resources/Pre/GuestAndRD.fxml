@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.GuestAndRDController">
+<AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.GuestAndRDController">
    <children>
-      <Button contentDisplay="TOP" layoutX="118.0" layoutY="97.0" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="106.0" prefWidth="167.0" text="Programs">
+      <Button contentDisplay="TOP" layoutX="191.0" layoutY="150.0" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="106.0" prefWidth="167.0" text="Programs">
          <graphic>
             <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -15,7 +15,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button contentDisplay="TOP" layoutX="403.0" layoutY="97.0" mnemonicParsing="false" onAction="#switchToCrewMember" prefHeight="106.0" prefWidth="167.0" text="Crew Members">
+      <Button contentDisplay="TOP" layoutX="535.0" layoutY="150.0" mnemonicParsing="false" onAction="#switchToCrewMember" prefHeight="106.0" prefWidth="167.0" text="Crew Members">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,20 +23,20 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ImageView fitHeight="49.0" fitWidth="193.0" layoutX="112.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="106.0" fitWidth="272.0" layoutX="139.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/sdu-logo-png-3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="125.0" fitWidth="297.0" layoutX="339.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="125.0" fitWidth="297.0" layoutX="462.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="230.0" layoutY="37.0" text="You are logged in as guest" textFill="WHITE">
+      <Label layoutX="314.0" layoutY="44.0" text="You are logged in as guest" textFill="WHITE">
          <font>
             <Font name="Verdana" size="18.0" />
          </font></Label>
-      <Button layoutX="500.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="70.0" text="Log ud" />
+      <Button layoutX="761.0" layoutY="363.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="70.0" text="Log ud" />
    </children>
 </AnchorPane>

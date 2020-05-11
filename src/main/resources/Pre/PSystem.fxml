@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.PSystemController">
+<AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.PSystemController">
    <children>
-      <Button contentDisplay="TOP" layoutX="104.0" layoutY="84.0" mnemonicParsing="false" onAction="#switchToProductionSystem" prefHeight="96.0" prefWidth="151.0" text="Production System">
+      <Button contentDisplay="TOP" layoutX="199.0" layoutY="148.0" mnemonicParsing="false" onAction="#switchToProductionSystem" prefHeight="96.0" prefWidth="151.0" text="Production System">
          <graphic>
             <ImageView fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -14,7 +15,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button contentDisplay="TOP" layoutX="348.0" layoutY="84.0" mnemonicParsing="false" onAction="#SswitchToCrewMembersSystem" prefHeight="96.0" prefWidth="151.0" text="CrewMember System">
+      <Button contentDisplay="TOP" layoutX="529.0" layoutY="148.0" mnemonicParsing="false" onAction="#SswitchToCrewMembersSystem" prefHeight="96.0" prefWidth="151.0" text="CrewMember System">
          <graphic>
             <ImageView fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,11 +23,14 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="412.0" layoutY="312.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" text="Log ud" />
-      <ImageView fitHeight="151.0" fitWidth="282.0" layoutX="57.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="749.0" layoutY="366.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" text="Log ud" />
+      <ImageView fitHeight="138.0" fitWidth="329.0" layoutX="202.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />
          </image>
       </ImageView>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </AnchorPane>

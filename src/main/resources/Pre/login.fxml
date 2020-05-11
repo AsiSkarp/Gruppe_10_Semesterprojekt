@@ -5,47 +5,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.loginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.loginController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #04445c;">
+      <AnchorPane prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: #04445c;">
          <children>
-            <ImageView fitHeight="164.0" fitWidth="350.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="214.0" fitWidth="430.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/TV2Logo.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="350.0" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #8494a4;">
+      <AnchorPane layoutX="450.0" prefHeight="450.0" prefWidth="450.0" style="-fx-background-color: #8494a4;">
          <children>
-            <TextField fx:id="emailText" layoutX="73.0" layoutY="101.0" onKeyPressed="#smartLoginEmail" prefHeight="25.0" prefWidth="205.0" promptText="E-mail">
+            <TextField fx:id="emailText" layoutX="135.0" layoutY="130.0" onKeyPressed="#smartLoginEmail" prefHeight="25.0" prefWidth="205.0" promptText="E-mail">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordText" layoutX="73.0" layoutY="148.0" onKeyPressed="#smartLoginPassword" prefHeight="25.0" prefWidth="205.0" promptText="Password">
+            <PasswordField fx:id="passwordText" layoutX="136.0" layoutY="181.0" onKeyPressed="#smartLoginPassword" prefHeight="25.0" prefWidth="205.0" promptText="Password">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </PasswordField>
-            <Button fx:id="btnLogin" layoutX="73.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnLoginonAction" prefHeight="25.0" prefWidth="61.0" text="Login" />
-            <Button layoutX="217.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnResetAction" prefHeight="25.0" prefWidth="61.0" text="Reset" />
-            <Button fx:id="btnGuest" layoutX="133.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="27.0" prefWidth="86.0" text="Guest login" />
-            <Label layoutX="97.0" layoutY="37.0" text="TV2 Credit System">
+            <Button fx:id="btnLogin" layoutX="135.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnLoginonAction" prefHeight="25.0" prefWidth="78.0" text="Login" />
+            <Button layoutX="262.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnResetAction" prefHeight="25.0" prefWidth="78.0" text="Reset" />
+            <Button fx:id="btnGuest" layoutX="195.0" layoutY="315.0" mnemonicParsing="false" onAction="#btnGuestonAction" prefHeight="27.0" prefWidth="86.0" text="Guest login" />
+            <Label contentDisplay="CENTER" layoutX="160.0" layoutY="46.0" prefHeight="45.0" prefWidth="158.0" text="TV2 Credit System" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="73.0" layoutY="72.0" text="Login" />
-            <Label layoutX="126.0" layoutY="253.0" text="Login as guest:">
+            <Label layoutX="135.0" layoutY="104.0" text="Login" />
+            <Label layoutX="188.0" layoutY="282.0" text="Login as guest:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
 
 
-            <Button layoutX="252.0" layoutY="313.0" mnemonicParsing="false" onAction="#helpButtonAction" prefHeight="25.0" prefWidth="86.0" text="Help" />
-            <Button layoutX="252.0" layoutY="348.0" mnemonicParsing="false" onAction="#aboutus" prefHeight="26.0" prefWidth="86.0" text="About us" />
+            <Button layoutX="301.0" layoutY="369.0" mnemonicParsing="false" onAction="#helpButtonAction" prefHeight="25.0" prefWidth="86.0" text="Help" />
+            <Button layoutX="301.0" layoutY="402.0" mnemonicParsing="false" onAction="#aboutus" prefHeight="26.0" prefWidth="86.0" text="About us" />
 
          </children>
       </AnchorPane>
