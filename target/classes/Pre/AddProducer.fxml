@@ -4,30 +4,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #3b647c;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddProducerController">
+<AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #3b647c;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddProducerController">
    <children>
-      <TableView fx:id="proTable" layoutX="12.0" layoutY="47.0" prefHeight="340.0" prefWidth="430.0" style="-fx-background-color: #7a9ca6;">
+      <TableView fx:id="proTable" layoutX="16.0" layoutY="47.0" prefHeight="386.0" prefWidth="583.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
           <TableColumn fx:id="proTableName" onEditCommit="#updateName" prefWidth="131.0" text="Name" />
-          <TableColumn fx:id="proTableEmail" editable="false" prefWidth="165.0" text="E-mail" />
-            <TableColumn fx:id="proTablePassword" onEditCommit="#updatePassword" prefWidth="138.0" text="Password" />
+          <TableColumn fx:id="proTableEmail" editable="false" prefWidth="263.0" text="E-mail" />
+            <TableColumn fx:id="proTablePassword" onEditCommit="#updatePassword" prefWidth="175.0" text="Password" />
         </columns>
       </TableView>
-      <TextField layoutX="12.0" layoutY="14.0" prefHeight="26.0" prefWidth="349.0" promptText="Search" />
-      <TextField fx:id="proName" layoutX="463.0" layoutY="96.0" prefHeight="26.0" prefWidth="204.0" promptText="Name">
+      <TextField layoutX="17.0" layoutY="14.0" prefHeight="26.0" prefWidth="370.0" promptText="Search" />
+      <TextField fx:id="proName" layoutX="645.0" layoutY="96.0" prefHeight="26.0" prefWidth="204.0" promptText="Name">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <TextField fx:id="proEmail" layoutX="463.0" layoutY="133.0" prefHeight="26.0" prefWidth="204.0" promptText="E-mail">
+      <TextField fx:id="proEmail" layoutX="645.0" layoutY="133.0" prefHeight="26.0" prefWidth="204.0" promptText="E-mail">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <Label layoutX="464.0" layoutY="61.0" text="Insert the following information" textFill="WHITE" />
-      <Button layoutX="360.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Search" />
-      <Button layoutX="463.0" layoutY="223.0" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="26.0" prefWidth="82.0" text="Add" />
-      <Button layoutX="584.0" layoutY="223.0" mnemonicParsing="false" onAction="#DeleteButtonAction" prefHeight="26.0" prefWidth="82.0" text="Delete" />
-      <Button layoutX="585.0" layoutY="360.0" mnemonicParsing="false" onAction="#goBackBtnHandler" prefHeight="26.0" prefWidth="82.0" text="Back" />
-      <PasswordField fx:id="proPassword" layoutX="463.0" layoutY="168.0" prefHeight="18.0" prefWidth="204.0" promptText="Password">
+      <Label layoutX="646.0" layoutY="61.0" text="Insert the following information" textFill="WHITE" />
+      <Button layoutX="392.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Search" />
+      <Button layoutX="645.0" layoutY="223.0" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="26.0" prefWidth="204.0" text="Add" />
+      <Button layoutX="647.0" layoutY="264.0" mnemonicParsing="false" onAction="#DeleteButtonAction" prefHeight="26.0" prefWidth="204.0" text="Delete" />
+      <Button layoutX="767.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBackBtnHandler" prefHeight="26.0" prefWidth="82.0" text="Back" />
+      <PasswordField fx:id="proPassword" layoutX="645.0" layoutY="168.0" prefHeight="18.0" prefWidth="204.0" promptText="Password">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></PasswordField>

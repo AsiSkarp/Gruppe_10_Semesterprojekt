@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SASystemController">
+<AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SASystemController">
    <children>
-      <Button contentDisplay="TOP" layoutX="365.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToCrewMemberSystem" prefHeight="73.0" prefWidth="127.0" text="Crew Member System">
+      <Button contentDisplay="TOP" layoutX="482.0" layoutY="162.0" mnemonicParsing="false" onAction="#SwitchToCrewMemberSystem" prefHeight="73.0" prefWidth="127.0" text="Crew Member System">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -15,7 +16,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button contentDisplay="TOP" layoutX="520.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToProductionSystem" prefHeight="73.0" prefWidth="127.0" text="Production System">
+      <Button contentDisplay="TOP" layoutX="652.0" layoutY="162.0" mnemonicParsing="false" onAction="#SwitchToProductionSystem" prefHeight="73.0" prefWidth="127.0" text="Production System">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,7 +24,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button contentDisplay="TOP" layoutX="55.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToAdminSystem" prefHeight="73.0" prefWidth="127.0" text="Admin System" textAlignment="CENTER">
+      <Button contentDisplay="TOP" layoutX="137.0" layoutY="162.0" mnemonicParsing="false" onAction="#SwitchToAdminSystem" prefHeight="73.0" prefWidth="127.0" text="Admin System" textAlignment="CENTER">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -31,7 +32,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button contentDisplay="TOP" layoutX="208.0" layoutY="103.0" mnemonicParsing="false" onAction="#SwitchToProducerSystem" prefHeight="73.0" prefWidth="127.0" text="Producer System">
+      <Button contentDisplay="TOP" layoutX="310.0" layoutY="162.0" mnemonicParsing="false" onAction="#SwitchToProducerSystem" prefHeight="73.0" prefWidth="127.0" text="Producer System">
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,16 +40,19 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="544.0" layoutY="279.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="103.0" text="Log ud" />
-      <ImageView fitHeight="131.0" fitWidth="327.0" layoutX="53.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="729.0" layoutY="356.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="103.0" text="Log ud" />
+      <ImageView fitHeight="131.0" fitWidth="327.0" layoutX="109.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="182.0" layoutY="42.0" text="Welcome to TV2 Credit System" textFill="WHITE">
+      <Label layoutX="287.0" layoutY="69.0" text="Welcome to TV2 Credit System" textFill="WHITE">
          <font>
             <Font name="Constantia" size="24.0" />
          </font>
       </Label>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </AnchorPane>
