@@ -1,6 +1,5 @@
 package Pre;
 
-import Persistance.DatabaseConn;
 import Domain.CreditSystem;
 import Domain.CrewMember;
 import javafx.collections.FXCollections;
@@ -16,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
