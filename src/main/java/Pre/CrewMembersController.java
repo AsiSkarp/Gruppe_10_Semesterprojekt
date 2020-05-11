@@ -1,6 +1,5 @@
 package Pre;
 
-import Data.DatabaseConn;
 import Domain.CreditSystem;
 import Domain.CrewMember;
 import javafx.collections.FXCollections;
@@ -36,25 +35,10 @@ public class CrewMembersController implements Initializable {
     @FXML public TableColumn emailColunm;
     @FXML public TextField searchTextField;
 
-
-
-
-    private Connection connection = DatabaseConn.getConnection();
     ObservableList<CrewMember> crewMem = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery("select * from CrewMember");
-            while (resultSet.next()) {
-                crewMem.add(new CrewMember(
-                        resultSet.getString("name"),
-                        resultSet.getString("role"),
-                        resultSet.getString("email"),
-                        resultSet.getInt("id"))); }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         nameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
         emailColunm.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));

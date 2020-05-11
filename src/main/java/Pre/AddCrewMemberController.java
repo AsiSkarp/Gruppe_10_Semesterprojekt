@@ -104,31 +104,23 @@ public class AddCrewMemberController implements Initializable {
     }
 
     public void deleteButton(ActionEvent actionEvent) {
-<<<<<<< Updated upstream
         ObservableList<CrewMember> selectedCrew = tableView.getSelectionModel().getSelectedItems();
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
-=======
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Look, a Confirmation Dialog");
         alert.setContentText("Are you sure, that you wanna remove this Crew member?");
->>>>>>> Stashed changes
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             // ... user chose OK
             //Delete crew member from list:
-            ObservableList<CrewMember> selectedCrew = tableView.getSelectionModel().getSelectedItems();
-            ObservableList<CrewMember> allCrewMembers = tableView.getItems();
-            CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
-
             if (tempCrew != null) {
                 CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getCastCrewId());
             } else {
                 System.out.println("List is empty.");
             }
 
-            deleteFromDatabase();
             if (selectedCrew != null) {
                 ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
                 rows.forEach(row -> tableView.getItems().remove(row));
@@ -138,16 +130,6 @@ public class AddCrewMemberController implements Initializable {
             System.out.println("user chose CANCEL or closed the dialog");
         }
 
-<<<<<<< Updated upstream
-        if (selectedCrew != null) {
-            ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
-            rows.forEach(row -> tableView.getItems().remove(row));
-        }
-=======
-
-
-
->>>>>>> Stashed changes
     }
 
     public void updateName(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
