@@ -54,6 +54,8 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface {
         connectToDatabase(sql);
         sql = "update CrewMember set name = '" +name+ "' where id = '" + castCrewId + "' ";
         connectToDatabase(sql);
+        sql = "update CrewMember set email = '" + email + "' where id = '" + castCrewId + "' ";
+        connectToDatabase(sql);
 
     }
 

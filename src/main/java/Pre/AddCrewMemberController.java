@@ -163,6 +163,18 @@ public class AddCrewMemberController implements Initializable {
 
     }
 
+    public void updateEmail(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
+        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+        String newEmail = crewMemberStringCellEditEvent.getNewValue();
+        if (tempCrew != null) {
+            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail, tempCrew.getRole(), tempCrew.getCastCrewId());
+            resultLabel.setText("The data is updated in Database");
+            updateTableView();
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+
     public void updateRole(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newRole = crewMemberStringCellEditEvent.getNewValue();
