@@ -7,24 +7,34 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.ProductionController">
    <children>
-      <TableView fx:id="tableviewProduction" layoutX="31.0" layoutY="51.0" prefHeight="331.0" prefWidth="839.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
+      <TableView fx:id="tableviewProduction" layoutX="31.0" layoutY="51.0" prefHeight="315.0" prefWidth="839.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="titleColumn" prefWidth="241.00001525878906" text="Title" />
-            <TableColumn fx:id="productionIdColumn" prefWidth="311.0" text="Owner" />
-            <TableColumn fx:id="producerIdColumn" prefWidth="272.0" text="Date" />
+          <TableColumn fx:id="titleColumn" prefWidth="144.0" text="Title" />
+            <TableColumn fx:id="ownerColumn" prefWidth="326.0" text="Owner" />
+            <TableColumn fx:id="dateColumn" minWidth="0.0" prefWidth="141.0" text="Date" />
+            <TableColumn fx:id="productionColunm" prefWidth="213.0" text="Production Id" />
         </columns>
       </TableView>
-      <Label layoutX="630.0" layoutY="19.0" text="Production System" textFill="WHITE">
+      <Label layoutX="687.0" layoutY="19.0" text="Production System" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Button layoutX="790.0" layoutY="400.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="26.0" prefWidth="80.0" text="Back" />
-      <Button layoutX="506.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Search" />
-      <Button layoutX="374.0" layoutY="400.0" mnemonicParsing="false" onAction="#DeleteButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Delete" />
-      <Button layoutX="33.0" layoutY="400.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Add" />
-      <Button layoutX="687.0" layoutY="400.0" mnemonicParsing="false" onAction="#openButtonOnAction" prefHeight="26.0" prefWidth="80.0" text="Open" />
-      <Button layoutX="203.0" layoutY="400.0" mnemonicParsing="false" onAction="#editButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Edit" />
-      <TextField layoutX="31.0" layoutY="14.0" prefHeight="26.0" prefWidth="469.0" promptText="Search " />
+      <Button layoutX="770.0" layoutY="400.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="26.0" prefWidth="100.0" text="Back" />
+      <Button layoutX="506.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="26.0" prefWidth="80.0" text="Search" />
+      <Button layoutX="203.0" layoutY="404.0" mnemonicParsing="false" onAction="#DeleteButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Delete" />
+      <Button layoutX="33.0" layoutY="404.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Add" />
+      <Button layoutX="637.0" layoutY="400.0" mnemonicParsing="false" onAction="#openButtonOnAction" prefHeight="26.0" prefWidth="100.0" text="Open" />
+      <TextField fx:id="searchField" layoutX="31.0" layoutY="14.0" prefHeight="26.0" prefWidth="469.0" promptText="Search " />
+      <TextField fx:id="titleField" layoutX="33.0" layoutY="373.0" prefHeight="25.0" prefWidth="160.0" promptText="Title">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="ownerField" layoutX="203.0" layoutY="373.0" prefHeight="25.0" prefWidth="160.0" promptText="Owner">
+         <font>
+            <Font name="Segoe UI Italic" size="12.0" />
+         </font>
+      </TextField>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -1,7 +1,7 @@
 package Domain;
 
 public class Producer extends User{
-    public Producer(String name, String email, String password){
+    public Producer(String name, String email, String password) {
         super(name, email, password);
     }
 

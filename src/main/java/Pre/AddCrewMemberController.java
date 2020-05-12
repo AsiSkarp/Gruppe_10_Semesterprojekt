@@ -208,5 +208,4 @@ public class AddCrewMemberController implements Initializable {
         ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMemberDatabase();
         tableView.setItems(getCrewMember(dataList));
     }
-
 }

@@ -76,13 +76,17 @@ public class CrewMembersController implements Initializable {
                 new FileChooser.ExtensionFilter("doc", "*.doc"),
                 new FileChooser.ExtensionFilter("xml", "*.xml"),
                 new FileChooser.ExtensionFilter("xls", "*.xls"));
-        File file = fileChooser.showSaveDialog(stage);
-        fileChooser.setInitialDirectory(file.getParentFile());
-        Writer writer = new BufferedWriter(new FileWriter(file));
-        for (CrewMember crewMember : crewMem) {
-            String text = crewMember.getName() + ",  " + crewMember.getRole() + ",  " + crewMember.getEmail() + "\n";
-            writer.write(text);
-        } writer.close();
+        try {
+            File file = fileChooser.showSaveDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile());
+            Writer writer = new BufferedWriter(new FileWriter(file));
+            for (CrewMember crewMember : crewMem) {
+                String text = crewMember.getName() + ",  " + crewMember.getRole() + ",  " + crewMember.getEmail() + "\n";
+                writer.write(text);
+            } writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void backbtn(ActionEvent actionEvent) throws IOException {

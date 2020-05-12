@@ -8,12 +8,15 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SelectedProductionController">
    <children>
       <Label layoutX="32.0" layoutY="41.0" text="Title: " textFill="#fffefe" />
+      <TextArea fx:id="titleArea" layoutX="33.0" layoutY="67.0" prefHeight="35.0" prefWidth="167.0" />
       <Label layoutX="276.0" layoutY="41.0" text="Owner:" textFill="#faf8f8" />
+      <TextArea fx:id="ownerArea" layoutX="278.0" layoutY="67.0" prefHeight="17.0" prefWidth="167.0" />
       <TextField fx:id="nameCM" layoutX="659.0" layoutY="130.0" prefHeight="25.0" prefWidth="177.0" promptText="Name">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
       <Label layoutX="660.0" layoutY="41.0" text="Date:" textFill="#fffcfc" />
+      <TextArea fx:id="dateArea" layoutX="656.0" layoutY="67.0" prefHeight="17.0" prefWidth="167.0" />
       <TextField fx:id="roleCM" layoutX="660.0" layoutY="171.0" prefHeight="25.0" prefWidth="177.0" promptText="Role" />
       <Button layoutX="737.0" layoutY="341.0" mnemonicParsing="false" onAction="#eksportereCM" prefHeight="26.0" prefWidth="99.0" text="Export data" />
       <Button layoutX="737.0" layoutY="387.0" mnemonicParsing="false" onAction="#backCM" prefHeight="26.0" prefWidth="99.0" text="Back" />
@@ -23,9 +26,6 @@
           <TableColumn fx:id="roleColumn" prefWidth="279.0" text="Role" />
         </columns>
       </TableView>
-      <TextField fx:id="titleCM" layoutX="32.0" layoutY="66.0" prefHeight="26.0" prefWidth="177.0" />
-      <TextField fx:id="ownerCM" layoutX="276.0" layoutY="66.0" prefHeight="25.0" prefWidth="177.0" />
-      <TextField fx:id="dateCM" layoutX="660.0" layoutY="66.0" prefHeight="25.0" prefWidth="177.0" />
       <Button layoutX="737.0" layoutY="217.0" mnemonicParsing="false" onAction="#addCM" prefHeight="26.0" prefWidth="99.0" text="Add" />
       <Button layoutX="737.0" layoutY="262.0" mnemonicParsing="false" onAction="#deleteCM" prefHeight="26.0" prefWidth="99.0" text="Delete" />
    </children>

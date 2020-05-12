@@ -151,8 +151,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void addProduction(String title, int producerId) {
-        productionList.add(new Production(title, producerId));
+    public void addProduction(String title, String owner, int productionId) {
+        productionList.add(new Production(title, owner, productionId));
         writeToFile(productionFileName, productionList);
     }
 
@@ -178,8 +178,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void updateProduction(String title, int producerId) {
-        Production updatedProduction = new Production(title, producerId);
+    public void updateProduction(String title, String owner, int productionId) {
+        Production updatedProduction = new Production(title, owner, productionId);
         for (Production p : productionList){
             if (p.getTitle().equals(title)){
                 productionList.set(productionList.indexOf(p), updatedProduction);
