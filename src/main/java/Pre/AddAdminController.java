@@ -81,9 +81,16 @@ public class AddAdminController implements Initializable {
     public void SearchBtnhandler(ActionEvent actionEvent) {
     }
 
+<<<<<<< Updated upstream
     public void updateName(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
     }
 
     public void updatePassword(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
+=======
+    public void updatePassword(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
+    }
+
+    public void updateName(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
+>>>>>>> Stashed changes
     }
 }
