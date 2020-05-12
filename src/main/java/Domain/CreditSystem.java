@@ -2,11 +2,11 @@ package Domain;
 
 import Persistance.CreditSystemDatabaseRepository;
 import Persistance.CreditSystemFileRepository;
-import Persistance.ProductionSystemDatabaseRepository;
 
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreditSystem implements Serializable {
 
@@ -68,8 +68,6 @@ public class CreditSystem implements Serializable {
         }
     }
 
-    //NEEDS AUTHENTICATION RESTRICTION
-
     public void removeProducerFromSystem(String email) {
         if(currentUser.getIsAdmin()) {
             CreditSystemFileRepository.getCsfio().removeUser(email);
@@ -85,26 +83,51 @@ public class CreditSystem implements Serializable {
         }
     }
 
-
-    public void addProductionToSystem(String title, String owner, int productionId) {
+    //PRODUCTION METHODS:
+    public void addProduction(String title, String owner, Date date, int productionId) {
         if(currentUser.getIsProducer()) {
-            CreditSystemFileRepository.getCsfio().addProduction(title, owner, productionId);
+            CreditSystemFileRepository.getCsfio().addProduction(title, owner, date, productionId);
+            CreditSystemDatabaseRepository.getCsdio().addProduction(title, owner, date, productionId);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
-    //NEEDS AUTHENTICATION. NEEDS VALID PRODUCER ID IMPLEMENTATION
-
-    public void removeProductionFromSystem(String title) {
+    public void removeProductionFromSystem(int id) {
         if(currentUser.getIsProducer()) {
-            CreditSystemFileRepository.getCsfio().removeProduction(title);
+            CreditSystemFileRepository.getCsfio().removeProduction(id);
+            CreditSystemDatabaseRepository.getCsdio().removeProduction(id);
         } else {
             System.out.println("Access Restricted!");
         }
     }
 
+    public void updateProduction(String title, String owner, Date date, int id){
+        if(currentUser.getIsProducer()) {
+            CreditSystemDatabaseRepository.getCsdio().updateProduction(title, owner, date, id);
+        } else {
+            System.out.println("Access Restricted!");
+        }
+    }
 
+    public ArrayList<Production> getProductionList() {
+        return CreditSystemFileRepository.getCsfio().getProductionList();
+    }
+
+    public ArrayList<Production> getProductionDatabase() {
+        return CreditSystemDatabaseRepository.getCsdio().getProductionList();
+    }
+
+    public int getProductionIdFromDatabse() throws SQLException {
+        return CreditSystemDatabaseRepository.getCsdio().getProductionIdFromDatabase();
+    }
+
+    public Date getProductionDateFromDatabase() throws SQLException {
+        return  CreditSystemDatabaseRepository.getCsdio().getProductionDateFromDatabase();
+    }
+
+
+    //CREWMEMBER METHODS:
     public void addCrewMember(String name, String email, String role, int castCrewId) {
         if(currentUser.getIsProducer()) {
             CreditSystemFileRepository.getCsfio().addCrewMember(name, email, role, castCrewId);
@@ -113,15 +136,6 @@ public class CreditSystem implements Serializable {
             System.out.println("Access Restricted!");
         }
     }
-
-//    public void addProduction(String title, String owner) {
-//        if(currentUser.getIsProducer()) {
-//            ProductionSystemDatabaseRepository.getCsdio().addProduction(title, owner);
-//            ProductionSystemDatabaseRepository.getCsdio().addProduction(title, owner);
-//        } else {
-//            System.out.println("Access Restricted!");
-//        }
-//    }
 
     public void removeCrewMember(int id) {
         if (currentUser.getIsProducer()) {
@@ -150,7 +164,7 @@ public class CreditSystem implements Serializable {
     }
 
     public int getCrewMemIdFromDatabase() throws SQLException {
-        return CreditSystemDatabaseRepository.getCsdio().getIdFromDatabase();
+        return CreditSystemDatabaseRepository.getCsdio().getCMIdFromDatabse();
     }
 
     public ArrayList<CrewMember> getCrewMembers() {
@@ -159,19 +173,6 @@ public class CreditSystem implements Serializable {
 
     public void addSuperAdmin(String name, String email, String password) {
         CreditSystemFileRepository.getCsfio().addSuperAdmin(name, email, password);
-    }
-
-    //TEST CLASS FOR ACCESS CONTROL
-    public void accessRestriction(User user){
-        if(user.getIsAdmin()) {
-            System.out.println(user.getName() + " is an admin and may execute this command!");
-        } else {
-            System.out.println(user.getName() + " is not an admin. Access restricted.");
-        }
-    }
-
-    public ArrayList<Production> getProductionList() {
-        return CreditSystemFileRepository.getCsfio().getProductionList();
     }
 
     public ArrayList<User> getUserList(){

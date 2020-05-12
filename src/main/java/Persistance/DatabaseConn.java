@@ -19,11 +19,7 @@ public class DatabaseConn {
         System.out.println("Postgresql driver is added:");
         System.out.println("The data has been send to the database:");
         try {
-<<<<<<< Updated upstream
-            connection = DriverManager.getConnection(connectionStr, "postgres", "hamid");
-=======
-            connection = DriverManager.getConnection(connectionStr, "postgres", "casperf81");
->>>>>>> Stashed changes
+            connection = DriverManager.getConnection(connectionStr, "postgres", "");
         } catch (SQLException e) {
             System.out.println("Connection failed " + e);
             throw e;
@@ -81,11 +77,7 @@ public class DatabaseConn {
             Connection connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/dbtv2",
                     "postgres",
-<<<<<<< Updated upstream
-                    "hamid");
-=======
-                    "casperf81");
->>>>>>> Stashed changes
+                    "");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();

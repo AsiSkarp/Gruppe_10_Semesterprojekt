@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreditSystemDatabaseRepository implements CrewMemberInterface, ProductionInterface {
     private static CreditSystemDatabaseRepository csdio = null;
@@ -23,6 +24,7 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface, Prod
         return csdio;
     }
 
+    //CREWMEMBER METHODS:
     @Override
     public void addCrewMember(String name, String email, String role, int castCrewId) {
         String sql = "insert into CrewMember(name, email, role) values('" + name + "', '" + email + "', '"+role+"');";
@@ -66,6 +68,85 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface, Prod
         }
 
 
+    public int getCMIdFromDatabse() throws SQLException {
+        CrewMember temp = null;
+        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM CrewMember ORDER BY id DESC LIMIT 1");
+        while(resultSet.next()) {
+            temp = new CrewMember(
+                    resultSet.getString("name"),
+                    resultSet.getString("email"),
+                    resultSet.getString("role"),
+                    resultSet.getInt("id"));
+        }
+        return temp.getCastCrewId();
+    }
+
+    //PRODUCTION METHODS:
+    @Override
+    public void addProduction(String title, String owner, Date date, int productionId) {
+        String sql = "insert into Production(title, owner, created) values('" + title + "', '" + owner + "', NOW());";
+        connectToDatabase(sql);
+    }
+
+    @Override
+    public ArrayList<Production> getProductionList() {
+        ArrayList<Production> productionList = new ArrayList<>();
+
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("select * from Production");
+            while (resultSet.next()) {
+                productionList.add(new
+                        Production(resultSet.getString("title"),
+                        resultSet.getString("owner"),
+                        resultSet.getDate("created"),
+                        resultSet.getInt("id")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productionList;
+    }
+
+    @Override
+    public void updateProduction(String title, String owner, Date date, int productionId) {
+        String sql = "update Production set title = '" + title + "' where id = '" + productionId + "' ";
+        connectToDatabase(sql);
+        sql = "update Production set owner = '" + owner + "' where id = '" + productionId + "' ";
+        connectToDatabase(sql);
+    }
+
+    @Override
+    public void removeProduction(int id) {
+        String sql = "delete from Production where id = '" + id + "'";
+        connectToDatabase(sql);
+    }
+
+    public int getProductionIdFromDatabase() throws SQLException {
+        Production temp = null;
+        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM Production ORDER BY id DESC LIMIT 1");
+        while(resultSet.next()) {
+            temp = new Production(
+                    resultSet.getString("title"),
+                    resultSet.getString("owner"),
+                    resultSet.getDate("created"),
+                    resultSet.getInt("id"));
+        }
+        return temp.getProductionId();
+    }
+
+    public Date getProductionDateFromDatabase() throws SQLException {
+        Production temp = null;
+        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM Production ORDER BY id DESC LIMIT 1");
+        while(resultSet.next()) {
+            temp = new Production(
+                    resultSet.getString("title"),
+                    resultSet.getString("owner"),
+                    resultSet.getDate("created"),
+                    resultSet.getInt("id"));
+        }
+        return temp.getDate();
+    }
+
     public void connectToDatabase(String sql) {
         try {
             DatabaseConn.dataExeQuery(sql);
@@ -80,38 +161,5 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface, Prod
                 classNotFoundException.printStackTrace();
             }
         }
-    }
-
-    public int getIdFromDatabase() throws SQLException {
-        CrewMember temp = null;
-        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM CrewMember ORDER BY id DESC LIMIT 1");
-        while(resultSet.next()) {
-            temp = new CrewMember(
-                    resultSet.getString("name"),
-                    resultSet.getString("email"),
-                    resultSet.getString("role"),
-                    resultSet.getInt("id"));
-        }
-        return temp.getCastCrewId();
-    }
-
-    @Override
-    public void addProduction(String title, String owner, int productionId) {
-
-    }
-
-    @Override
-    public ArrayList<Production> getProductionList() {
-        return null;
-    }
-
-    @Override
-    public void updateProduction(String title, String owner, int productionId) {
-
-    }
-
-    @Override
-    public void removeProduction(String title) {
-
     }
 }

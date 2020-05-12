@@ -9,10 +9,10 @@
    <children>
       <TableView fx:id="tableviewProduction" layoutX="31.0" layoutY="51.0" prefHeight="315.0" prefWidth="839.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="titleColumn" prefWidth="144.0" text="Title" />
-            <TableColumn fx:id="ownerColumn" prefWidth="326.0" text="Owner" />
-            <TableColumn fx:id="dateColumn" minWidth="0.0" prefWidth="141.0" text="Date" />
-            <TableColumn fx:id="productionColunm" prefWidth="213.0" text="Production Id" />
+          <TableColumn fx:id="titleColumn" onEditCommit="#updateTitle" prefWidth="144.0" text="Title" />
+            <TableColumn fx:id="ownerColumn" onEditCommit="#updateOwner" prefWidth="326.0" text="Owner" />
+            <TableColumn fx:id="dateColumn" editable="false" minWidth="0.0" prefWidth="141.0" text="Date" />
+            <TableColumn fx:id="productionColunm" editable="false" prefWidth="213.0" text="Production Id" />
         </columns>
       </TableView>
       <Label layoutX="687.0" layoutY="19.0" text="Production System" textFill="WHITE">
@@ -24,7 +24,7 @@
       <Button layoutX="203.0" layoutY="404.0" mnemonicParsing="false" onAction="#DeleteButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Delete" />
       <Button layoutX="33.0" layoutY="404.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Add" />
       <Button layoutX="637.0" layoutY="400.0" mnemonicParsing="false" onAction="#openButtonOnAction" prefHeight="26.0" prefWidth="100.0" text="Open" />
-      <TextField fx:id="searchField" layoutX="31.0" layoutY="14.0" prefHeight="26.0" prefWidth="469.0" promptText="Search " />
+      <TextField fx:id="searchField" layoutX="31.0" layoutY="14.0" onKeyPressed="#searchEnter" prefHeight="26.0" prefWidth="469.0" promptText="Search " />
       <TextField fx:id="titleField" layoutX="33.0" layoutY="373.0" prefHeight="25.0" prefWidth="160.0" promptText="Title">
          <font>
             <Font name="System Italic" size="12.0" />
