@@ -19,7 +19,7 @@ public class DatabaseConn {
         System.out.println("Postgresql driver is added:");
         System.out.println("The data has been send to the database:");
         try {
-            connection = DriverManager.getConnection(connectionStr, "postgres", "");
+            connection = DriverManager.getConnection(connectionStr, "postgres", "Ljotur.sigur123");
         } catch (SQLException e) {
             System.out.println("Connection failed " + e);
             throw e;
