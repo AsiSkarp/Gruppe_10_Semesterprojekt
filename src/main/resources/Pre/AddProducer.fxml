@@ -26,7 +26,10 @@
       <Button layoutX="392.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Search" />
       <Button layoutX="645.0" layoutY="223.0" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="26.0" prefWidth="204.0" text="Add" />
       <Button layoutX="647.0" layoutY="264.0" mnemonicParsing="false" onAction="#DeleteButtonAction" prefHeight="26.0" prefWidth="204.0" text="Delete" />
-      <Button layoutX="767.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBackBtnHandler" prefHeight="26.0" prefWidth="82.0" text="Back" />
+      <Button layoutX="767.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBackBtnHandler" prefHeight="26.0" prefWidth="82.0" text="Back">
+         <graphic>
+            <Label text="Label" />
+         </graphic></Button>
       <PasswordField fx:id="proPassword" layoutX="645.0" layoutY="168.0" prefHeight="18.0" prefWidth="204.0" promptText="Password">
          <font>
             <Font name="System Italic" size="12.0" />

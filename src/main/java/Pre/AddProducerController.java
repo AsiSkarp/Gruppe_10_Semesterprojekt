@@ -39,7 +39,6 @@ public class AddProducerController implements Initializable {
         proTableName.setCellFactory(TextFieldTableCell.forTableColumn());
         proTableEmail.setCellFactory(TextFieldTableCell.forTableColumn());
         proTablePassword.setCellFactory(TextFieldTableCell.forTableColumn());
-//        IdColumn.setCellValueFactory(Integer.parseInt());
         proTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -48,18 +47,30 @@ public class AddProducerController implements Initializable {
         User newPro = new Producer(proName.getText(), proEmail.getText(), proPassword.getText());
         proTable.getItems().add(newPro);
         CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
-//        CreditSystem.getCreditSystem().writeToPersistance();
     }
 
+    /*
+    public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
+        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), roleField.getText(), crewMemId);
+        resultLabel.setText("The information has been added to the Database");
+        updateTableView();
+        nameField.clear();
+        emailField.clear();
+        roleField.clear();
+        IdField.clear();
+        }
+    */
     public ObservableList<User> getPro() {
         ObservableList<User> proObser = FXCollections.observableArrayList();
-//        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
         ArrayList<User> fetchedUser = proList;
         for (User c : fetchedUser) {
-            String name = c.getName();
-            String email = c.getEmail();
-            String password = c.getPassword();
-            proObser.add(new Producer(name,email,password));
+            if (c.getIsProducer() && !c.getIsSuperAdmin()){
+                String name = c.getName();
+                String email = c.getEmail();
+                String password = c.getPassword();
+                proObser.add(new Producer(name,email,password));
+            }
         }
         return proObser;
     }

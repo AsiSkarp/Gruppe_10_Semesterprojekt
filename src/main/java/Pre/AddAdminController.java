@@ -62,10 +62,12 @@ public class AddAdminController implements Initializable {
 //        ObservableList<CrewMember> crew = FXCollections.observableArrayList();
         ArrayList<User> fetchCrew = adminList;
         for (User c : fetchCrew) {
-            String name = c.getName();
-            String email = c.getEmail();
-            String password = c.getPassword();
-            adminObser.add(new Admin(name,email,password));
+            if (c.getIsAdmin()) {
+                String name = c.getName();
+                String email = c.getEmail();
+                String password = c.getPassword();
+                adminObser.add(new Admin(name,email,password));
+            }
         }
         return adminObser;
     }
