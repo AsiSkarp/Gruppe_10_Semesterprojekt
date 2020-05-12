@@ -77,7 +77,7 @@ public class DatabaseConn {
             Connection connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/dbtv2",
                     "postgres",
-                    "hamid");
+                    "");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();

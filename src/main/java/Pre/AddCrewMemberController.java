@@ -185,7 +185,6 @@ public class AddCrewMemberController implements Initializable {
                 cellValue = cellValue.toLowerCase();
                 if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
                     tableData.add(dataList.get(i));
-                    break;
                 }
             }
         }
@@ -199,9 +198,7 @@ public class AddCrewMemberController implements Initializable {
     }
 
     public void searchBtn(ActionEvent actionEvent) {
-        if(actionEvent.equals(KeyCode.ENTER)){
             search();
-        }
     }
 
     public void updateTableView() {

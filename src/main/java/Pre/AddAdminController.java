@@ -86,4 +86,5 @@ public class AddAdminController implements Initializable {
 
     public void updatePassword(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
     }
+
 }

@@ -1,6 +1,8 @@
 package Pre;
 
 
+import Domain.CreditSystem;
+import Domain.CrewMember;
 import Domain.Production;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,8 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,27 +60,29 @@ public class ProductionController implements Initializable {
         tableviewProduction.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    public void DeleteButtonOnAction(ActionEvent actionEvent) {
+    public void addButtonOnAction(ActionEvent actionEvent) throws SQLException {
+        int productionId = CreditSystem.getCreditSystem().getProductionIdFromDatabse();
+        Date date = CreditSystem.getCreditSystem().getProductionDateFromDatabase();
+        CreditSystem.getCreditSystem().addProduction(titleField.getText(), ownerField.getText(), date, productionId);
+        updateTableView();
+        titleField.clear();
+        ownerField.clear();
     }
 
-    public void addButtonOnAction(ActionEvent actionEvent) {
-//        //int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
-//        ArrayList<Production> productions = Production.getProductionSystem().getProductionDatabase();
-//        Production.getProductionSystem().addProduction(titleField.getText(), ownerField.getText());
-//        //resultLabel.setText("The information has been added to the Database");
-//        updateTableView();
-    }
-    public ObservableList<Production> getProduction(ArrayList<Production> fetch) {
-        ObservableList<Production> productions = FXCollections.observableArrayList();
-        ArrayList<Production> fetchCrew = fetch;
-        for (Production c : fetchCrew) {
-            String title = c.getTitle();
-            String owner = c.getOwner();
-            int productionId = c.getProductionId();
-            String date = String.valueOf(c.getDate());
-            productions.add(new Production(title, owner, productionId));
+    public void DeleteButtonOnAction(ActionEvent actionEvent) {
+        ObservableList<Production> selectedProduction = tableviewProduction.getSelectionModel().getSelectedItems();
+        Production temp = tableviewProduction.getSelectionModel().getSelectedItem();
+
+        if(temp != null) {
+            CreditSystem.getCreditSystem().removeProductionFromSystem(temp.getProductionId());
+        } else {
+            System.out.println("Nothing selected");
         }
-        return productions;
+
+        if (selectedProduction != null) {
+            ArrayList<Production> rows = new ArrayList<>(selectedProduction);
+            rows.forEach(row -> tableviewProduction.getItems().remove(row));
+        }
     }
 
     public void openButtonOnAction(ActionEvent actionEvent) throws IOException {
@@ -93,9 +101,72 @@ public class ProductionController implements Initializable {
     }
 
     public void searchButton(ActionEvent actionEvent) {
+        search();
     }
+
+    public void searchEnter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            search();
+        }
+    }
+
+    public void search() {
+        if (searchField.textProperty().get().isEmpty()) {
+            updateTableView();
+        }
+        ObservableList<Production> tableData = FXCollections.observableArrayList();
+        ObservableList<TableColumn<Production, ?>> tableColumns = tableviewProduction.getColumns();
+        for (int i = 0; i < productionList.size(); i++) {
+            for (int j = 0; j < tableColumns.size(); j++) {
+                TableColumn tableColumn = tableColumns.get(j);
+                String cellValue = tableColumn.getCellData(productionList.get(i)).toString();
+                cellValue = cellValue.toLowerCase();
+                if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
+                    tableData.add(productionList.get(i));
+                }
+            }
+        }
+        tableviewProduction.setItems(tableData);
+    }
+
     public void updateTableView() {
-        ArrayList<Production> productionList = Production.getProductionSystem().getProductionDatabase();
+        ArrayList<Production> productionList = CreditSystem.getCreditSystem().getProductionDatabase();
         tableviewProduction.setItems(getProduction(productionList));
+    }
+
+    public ObservableList<Production> getProduction(ArrayList<Production> fetch) {
+        ObservableList<Production> productions = FXCollections.observableArrayList();
+        ArrayList<Production> fetchCrew = fetch;
+        for (Production c : fetchCrew) {
+            String title = c.getTitle();
+            String owner = c.getOwner();
+            Date date = c.getDate();
+            int productionId = c.getProductionId();
+//            Java.sql.Date Date = c.getDate()
+            productions.add(new Production(title, owner, date, productionId));
+        }
+        return productions;
+    }
+
+    public void updateTitle(TableColumn.CellEditEvent<Production, String> productionStringCellEditEvent) {
+        Production tempProduction = tableviewProduction.getSelectionModel().getSelectedItem();
+        String newTitle = productionStringCellEditEvent.getNewValue();
+        if (tempProduction != null) {
+            CreditSystem.getCreditSystem().updateProduction(newTitle, tempProduction.getOwner(), tempProduction.getDate(), tempProduction.getProductionId());
+            updateTableView();
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+
+    public void updateOwner(TableColumn.CellEditEvent<Production, String> productionStringCellEditEvent) {
+        Production tempProduction = tableviewProduction.getSelectionModel().getSelectedItem();
+        String newOwner = productionStringCellEditEvent.getNewValue();
+        if (tempProduction != null) {
+            CreditSystem.getCreditSystem().updateProduction(tempProduction.getTitle(), newOwner, tempProduction.getDate(), tempProduction.getProductionId());
+            updateTableView();
+        } else {
+            System.out.println("Element not found");
+        }
     }
 }

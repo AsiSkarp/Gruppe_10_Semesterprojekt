@@ -5,6 +5,7 @@ import Domain.*;
 import Interfaces.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreditSystemFileRepository implements Serializable, AdminInterface, CrewMemberInterface, ProducerInterface,
         ProductionInterface, SuperAdminInterface, UserInterface {
@@ -151,8 +152,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void addProduction(String title, String owner, int productionId) {
-        productionList.add(new Production(title, owner, productionId));
+    public void addProduction(String title, String owner, Date date, int productionId) {
+        productionList.add(new Production(title, owner, date, productionId));
         writeToFile(productionFileName, productionList);
     }
 
@@ -178,8 +179,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void updateProduction(String title, String owner, int productionId) {
-        Production updatedProduction = new Production(title, owner, productionId);
+    public void updateProduction(String title, String owner, Date date, int productionId) {
+        Production updatedProduction = new Production(title, owner, date, productionId);
         for (Production p : productionList){
             if (p.getTitle().equals(title)){
                 productionList.set(productionList.indexOf(p), updatedProduction);
@@ -189,13 +190,20 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void removeProduction(String title) {
-        for (Production p : productionList){
-            if (p.getTitle().equals(title)){
-                productionList.remove(productionList.indexOf(p));
-                writeToFile(productionFileName, productionList);
+    public void removeProduction(int id) {
+        int removeIndex = -1;
+        for (int i = 0; i < productionList.size(); i++) {
+            if (productionList.get(i).getProductionId() == id) {
+                removeIndex = i;
+                break;
             }
         }
+        if (removeIndex != -1) {
+            productionList.remove(removeIndex);
+        } else {
+            System.out.println("Element not found.");
+        }
+        writeToFile(productionFileName, productionList);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package Domain;
 
-import Persistance.ProductionSystemDatabaseRepository;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,20 +13,11 @@ public class Production implements Serializable {
     private ArrayList<CrewMember> productionCrewMList;
     private User currentUser;
 
-    private static Production production = null;
-    public Production() {
-    }
 
-    public static Production getProductionSystem(){
-        if(production == null){
-            production = new Production();
-        }
-        return production;
-    }
-
-    public Production(String title, String owner, int productionId) {
+    public Production(String title, String owner, Date date, int productionId) {
         this.title = title;
         this.owner = owner;
+        this.date = date;
         this.productionId = productionId;
     }
 
@@ -76,17 +65,5 @@ public class Production implements Serializable {
                 '}';
     }
 
-    public ArrayList<Production> getProductionDatabase() {
-        return ProductionSystemDatabaseRepository.getCsdio().getProductionList();
-    }
-
-    public void addProduction(String title, String owner, int productionId) {
-        if(currentUser.getIsProducer()) {
-            ProductionSystemDatabaseRepository.getCsdio().addProduction(title, owner, productionId);
-            ProductionSystemDatabaseRepository.getCsdio().addProduction(title, owner, productionId);
-        } else {
-            System.out.println("Access Restricted!");
-        }
-    }
 }
 
