@@ -1,14 +1,16 @@
 package Persistance;
 
 import Domain.CrewMember;
+import Domain.Production;
 import Interfaces.CrewMemberInterface;
+import Interfaces.ProductionInterface;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CreditSystemDatabaseRepository implements CrewMemberInterface {
+public class CreditSystemDatabaseRepository implements CrewMemberInterface, ProductionInterface {
     private static CreditSystemDatabaseRepository csdio = null;
     private Connection connection = DatabaseConn.getConnection();
 
@@ -25,7 +27,6 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface {
     public void addCrewMember(String name, String email, String role, int castCrewId) {
         String sql = "insert into CrewMember(name, email, role) values('" + name + "', '" + email + "', '"+role+"');";
         connectToDatabase(sql);
-
     }
 
     @Override
@@ -56,7 +57,6 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface {
         connectToDatabase(sql);
         sql = "update CrewMember set email = '" + email + "' where id = '" + castCrewId + "' ";
         connectToDatabase(sql);
-
     }
 
     @Override
@@ -86,8 +86,32 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface {
         CrewMember temp = null;
         ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM CrewMember ORDER BY id DESC LIMIT 1");
         while(resultSet.next()) {
-            temp = new CrewMember(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("role"), resultSet.getInt("id"));
+            temp = new CrewMember(
+                    resultSet.getString("name"),
+                    resultSet.getString("email"),
+                    resultSet.getString("role"),
+                    resultSet.getInt("id"));
         }
         return temp.getCastCrewId();
+    }
+
+    @Override
+    public void addProduction(String title, String owner, int productionId) {
+
+    }
+
+    @Override
+    public ArrayList<Production> getProductionList() {
+        return null;
+    }
+
+    @Override
+    public void updateProduction(String title, String owner, int productionId) {
+
+    }
+
+    @Override
+    public void removeProduction(String title) {
+
     }
 }

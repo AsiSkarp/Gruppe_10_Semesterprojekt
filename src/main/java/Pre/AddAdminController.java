@@ -51,6 +51,9 @@ public class AddAdminController implements Initializable {
         adminTable.getItems().add(newAdmin);
         CreditSystem.getCreditSystem().addAdminToSystem(adminName.getText(), adminEmail.getText(), adminPassword.getText());
 //        CreditSystem.getCreditSystem().writeToPersistance();
+        adminName.clear();
+        adminEmail.clear();
+        adminPassword.clear();
 
     }
     public ObservableList<User> getAdmin() {

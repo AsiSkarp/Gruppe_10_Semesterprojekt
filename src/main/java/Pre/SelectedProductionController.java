@@ -1,18 +1,13 @@
 package Pre;
 
-import Domain.Admin;
 import Domain.CreditSystem;
 import Domain.CrewMember;
-import Domain.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -23,9 +18,10 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class SelectedProductionController implements Initializable {
-    @FXML public TextField titleCM;
-    @FXML public TextField ownerCM;
-    @FXML public TextField dateCM;
+
+    @FXML public TextArea titleArea;
+    @FXML public TextArea ownerArea;
+    @FXML public TextArea dateArea;
     @FXML public TextField nameCM;
     @FXML public TextField roleCM;
     @FXML public TableView<CrewMember> tableCM;
@@ -40,15 +36,12 @@ public class SelectedProductionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
-
-
-        dateCM.setText(String.valueOf(date));
+        dateArea.setText(String.valueOf(date));
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
 
-        tableCM.setItems((ObservableList<CrewMember>) fetchList);
+       // tableCM.setItems((ObservableList<CrewMember>) fetchList);
         tableCM.setItems(crewM);
 
         //Edit the table data:
@@ -73,6 +66,4 @@ public class SelectedProductionController implements Initializable {
     public void backCM(ActionEvent actionEvent) throws IOException {
         App.setRoot("Production");
     }
-
-
 }

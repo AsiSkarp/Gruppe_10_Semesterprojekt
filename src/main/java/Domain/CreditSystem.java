@@ -2,6 +2,7 @@ package Domain;
 
 import Persistance.CreditSystemDatabaseRepository;
 import Persistance.CreditSystemFileRepository;
+import Persistance.ProductionSystemDatabaseRepository;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class CreditSystem implements Serializable {
     }
 
     //Creates new instance of CreditSystem. If an instance exists, that single instance is returned.
-    public static CreditSystem getCreditSystem(){
+    public static CreditSystem getCreditSystem() {
         if(creditSystem == null){
             creditSystem = new CreditSystem();
         }
@@ -85,9 +86,9 @@ public class CreditSystem implements Serializable {
     }
 
 
-    public void addProductionToSystem(String title, int producerId) {
+    public void addProductionToSystem(String title, String owner, int productionId) {
         if(currentUser.getIsProducer()) {
-            CreditSystemFileRepository.getCsfio().addProduction(title,producerId);
+            CreditSystemFileRepository.getCsfio().addProduction(title, owner, productionId);
         } else {
             System.out.println("Access Restricted!");
         }
@@ -113,6 +114,14 @@ public class CreditSystem implements Serializable {
         }
     }
 
+//    public void addProduction(String title, String owner) {
+//        if(currentUser.getIsProducer()) {
+//            ProductionSystemDatabaseRepository.getCsdio().addProduction(title, owner);
+//            ProductionSystemDatabaseRepository.getCsdio().addProduction(title, owner);
+//        } else {
+//            System.out.println("Access Restricted!");
+//        }
+//    }
 
     public void removeCrewMember(int id) {
         if (currentUser.getIsProducer()) {
