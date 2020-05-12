@@ -1,7 +1,5 @@
 package Pre;
 
-import Data.CrewMemberData;
-import Data.DatabaseConn;
 import Domain.CreditSystem;
 import Domain.CrewMember;
 import javafx.collections.FXCollections;
@@ -12,13 +10,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddCrewMemberController implements Initializable {
@@ -57,32 +56,18 @@ public class AddCrewMemberController implements Initializable {
 
 
 
-    private Connection connection = DatabaseConn.getConnection();
-    ArrayList<CrewMember> fetchList = CreditSystem.getCreditSystem().getCrewMemberList();
-    ObservableList<CrewMember> crewMem = FXCollections.observableArrayList();
+    ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
+    ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMemberDatabase();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery("select * from CrewMember");
-            while (resultSet.next()) {
-                crewMem.add(new CrewMember(
-                        resultSet.getString("name"),
-                        resultSet.getString("email"),
-                        resultSet.getString("role"),
-                        resultSet.getInt("id")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
         IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
-        tableView.setItems(getCrewMember());
-        tableView.setItems(crewMem);
+        updateTableView();
+
         //Edit the table data:
         tableView.setEditable(true);
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -93,64 +78,19 @@ public class AddCrewMemberController implements Initializable {
 
     //Maybe if statementt use in addbutton tomorrow:
     public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        //add crew members to the list:
-        if (actionEvent.getSource() == AddCrewButton) {
-            addToDatabase();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM CrewMember ORDER BY id DESC LIMIT 1");
-            while(resultSet.next()) {
-                crewMem.add(new CrewMember(
-                        resultSet.getString("name"),
-                        resultSet.getString("email"),
-                        resultSet.getString("role"),
-                        resultSet.getInt("id")));
-            }
-            tableView.setItems(crewMem);
-
-//            CrewMember newCrewMember = new CrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
- //           tableView.getItems().add(newCrewMember);
-//            CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), Integer.parseInt(IdField.getText()));
-
-        } else if (actionEvent.getSource() == updateButton) {
-//            try {
-//                CrewMemberData.updateOnAction(Integer.parseInt(IdField.getText()), emailField.getText(), nameField.getText());
-//                resultLabel.setText("The data is updated in Database");
-//            } catch (SQLException e) {
-//                System.out.println("Error! while update the info");
-//                e.printStackTrace();
-//                throw e;
-//            }
-        } else if (actionEvent.getSource() == backButton) {
-            try {
-                App.setRoot(App.getCurrentRoom());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (actionEvent.getSource() == searchButton) {
-            if (searchCrewM.textProperty().get().isEmpty()) {
-                tableView.setItems(crewMem);
-                return;
-            }
-            ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
-            ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableView.getColumns();
-            for (int i = 0; i < crewMem.size(); i++) {
-                for (int j = 0; j < tableColumns.size(); j++) {
-                    TableColumn tableColumn = tableColumns.get(j);
-                    String cellValue = tableColumn.getCellData(crewMem.get(i)).toString();
-                    cellValue = cellValue.toLowerCase();
-                    if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
-                        tableData.add(crewMem.get(i));
-                        break;
-                    }
-                }
-            }
-            tableView.setItems(tableData);
+        int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
+        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), roleField.getText(), crewMemId);
+        resultLabel.setText("The information has been added to the Database");
+        updateTableView();
+        nameField.clear();
+        emailField.clear();
+        roleField.clear();
+        IdField.clear();
         }
-    }
 
-    public ObservableList<CrewMember> getCrewMember() {
-
+    public ObservableList<CrewMember> getCrewMember(ArrayList<CrewMember> fetch) {
         ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
-        ArrayList<CrewMember> fetchCrew = fetchList;
+        ArrayList<CrewMember> fetchCrew = fetch;
         for (CrewMember c : fetchCrew) {
             String name = c.getName();
             String email = c.getEmail();
@@ -162,108 +102,111 @@ public class AddCrewMemberController implements Initializable {
     }
 
     public void deleteButton(ActionEvent actionEvent) {
-        //Delete crew member from list:
         ObservableList<CrewMember> selectedCrew = tableView.getSelectionModel().getSelectedItems();
-        ObservableList<CrewMember> allCrewMembers = tableView.getItems();
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you sure, that you wanna remove this Crew member?");
 
-        if (tempCrew != null) {
-            CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getCastCrewId());
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // ... user chose OK
+            //Delete crew member from list:
+            if (tempCrew != null) {
+                CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getCastCrewId());
+            } else {
+                System.out.println("List is empty.");
+            }
+
+            if (selectedCrew != null) {
+                ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
+                rows.forEach(row -> tableView.getItems().remove(row));
+            }
         } else {
-            System.out.println("List is empty.");
+            // ... user chose CANCEL or closed the dialog
+            System.out.println("user chose CANCEL or closed the dialog");
         }
 
-        deleteFromDatabase();
-        if (selectedCrew != null) {
-            ArrayList<CrewMember> rows = new ArrayList<>(selectedCrew);
-            rows.forEach(row -> tableView.getItems().remove(row));
-        }
     }
 
-    public void updateName(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) throws SQLException, ClassNotFoundException {
+    public void updateName(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newName = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
             CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail(), tempCrew.getRole(), tempCrew.getCastCrewId());
+            resultLabel.setText("The data is updated in Database");
+            updateTableView();
         } else {
             System.out.println("Element not found");
         }
-        try {
-            CrewMemberData.updateOnActionName(tempCrew.getCastCrewId(), newName);
-            resultLabel.setText("The data is updated in Database");
-            tableView.setItems(crewMem);
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Error! while update the info");
-            e.printStackTrace();
-            throw e;
-        }
+
     }
 
-    public void updateEmail(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) throws SQLException, ClassNotFoundException {
+    public void updateEmail(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newEmail = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
-            System.out.println(newEmail);
             CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail, tempCrew.getRole(), tempCrew.getCastCrewId());
+            resultLabel.setText("The data is updated in Database");
+            updateTableView();
         } else {
             System.out.println("Element not found");
         }
-        try {
-            CrewMemberData.updateOnActionEmail(tempCrew.getCastCrewId(), newEmail);
-            resultLabel.setText("The data is updated in Database");
-            tableView.setItems(crewMem);
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Error! while update the info");
-            e.printStackTrace();
-            throw e;
-        }
     }
-    public void updateRole(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) throws SQLException, ClassNotFoundException {
+
+    public void updateRole(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newRole = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
             CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), tempCrew.getEmail(), newRole, tempCrew.getCastCrewId());
+            resultLabel.setText("The data is updated in Database");
+            updateTableView();
         } else {
             System.out.println("Element not found");
         }
-        try {
-            CrewMemberData.updateOnActionRole(tempCrew.getCastCrewId(), newRole);
-            resultLabel.setText("The data is updated in Database");
-            tableView.setItems(crewMem);
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Error! while update the info");
-            e.printStackTrace();
-            throw e;
+
+    }
+
+    public void backBtnHandler(ActionEvent actionEvent) throws IOException {
+        App.setRoot(App.getCurrentRoom());
+    }
+
+    public void search() {
+        if (searchCrewM.textProperty().get().isEmpty()) {
+            updateTableView();
+        }
+        ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
+        ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableView.getColumns();
+        for (int i = 0; i < dataList.size(); i++) {
+            for (int j = 0; j < tableColumns.size(); j++) {
+                TableColumn tableColumn = tableColumns.get(j);
+                String cellValue = tableColumn.getCellData(dataList.get(i)).toString();
+                cellValue = cellValue.toLowerCase();
+                if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
+                    tableData.add(dataList.get(i));
+                    break;
+                }
+            }
+        }
+        tableView.setItems(tableData);
+    }
+
+    public void searchEnter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            search();
         }
     }
 
-    public void addToDatabase() throws SQLException, ClassNotFoundException {
-        //add crew member to database:
-        CrewMemberData.addbtnhandler(nameField.getText(), emailField.getText(), roleField.getText());
-        resultLabel.setText("The information has been added to the Database");
-        tableView.setItems(crewMem);
-        nameField.clear();
-        emailField.clear();
-        roleField.clear();
-        IdField.clear();
-    }
-
-    public void deleteFromDatabase() {
-        //delete crew member from database:
-      // int i = tableView.getSelectionModel().getSelectedItem().getCastCrewId();
-        try {
-            CrewMemberData.deletebtnHandler(tableView.getSelectionModel().getSelectedItem().getCastCrewId());
-            resultLabel.setText("The data has been deleted");
-        } catch (SQLException e) {
-            System.out.println("Error! while delete the data");
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-
+    public void searchBtn(ActionEvent actionEvent) {
+        if(actionEvent.equals(KeyCode.ENTER)){
+            search();
         }
     }
 
-//    public Connection getConnection() {
-//        return connection;
-//    }
+    public void updateTableView() {
+        ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMemberDatabase();
+        tableView.setItems(getCrewMember(dataList));
+    }
+
 }

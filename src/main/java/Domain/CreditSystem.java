@@ -1,8 +1,10 @@
 package Domain;
 
+import Persistance.CreditSystemDatabaseRepository;
 import Persistance.CreditSystemFileRepository;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CreditSystem implements Serializable {
@@ -105,6 +107,7 @@ public class CreditSystem implements Serializable {
     public void addCrewMember(String name, String email, String role, int castCrewId) {
         if(currentUser.getIsProducer()) {
             CreditSystemFileRepository.getCsfio().addCrewMember(name, email, role, castCrewId);
+            CreditSystemDatabaseRepository.getCsdio().addCrewMember(name, email, role, castCrewId);
         } else {
             System.out.println("Access Restricted!");
         }
@@ -114,6 +117,7 @@ public class CreditSystem implements Serializable {
     public void removeCrewMember(int id) {
         if (currentUser.getIsProducer()) {
             CreditSystemFileRepository.getCsfio().removeCrewMember(id);
+            CreditSystemDatabaseRepository.getCsdio().removeCrewMember(id);
         } else {
             System.out.println("Access Restricted");
         }
@@ -122,9 +126,22 @@ public class CreditSystem implements Serializable {
     public void updateCrewMember(String name, String email, String role, int id) {
         if(currentUser.getIsProducer()) {
             CreditSystemFileRepository.getCsfio().updateCrewMember(name, email, role, id);
+            CreditSystemDatabaseRepository.getCsdio().updateCrewMember(name, email, role, id);
         } else {
             System.out.println("Access Restricted");
         }
+    }
+
+    public ArrayList<CrewMember> getCrewMemberList() {
+        return CreditSystemFileRepository.getCsfio().getCrewMemberList();
+    }
+
+    public ArrayList<CrewMember> getCrewMemberDatabase() {
+        return CreditSystemDatabaseRepository.getCsdio().getCrewMemberList();
+    }
+
+    public int getCrewMemIdFromDatabase() throws SQLException {
+        return CreditSystemDatabaseRepository.getCsdio().getIdFromDatabase();
     }
 
     public ArrayList<CrewMember> getCrewMembers() {
@@ -146,11 +163,6 @@ public class CreditSystem implements Serializable {
 
     public ArrayList<Production> getProductionList() {
         return CreditSystemFileRepository.getCsfio().getProductionList();
-    }
-
-
-    public ArrayList<CrewMember> getCrewMemberList() {
-        return CreditSystemFileRepository.getCsfio().getCrewMemberList();
     }
 
     public ArrayList<User> getUserList(){

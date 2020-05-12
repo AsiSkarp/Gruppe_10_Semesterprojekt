@@ -1,6 +1,9 @@
 package Pre;
 
-import Domain.*;
+import Domain.Admin;
+import Domain.CreditSystem;
+import Domain.Producer;
+import Domain.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,7 +47,7 @@ public class AddAdminController implements Initializable {
     }
 
     public void addBtnHandler(ActionEvent actionEvent) {
-        User newAdmin = new Producer(adminName.getText(), adminEmail.getText(), adminPassword.getText());
+        User newAdmin = new Admin(adminName.getText(), adminEmail.getText(), adminPassword.getText());
         adminTable.getItems().add(newAdmin);
         CreditSystem.getCreditSystem().addAdminToSystem(adminName.getText(), adminEmail.getText(), adminPassword.getText());
 //        CreditSystem.getCreditSystem().writeToPersistance();
@@ -69,59 +72,15 @@ public class AddAdminController implements Initializable {
     }
 
     public void deleteBtnHandler(ActionEvent actionEvent) {
-        ObservableList<User> selectedUser = adminTable.getSelectionModel().getSelectedItems();
-        ObservableList<User> allUsers = adminTable.getItems();
-        User tempUser = adminTable.getSelectionModel().getSelectedItem();
 
-        if (tempUser != null) {
-            CreditSystem.getCreditSystem().removeAdminFromSystem(tempUser.getEmail());
-        } else {
-            System.out.println("List is empty.");
-        }
-
-        if (selectedUser != null) {
-            ArrayList<User> rows = new ArrayList<>(selectedUser);
-            rows.forEach(row -> adminTable.getItems().remove(row));
-
-        }
     }
 
     public void SearchBtnhandler(ActionEvent actionEvent) {
     }
 
     public void updateName(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
-        User tempAdmin = adminTable.getSelectionModel().getSelectedItem();
-        String newName = adminStringCellEditEvent.getNewValue();
-
-        if(tempAdmin != null){
-            CreditSystem.getCreditSystem().updateAdmin(newName, tempAdmin.getEmail(), tempAdmin.getPassword());
-            adminTable.setItems(getAdmin());
-        } else {
-            System.out.println("Element not found");
-        }
     }
 
-//    public void updateEmail(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
-//        User tempAdmin = adminTable.getSelectionModel().getSelectedItem();
-//        String newEmail = adminStringCellEditEvent.getNewValue();
-//
-//        if(tempAdmin != null){
-//            CreditSystem.getCreditSystem().updateAdmin(tempAdmin.getName(), newEmail, tempAdmin.getPassword());
-//            adminTable.setItems(getAdmin());
-//        } else {
-//            System.out.println("Element not found");
-//        }
-//    }
-
     public void updatePassword(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
-        User tempAdmin = adminTable.getSelectionModel().getSelectedItem();
-        String newPassword = adminStringCellEditEvent.getNewValue();
-
-        if(tempAdmin != null){
-            CreditSystem.getCreditSystem().updateAdmin(tempAdmin.getName(), tempAdmin.getEmail(), newPassword);
-            adminTable.setItems(getAdmin());
-        } else {
-            System.out.println("Element not found");
-        }
     }
 }

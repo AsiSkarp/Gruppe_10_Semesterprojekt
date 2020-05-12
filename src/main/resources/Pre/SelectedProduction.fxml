@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SelectedProductionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SelectedProductionController">
    <children>
-      <TextField layoutX="60.0" layoutY="63.0" promptText="Name" />
-      <TextField layoutX="226.0" layoutY="63.0" promptText="Role" />
-      <TextField layoutX="397.0" layoutY="63.0" />
-      <TableView layoutX="60.0" layoutY="116.0" prefHeight="282.0" prefWidth="312.0">
+      <Label layoutX="32.0" layoutY="41.0" text="Title: " textFill="#fffefe" />
+      <Label layoutX="276.0" layoutY="41.0" text="Owner:" textFill="#faf8f8" />
+      <TextField fx:id="nameCM" layoutX="659.0" layoutY="130.0" prefHeight="25.0" prefWidth="177.0" promptText="Name">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></TextField>
+      <Label layoutX="660.0" layoutY="41.0" text="Date:" textFill="#fffcfc" />
+      <TextField fx:id="roleCM" layoutX="660.0" layoutY="171.0" prefHeight="25.0" prefWidth="177.0" promptText="Role" />
+      <Button layoutX="737.0" layoutY="341.0" mnemonicParsing="false" onAction="#eksportereCM" prefHeight="26.0" prefWidth="99.0" text="Export data" />
+      <Button layoutX="737.0" layoutY="387.0" mnemonicParsing="false" onAction="#backCM" prefHeight="26.0" prefWidth="99.0" text="Back" />
+      <TableView fx:id="tableCM" layoutX="32.0" layoutY="113.0" prefHeight="304.0" prefWidth="574.0" style="-fx-background-color: #7a9ca6;">
         <columns>
-          <TableColumn prefWidth="155.20001220703125" text="C1" />
-          <TableColumn prefWidth="156.0" text="C2" />
+          <TableColumn fx:id="nameColumn" prefWidth="294.0" text="Name" />
+          <TableColumn fx:id="roleColumn" prefWidth="279.0" text="Role" />
         </columns>
       </TableView>
-      <Button layoutX="494.0" layoutY="345.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="494.0" layoutY="301.0" mnemonicParsing="false" text="Button" />
+      <TextField fx:id="titleCM" layoutX="32.0" layoutY="66.0" prefHeight="26.0" prefWidth="177.0" />
+      <TextField fx:id="ownerCM" layoutX="276.0" layoutY="66.0" prefHeight="25.0" prefWidth="177.0" />
+      <TextField fx:id="dateCM" layoutX="660.0" layoutY="66.0" prefHeight="25.0" prefWidth="177.0" />
+      <Button layoutX="737.0" layoutY="217.0" mnemonicParsing="false" onAction="#addCM" prefHeight="26.0" prefWidth="99.0" text="Add" />
+      <Button layoutX="737.0" layoutY="262.0" mnemonicParsing="false" onAction="#deleteCM" prefHeight="26.0" prefWidth="99.0" text="Delete" />
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </AnchorPane>

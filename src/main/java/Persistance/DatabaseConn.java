@@ -1,4 +1,4 @@
-package Data;
+package Persistance;
 
 import com.sun.rowset.CachedRowSetImpl;
 import java.sql.*;

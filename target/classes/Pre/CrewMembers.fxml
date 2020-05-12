@@ -5,18 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.CrewMembersController">
+<AnchorPane fx:id="anchorpane" prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.CrewMembersController">
    <children>
-      <TableView fx:id="tableviewCrewmembers" layoutX="12.0" layoutY="48.0" prefHeight="339.0" prefWidth="565.0" style="-fx-background-color: #7a9ca6;">
+      <TableView fx:id="tableviewCrewmembers" layoutX="18.0" layoutY="48.0" prefHeight="383.0" prefWidth="686.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="132.0" text="Name" />
-            <TableColumn fx:id="roleColumn" prefWidth="291.0" text="Role" />
-            <TableColumn fx:id="emailColunm" prefWidth="141.0" text="E-mail" />
+          <TableColumn fx:id="nameColumn" prefWidth="190.00001525878906" text="Name" />
+            <TableColumn fx:id="roleColumn" prefWidth="255.0" text="Role" />
+            <TableColumn fx:id="emailColunm" prefWidth="226.0" text="E-mail" />
         </columns>
       </TableView>
-      <Button layoutX="443.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" text="Search" />
-      <Button layoutX="586.0" layoutY="360.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="26.0" prefWidth="100.0" text="Back" />
-      <Button contentDisplay="TOP" layoutX="587.0" layoutY="127.0" mnemonicParsing="false" onAction="#exportdataButtonAction" prefHeight="91.0" prefWidth="100.0" text="Export data">
+       <Button layoutX="754.0" layoutY="353.0" mnemonicParsing="false" onAction="#backbtn" prefHeight="26.0" prefWidth="100.0" text="Back" />
+      <Button contentDisplay="TOP" layoutX="750.0" layoutY="123.0" mnemonicParsing="false" onAction="#exportdataButtonAction" prefHeight="91.0" prefWidth="100.0" text="Export data">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -24,10 +23,11 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <TextField layoutX="12.0" layoutY="15.0" prefHeight="26.0" prefWidth="431.0" promptText="Search" />
-      <Label layoutX="591.0" layoutY="73.0" text="Crew Members" textFill="WHITE">
+      <TextField fx:id="searchTextField" layoutX="18.0" layoutY="15.0" onKeyPressed="#searchEnter" prefHeight="26.0" prefWidth="431.0" promptText="Search" />
+      <Label layoutX="754.0" layoutY="69.0" text="Crew Members" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
+      <Button layoutX="455.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchbtn" prefHeight="8.0" prefWidth="122.0" text="Search" />
    </children>
 </AnchorPane>

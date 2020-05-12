@@ -26,10 +26,8 @@ App extends Application {
     public void start(Stage stage) throws IOException {
         //stage.getIcons().add(new Image("src\\main\\resources\\Images\\TV2Logo.png"));
         stage.setTitle("TV2 Credit System");
-        scene = new Scene(loadFXML("login"));
-        //stage.sizeToScene();
-        //scene = new Scene(root, 900, 450);
-        //stage.setResizable(false);
+        scene = new Scene(loadFXML("login"), 900, 450);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
