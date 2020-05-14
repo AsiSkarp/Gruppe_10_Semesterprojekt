@@ -10,8 +10,9 @@
       <TableView fx:id="adminTable" layoutX="24.0" layoutY="45.0" prefHeight="376.0" prefWidth="585.0" style="-fx-background-color: #7a9ca6;">
         <columns>
           <TableColumn fx:id="adminTableName" onEditCommit="#updateName" prefWidth="128.0" text="Name" />
-          <TableColumn fx:id="adminTableEmail" editable="false" prefWidth="206.0" text="E-mail" />
+          <TableColumn fx:id="adminTableEmail" onEditCommit="#updateEmail" prefWidth="206.0" text="E-mail" />
             <TableColumn fx:id="adminTablePassword" onEditCommit="#updatePassword" prefWidth="118.0" text="Password" />
+            <TableColumn fx:id="adminTableType" onEditCommit="#updatePassword" prefWidth="118.0" text="Type" />
         </columns>
       </TableView>
       <TextField fx:id="searchField" layoutX="24.0" layoutY="14.0" prefHeight="26.0" prefWidth="397.0" promptText="Search" />
@@ -32,6 +33,8 @@
          <font>
             <Font name="System Italic" size="12.0" />
          </font></PasswordField>
+      <Label fx:id="resultField" layoutX="661.0" layoutY="310.0" prefHeight="71.0" prefWidth="187.0" wrapText="true" />
+      <CheckBox fx:id="chkBoxSuperAdmin" layoutX="656.0" layoutY="184.0" mnemonicParsing="false" text="SuperAdmin" textFill="WHITE" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

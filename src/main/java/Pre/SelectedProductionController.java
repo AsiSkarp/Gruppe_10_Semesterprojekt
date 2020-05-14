@@ -31,7 +31,7 @@ public class SelectedProductionController implements Initializable {
     private Date date;
 
 
-    ArrayList<CrewMember> fetchList = CreditSystem.getCreditSystem().getCrewMemberList();
+    //ArrayList<CrewMember> fetchList = CreditSystem.getCreditSystem().getCrewMemberList();
     ObservableList<CrewMember> crewM = FXCollections.observableArrayList();
 
     @Override

@@ -28,8 +28,8 @@ public class AddCrewMemberController implements Initializable {
     public TableColumn<CrewMember, String> firstNameColumn;
     @FXML
     public TableColumn<CrewMember, String> emailColumn;
-    @FXML
-    public TableColumn<CrewMember, String> roleColumn;
+//    @FXML
+//    public TableColumn<CrewMember, String> roleColumn;
     @FXML
     public TableColumn<CrewMember, Integer> IdColumn;
 
@@ -56,36 +56,33 @@ public class AddCrewMemberController implements Initializable {
 
 
 
-    ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
-    ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMemberDatabase();
+    //ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
+    ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
-        IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
+        //roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
+        //IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         updateTableView();
 
         //Edit the table data:
         tableView.setEditable(true);
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     //Maybe if statementt use in addbutton tomorrow:
     public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
-        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), roleField.getText(), crewMemId);
+        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText());
         resultLabel.setText("The information has been added to the Database");
         updateTableView();
         nameField.clear();
         emailField.clear();
-        roleField.clear();
-        IdField.clear();
         }
 
     public ObservableList<CrewMember> getCrewMember(ArrayList<CrewMember> fetch) {
@@ -94,9 +91,7 @@ public class AddCrewMemberController implements Initializable {
         for (CrewMember c : fetchCrew) {
             String name = c.getName();
             String email = c.getEmail();
-            String role = c.getRole();
-            int id = c.getCastCrewId();
-            crewMembers.add(new CrewMember(name, email, role, id));
+            crewMembers.add(new CrewMember(name, email));
         }
         return crewMembers;
     }
@@ -107,14 +102,14 @@ public class AddCrewMemberController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Look, a Confirmation Dialog");
-        alert.setContentText("Are you sure, that you wanna remove this Crew member?");
+        alert.setContentText("Are you sure, that you want to remove this Crew member?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             // ... user chose OK
             //Delete crew member from list:
             if (tempCrew != null) {
-                CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getCastCrewId());
+                CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
             } else {
                 System.out.println("List is empty.");
             }
@@ -134,7 +129,7 @@ public class AddCrewMemberController implements Initializable {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newName = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
-            CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail(), tempCrew.getRole(), tempCrew.getCastCrewId());
+            CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail());
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
@@ -147,25 +142,12 @@ public class AddCrewMemberController implements Initializable {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newEmail = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
-            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail, tempCrew.getRole(), tempCrew.getCastCrewId());
+            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail);
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
             System.out.println("Element not found");
         }
-    }
-
-    public void updateRole(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
-        CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
-        String newRole = crewMemberStringCellEditEvent.getNewValue();
-        if (tempCrew != null) {
-            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), tempCrew.getEmail(), newRole, tempCrew.getCastCrewId());
-            resultLabel.setText("The data is updated in Database");
-            updateTableView();
-        } else {
-            System.out.println("Element not found");
-        }
-
     }
 
     public void backBtnHandler(ActionEvent actionEvent) throws IOException {
@@ -204,7 +186,7 @@ public class AddCrewMemberController implements Initializable {
     }
 
     public void updateTableView() {
-        ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMemberDatabase();
+        ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
         tableView.setItems(getCrewMember(dataList));
     }
 }

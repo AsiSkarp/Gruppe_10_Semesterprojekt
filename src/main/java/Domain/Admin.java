@@ -20,4 +20,9 @@ public class Admin extends User{
     public boolean getIsProducer() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Admin";
+    }
 }

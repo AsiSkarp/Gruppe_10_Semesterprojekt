@@ -19,4 +19,9 @@ public class SuperAdmin extends User{
     public boolean getIsProducer() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "SuperAdmin";
+    }
 }

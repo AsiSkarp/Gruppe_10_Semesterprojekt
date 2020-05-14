@@ -16,22 +16,21 @@ public class Login {
 
     ArrayList<User> tempList = CreditSystem.getCreditSystem().getUserList();
 
-
     public void login(String email, String password) {
         ArrayList<User> fetchUser = tempList;
         for (User u : fetchUser) {
                 if(u.getEmail().equals(email) && u.getPassword().equals(password)){
                     if(u.getIsSuperAdmin()){
                         CreditSystem.getCreditSystem().setCurrentUser(u);
-                        System.out.println("current user: SuperAdmin");
+                        System.out.println("SuperAdmin");
                         break;
                     } else if (u.getIsAdmin()) {
                         CreditSystem.getCreditSystem().setCurrentUser(u);
-                        System.out.println("current user: Admin");
+                        System.out.println("Admin");
                         break;
                     } else if (u.getIsProducer()) {
                         CreditSystem.getCreditSystem().setCurrentUser(u);
-                        System.out.println("current user: Producer");
+                        System.out.println("Producer");
                         break;
                     }
                 } else {

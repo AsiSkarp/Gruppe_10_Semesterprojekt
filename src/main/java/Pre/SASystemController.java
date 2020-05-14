@@ -12,6 +12,7 @@ public class SASystemController {
         CreditSystem.getCreditSystem().logout();
         App.setRoot("login");
     }
+
     @FXML
     public void SwitchToAdminSystem(ActionEvent actionEvent) throws IOException {
         App.setRoot("AddAdmin");
