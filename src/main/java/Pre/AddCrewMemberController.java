@@ -175,20 +175,22 @@ public class AddCrewMemberController implements Initializable {
     public void search() {
         if (searchCrewM.textProperty().get().isEmpty()) {
             updateTableView();
-        }
-        ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
-        ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableView.getColumns();
-        for (int i = 0; i < dataList.size(); i++) {
-            for (int j = 0; j < tableColumns.size(); j++) {
-                TableColumn tableColumn = tableColumns.get(j);
-                String cellValue = tableColumn.getCellData(dataList.get(i)).toString();
-                cellValue = cellValue.toLowerCase();
-                if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
-                    tableData.add(dataList.get(i));
+        } else {
+            ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
+            ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableView.getColumns();
+            for (int i = 0; i < dataList.size(); i++) {
+                for (int j = 0; j < tableColumns.size(); j++) {
+                    TableColumn tableColumn = tableColumns.get(j);
+                    String cellValue = tableColumn.getCellData(dataList.get(i)).toString();
+                    cellValue = cellValue.toLowerCase();
+                    if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
+                        tableData.add(dataList.get(i));
+                        break;
+                    }
                 }
             }
+            tableView.setItems(tableData);
         }
-        tableView.setItems(tableData);
     }
 
     public void searchEnter(KeyEvent keyEvent) {

@@ -19,14 +19,15 @@ import java.util.ResourceBundle;
 
 public class SelectedProductionController implements Initializable {
 
-    @FXML public TextArea titleArea;
-    @FXML public TextArea ownerArea;
-    @FXML public TextArea dateArea;
     @FXML public TextField nameCM;
     @FXML public TextField roleCM;
     @FXML public TableView<CrewMember> tableCM;
     @FXML public TableColumn<CrewMember, String>  nameColumn;
     @FXML public TableColumn<CrewMember, String>  roleColumn;
+    @FXML public TextField titleFieldSelect;
+    @FXML public TextField ownerFieldSelect;
+    @FXML public TextField dateFieldSelect;
+
     private Date date;
 
 
@@ -36,7 +37,7 @@ public class SelectedProductionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        dateArea.setText(String.valueOf(date));
+        dateFieldSelect.setText(String.valueOf(date));
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));

@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -47,7 +48,8 @@ public class CrewMembersController implements Initializable {
                         resultSet.getString("name"),
                         resultSet.getString("role"),
                         resultSet.getString("email"),
-                        resultSet.getInt("id"))); }
+                        resultSet.getInt("id")));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,8 +58,6 @@ public class CrewMembersController implements Initializable {
         roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
         emailColunm.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         tableviewCrewmembers.setItems(crewMem);
-
-
     }
 
     public void searchbtn(ActionEvent actionEvent) {
@@ -65,7 +65,10 @@ public class CrewMembersController implements Initializable {
     }
 
     public void exportdataButtonAction(ActionEvent actionEvent) throws IOException {
+        exportData();
+    }
 
+    private void exportData() {
         FileChooser fileChooser = new FileChooser();
         Window stage = anchorpane.getScene().getWindow();
         fileChooser.setTitle("Save Dialog");
@@ -116,6 +119,11 @@ public class CrewMembersController implements Initializable {
     public void searchEnter(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){
             search();
+        }
+    }
+    public void exportSmart(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.F12)) {
+            exportData();
         }
     }
     public void updateTableView() {
