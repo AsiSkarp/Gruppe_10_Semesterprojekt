@@ -65,7 +65,7 @@ public class AddCrewMemberController implements Initializable {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         //roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
-        //IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
+        IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         updateTableView();
 
         //Edit the table data:
@@ -78,7 +78,7 @@ public class AddCrewMemberController implements Initializable {
     //Maybe if statementt use in addbutton tomorrow:
     public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
-        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText());
+        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), crewMemId);
         resultLabel.setText("The information has been added to the Database");
         updateTableView();
         nameField.clear();
@@ -91,7 +91,8 @@ public class AddCrewMemberController implements Initializable {
         for (CrewMember c : fetchCrew) {
             String name = c.getName();
             String email = c.getEmail();
-            crewMembers.add(new CrewMember(name, email));
+            int id = c.getCastCrewId();
+            crewMembers.add(new CrewMember(name, email, id));
         }
         return crewMembers;
     }
@@ -129,7 +130,7 @@ public class AddCrewMemberController implements Initializable {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newName = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
-            CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail());
+            CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail(), tempCrew.getCastCrewId());
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
@@ -142,7 +143,7 @@ public class AddCrewMemberController implements Initializable {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newEmail = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
-            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail);
+            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail, tempCrew.getCastCrewId());
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
