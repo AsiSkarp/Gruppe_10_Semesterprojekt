@@ -37,7 +37,7 @@ public class ProductionController implements Initializable {
     @FXML public TextField titleField;
     @FXML public TextField ownerField;
 
-    ArrayList<Production> productions = CreditSystem.getCreditSystem().getProductionDatabase();
+    ArrayList<Production> productions = CreditSystem.getCreditSystem().getProductionList();
     ObservableList<Production> productionList = FXCollections.observableArrayList();
 
     @Override
@@ -81,10 +81,10 @@ public class ProductionController implements Initializable {
     }
 
     public void openButtonOnAction(ActionEvent actionEvent) throws IOException {
-        productionList = tableviewProduction.getSelectionModel().getSelectedItems();
-        SelectedProductionController controller = new SelectedProductionController();
-        
-        controller.titleFieldSelect.setText(titleField.getSelectedText());
+//        productionList = tableviewProduction.getSelectionModel().getSelectedItems();
+//        SelectedProductionController controller = new SelectedProductionController();
+//
+//        controller.titleFieldSelect.setText(titleField.getSelectedText());
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectedProduction"));
 //        SelectedProductionController controller = loader.getController();
 //        controller.titleFieldSelect;
