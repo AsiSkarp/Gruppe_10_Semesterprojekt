@@ -10,7 +10,6 @@
         <columns>
           <TableColumn fx:id="firstNameColumn" onEditCommit="#updateName" prefWidth="116.0" text="Name" />
           <TableColumn fx:id="emailColumn" onEditCommit="#updateEmail" prefWidth="227.0" text="E-mail" />
-            <TableColumn fx:id="roleColumn" minWidth="0.0" onEditCommit="#updateRole" prefWidth="178.0" text="Role" />
             <TableColumn fx:id="IdColumn" prefWidth="143.0" text="Id" />
         </columns>
       </TableView>
@@ -24,16 +23,7 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="roleField" layoutX="703.0" layoutY="150.0" prefHeight="25.0" prefWidth="171.0" promptText="Role">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="IdField" layoutX="703.0" layoutY="189.0" prefHeight="25.0" prefWidth="171.0" promptText="Id">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </TextField>
+
       <Button fx:id="AddCrewButton" layoutX="703.0" layoutY="239.0" mnemonicParsing="false" onAction="#addbtnhandler" prefHeight="25.0" prefWidth="171.0" text="Add" />
       <Button layoutX="703.0" layoutY="278.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="171.0" text="Del" />
       <Button fx:id="backButton" layoutX="809.0" layoutY="410.0" mnemonicParsing="false" onAction="#backBtnHandler" prefHeight="25.0" prefWidth="68.0" text="Back" />
