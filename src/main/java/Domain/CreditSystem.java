@@ -1,8 +1,6 @@
 package Domain;
 
 import Persistance.CreditSystemDatabaseRepository;
-import Persistance.CreditSystemFileRepository;
-
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -40,15 +40,11 @@ public class AddCrewMemberController implements Initializable {
     @FXML
     public TextField emailField;
     @FXML
-    public TextField roleField;
-    @FXML
     public TextField IdField;
     @FXML
     public Label resultLabel;
     @FXML
     public Button AddCrewButton;
-    @FXML
-    public Button updateButton;
     @FXML
     public Button backButton;
     @FXML
@@ -64,7 +60,6 @@ public class AddCrewMemberController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
-        //roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
         IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         updateTableView();
 
@@ -107,7 +102,7 @@ public class AddCrewMemberController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            // ... user chose OK
+            // ... user choose OK
             //Delete crew member from list:
             if (tempCrew != null) {
                 CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());

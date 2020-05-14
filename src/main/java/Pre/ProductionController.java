@@ -1,6 +1,5 @@
 package Pre;
 
-
 import Domain.CreditSystem;
 import Domain.Production;
 import javafx.collections.FXCollections;
@@ -142,7 +141,6 @@ public class ProductionController implements Initializable {
             String owner = c.getOwner();
             Date date = c.getDate();
             int productionId = c.getProductionId();
-//            Java.sql.Date Date = c.getDate()
             productions.add(new Production(title, owner, date, productionId));
         }
         return productions;
