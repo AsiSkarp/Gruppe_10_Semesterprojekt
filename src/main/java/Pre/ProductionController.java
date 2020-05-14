@@ -130,7 +130,7 @@ public class ProductionController implements Initializable {
     }
 
     public void updateTableView() {
-        ArrayList<Production> productionList = CreditSystem.getCreditSystem().getProductionDatabase();
+        ArrayList<Production> productionList = CreditSystem.getCreditSystem().getProductionList();
         tableviewProduction.setItems(getProduction(productionList));
     }
 

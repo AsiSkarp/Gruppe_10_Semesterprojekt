@@ -9,7 +9,7 @@
       <TableView fx:id="proTable" layoutX="16.0" layoutY="47.0" prefHeight="386.0" prefWidth="583.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
           <TableColumn fx:id="proTableName" onEditCommit="#updateName" prefWidth="131.0" text="Name" />
-          <TableColumn fx:id="proTableEmail" editable="false" prefWidth="263.0" text="E-mail" />
+          <TableColumn fx:id="proTableEmail" onEditCommit="#updateEmail" prefWidth="263.0" text="E-mail" />
             <TableColumn fx:id="proTablePassword" onEditCommit="#updatePassword" prefWidth="175.0" text="Password" />
         </columns>
       </TableView>
@@ -26,7 +26,10 @@
       <Button layoutX="392.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Search" />
       <Button layoutX="645.0" layoutY="223.0" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="26.0" prefWidth="204.0" text="Add" />
       <Button layoutX="647.0" layoutY="264.0" mnemonicParsing="false" onAction="#DeleteButtonAction" prefHeight="26.0" prefWidth="204.0" text="Delete" />
-      <Button layoutX="767.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBackBtnHandler" prefHeight="26.0" prefWidth="82.0" text="Back" />
+      <Label fx:id="resultProducer" layoutX="649.0" layoutY="314.0" prefHeight="67.0" prefWidth="204.0" wrapText="true" />
+      <Button layoutX="767.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBackBtnHandler" prefHeight="26.0" prefWidth="82.0" text="Back">
+         <graphic>
+         </graphic></Button>
       <PasswordField fx:id="proPassword" layoutX="645.0" layoutY="168.0" prefHeight="18.0" prefWidth="204.0" promptText="Password">
          <font>
             <Font name="System Italic" size="12.0" />

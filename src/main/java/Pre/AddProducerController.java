@@ -1,6 +1,7 @@
 package Pre;
 
 import Domain.CreditSystem;
+import Domain.CrewMember;
 import Domain.Producer;
 import Domain.User;
 import javafx.collections.FXCollections;
@@ -15,7 +16,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
+
 
 public class AddProducerController implements Initializable {
 
@@ -26,14 +29,16 @@ public class AddProducerController implements Initializable {
     @FXML public TextField proName;
     @FXML public TextField proEmail;
     @FXML public PasswordField proPassword;
+    @FXML public Label resultProducer;
 
     ArrayList<User> proList = CreditSystem.getCreditSystem().getUserList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         proTableName.setCellValueFactory(new PropertyValueFactory<Producer, String>("name"));
         proTableEmail.setCellValueFactory(new PropertyValueFactory<Producer, String>("email"));
         proTablePassword.setCellValueFactory(new PropertyValueFactory<Producer, String>("password"));
-        proTable.setItems(getPro());
+        updateTableView();
 
         proTable.setEditable(true);
         proTableName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -44,54 +49,54 @@ public class AddProducerController implements Initializable {
 
 
     public void addButtonAction(ActionEvent actionEvent) {
-        User newPro = new Producer(proName.getText(), proEmail.getText(), proPassword.getText());
-        proTable.getItems().add(newPro);
         CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
+        resultProducer.setText("The information has been added to the Database");
+        updateTableView();
+        proName.clear();
+        proEmail.clear();
+        proPassword.clear();
     }
 
-    /*
-    public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
-        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), roleField.getText(), crewMemId);
-        resultLabel.setText("The information has been added to the Database");
-        updateTableView();
-        nameField.clear();
-        emailField.clear();
-        roleField.clear();
-        IdField.clear();
-        }
-    */
-    public ObservableList<User> getPro() {
-        ObservableList<User> proObser = FXCollections.observableArrayList();
-        ArrayList<User> fetchedUser = proList;
+    public ObservableList<User> getProducer(ArrayList<User> fetch) {
+        ObservableList<User> users = FXCollections.observableArrayList();
+        ArrayList<User> fetchedUser = fetch;
         for (User c : fetchedUser) {
             if (c.getIsProducer() && !c.getIsSuperAdmin()){
                 String name = c.getName();
                 String email = c.getEmail();
                 String password = c.getPassword();
-                proObser.add(new Producer(name,email,password));
+                users.add(new Producer(name,email,password));
             }
         }
-        return proObser;
+        System.out.println(users);
+        return users;
     }
 
     public void DeleteButtonAction(ActionEvent actionEvent) {
         ObservableList<User> selectedUser = proTable.getSelectionModel().getSelectedItems();
         User tempUser = proTable.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you sure, that you want to remove this user?");
 
-        if (tempUser != null) {
-            CreditSystem.getCreditSystem().removeAdminFromSystem(tempUser.getEmail());
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            if (tempUser != null) {
+                CreditSystem.getCreditSystem().removeProducerFromSystem(tempUser.getEmail());
+            } else {
+                System.out.println("List is empty.");
+            }
+
+            if (selectedUser != null) {
+                ArrayList<User> rows = new ArrayList<>(selectedUser);
+                rows.forEach(row -> proTable.getItems().remove(row));
+            }
         } else {
-            System.out.println("List is empty.");
+            System.out.println("user chose CANCEL or closed the dialog");
         }
 
-        if (selectedUser != null) {
-            ArrayList<User> rows = new ArrayList<>(selectedUser);
-            rows.forEach(row -> proTable.getItems().remove(row));
-
-        }
     }
-
 
     public void goBackBtnHandler(ActionEvent actionEvent) throws IOException {
         App.setRoot(App.getCurrentRoom());
@@ -101,9 +106,10 @@ public class AddProducerController implements Initializable {
         User tempProducer = proTable.getSelectionModel().getSelectedItem();
         String newName = producerStringCellEditEvent.getNewValue();
 
-        if(tempProducer != null){
+        if (tempProducer != null) {
             CreditSystem.getCreditSystem().updateProducer(newName, tempProducer.getEmail(), tempProducer.getPassword());
-            proTable.setItems(getPro());
+            resultProducer.setText("The data is updated in Database");
+            updateTableView();
         } else {
             System.out.println("Element not found");
         }
@@ -115,9 +121,30 @@ public class AddProducerController implements Initializable {
 
         if(tempProducer != null){
             CreditSystem.getCreditSystem().updateProducer(tempProducer.getName(), tempProducer.getEmail(), newPassword);
-            proTable.setItems(getPro());
+            resultProducer.setText("The data is updated in Database");
+            updateTableView();
         } else {
             System.out.println("Element not found");
         }
     }
+
+    public void updateEmail(TableColumn.CellEditEvent<Producer, String> producerStringCellEditEvent) {
+        User tempProducer = proTable.getSelectionModel().getSelectedItem();
+        String newEmail = producerStringCellEditEvent.getNewValue();
+
+        if(tempProducer != null){
+            CreditSystem.getCreditSystem().updateProducer(tempProducer.getName(), newEmail, tempProducer.getPassword());
+            resultProducer.setText("The data is updated in Database");
+            updateTableView();
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+
+    public void updateTableView() {
+        ArrayList<User> userList = CreditSystem.getCreditSystem().getUserDatabase();
+        proTable.setItems(getProducer(userList));
+    }
+
+
 }

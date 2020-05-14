@@ -1,9 +1,7 @@
 package Persistance;
 
-import Domain.CrewMember;
-import Domain.Production;
-import Interfaces.CrewMemberInterface;
-import Interfaces.ProductionInterface;
+import Domain.*;
+import Interfaces.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CreditSystemDatabaseRepository implements CrewMemberInterface, ProductionInterface {
+public class CreditSystemDatabaseRepository implements AdminInterface, CrewMemberInterface, ProductionInterface, ProducerInterface, SuperAdminInterface, UserInterface {
     private static CreditSystemDatabaseRepository csdio = null;
     private Connection connection = DatabaseConn.getConnection();
 
@@ -26,8 +24,8 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface, Prod
 
     //CREWMEMBER METHODS:
     @Override
-    public void addCrewMember(String name, String email, String role, int castCrewId) {
-        String sql = "insert into CrewMember(name, email, role) values('" + name + "', '" + email + "', '"+role+"');";
+    public void addCrewMember(String name, String email) {
+        String sql = "insert into CrewMember(name, email) values('" + name + "', '" + email + "');";
         connectToDatabase(sql);
     }
 
@@ -40,9 +38,7 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface, Prod
             while (resultSet.next()) {
                 crewMem.add(new CrewMember(
                         resultSet.getString("name"),
-                        resultSet.getString("email"),
-                        resultSet.getString("role"),
-                        resultSet.getInt("id")));
+                        resultSet.getString("email")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,33 +48,31 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface, Prod
     }
 
     @Override
-    public void updateCrewMember(String name, String email, String role, int castCrewId) {
-        String sql = "update CrewMember set role = '" + role + "' where id = '" + castCrewId + "' ";
+    public void updateCrewMember(String name, String email) {
+        String sql = "update CrewMember set name = '" +name+ "' where email = '" + email + "' ";
         connectToDatabase(sql);
-        sql = "update CrewMember set name = '" +name+ "' where id = '" + castCrewId + "' ";
-        connectToDatabase(sql);
-        sql = "update CrewMember set email = '" + email + "' where id = '" + castCrewId + "' ";
+        sql = "update CrewMember set email = '" + email + "' where email = '" + email + "' ";
         connectToDatabase(sql);
     }
 
     @Override
-    public void removeCrewMember(int id) {
-        String sql = "delete from CrewMember where id = '" + id + "'";
+    public void removeCrewMember(String email) {
+        String sql = "delete from CrewMember where email = '" + email + "'";
         connectToDatabase(sql);
         }
 
-
+    //???
     public int getCMIdFromDatabse() throws SQLException {
         CrewMember temp = null;
+        int id = 0;
         ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM CrewMember ORDER BY id DESC LIMIT 1");
         while(resultSet.next()) {
             temp = new CrewMember(
                     resultSet.getString("name"),
-                    resultSet.getString("email"),
-                    resultSet.getString("role"),
-                    resultSet.getInt("id"));
+                    resultSet.getString("email"));
+            id = resultSet.getInt("id");
         }
-        return temp.getCastCrewId();
+        return id;
     }
 
     //PRODUCTION METHODS:
@@ -161,5 +155,91 @@ public class CreditSystemDatabaseRepository implements CrewMemberInterface, Prod
                 classNotFoundException.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void addProducer(String name, String email, String password) {
+        String usertype = "Producer";
+        String sql = "insert into Users(name, email, password, usertype) values('" + name + "', '" + email + "', '" + password + "' , '" + usertype + "'); ";
+        connectToDatabase(sql);
+    }
+
+    @Override
+    public void updateProducer(String name, String email, String password) {
+        String sql = "update Users set name = '" + name + "' where password = '" + password + "' ";
+        connectToDatabase(sql);
+        sql = "update Users set email = '" + email + "' where password = '" + password + "' ";
+        connectToDatabase(sql);
+    }
+
+    @Override
+    public void addAdmin(String name, String email, String password) {
+        String usertype = "Admin";
+        String sql = "insert into Users(name, email, password, usertype) values('" + name + "', '" + email + "', '" + password + "' , '" + usertype + "'); ";
+        connectToDatabase(sql);
+    }
+
+    @Override
+    public void updateAdmin(String name, String email, String password) {
+        String sql = "update Users set name = '" + name + "' where password = '" + password + "' ";
+        connectToDatabase(sql);
+        sql = "update Users set email = '" + email + "' where password = '" + password + "' ";
+        connectToDatabase(sql);
+    }
+
+
+    @Override
+    public ArrayList<User> getUserList() {
+        ArrayList<User> users = new ArrayList<>();
+
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("select * from Users");
+            while (resultSet.next()) {
+                if (resultSet.getString("usertype").equals("SuperAdmin")) {
+                    SuperAdmin tempSuper = (new SuperAdmin(
+                            resultSet.getString("name"),
+                            resultSet.getString("email"),
+                            resultSet.getString("password")));
+                    tempSuper.setId(resultSet.getInt("id"));
+                    users.add(tempSuper);
+                } else if (resultSet.getString("usertype").equals("Admin")) {
+                    Admin tempAdmin = (new Admin(
+                            resultSet.getString("name"),
+                            resultSet.getString("email"),
+                            resultSet.getString("password")));
+                    tempAdmin.setId(resultSet.getInt("id"));
+                    users.add(tempAdmin);
+                } else if (resultSet.getString("usertype").equals("Producer")) {
+                    Producer tempProducer = (new Producer(
+                            resultSet.getString("name"),
+                            resultSet.getString("email"),
+                            resultSet.getString("password")));
+                    tempProducer.setId(resultSet.getInt("id"));
+                    users.add(tempProducer);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+
+    @Override
+    public void removeUser(String email) {
+        String sql = "delete from Users where email = '" + email + "'";
+        connectToDatabase(sql);
+    }
+
+    @Override
+    public void addSuperAdmin(String name, String email, String password) {
+        String usertype = "SuperAdmin";
+        String sql = "insert into Users(name, email, password, usertype) values('" + name + "', '" + email + "', '" + password + "' , '" + usertype + "'); ";
+        connectToDatabase(sql);
+    }
+
+    @Override
+    public void updateSuperAdmin(String name, String email, String password) {
+
     }
 }

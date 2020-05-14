@@ -52,7 +52,7 @@ App extends Application {
     public static void main(String[] args) {
 
 //CALL THE STATEMENT UNDER THIS SENTENCE FIRST TIME YOU RUN THE PROGRAM. COMMENT IT OUT IF YOU'RE GONNA RESTART THE PROGRAM
-        CreditSystem.getCreditSystem().addSuperAdmin("SysAdm", "system", "admin");
+        //CreditSystem.getCreditSystem().addSuperAdmin("SysAdm", "system", "admin");
         //Launch GUI
         launch(args);
     }

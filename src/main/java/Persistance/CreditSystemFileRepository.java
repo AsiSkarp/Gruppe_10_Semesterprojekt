@@ -54,8 +54,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void addCrewMember(String name, String email, String role, int castCrewId) {
-        crewMemberList.add(new CrewMember(name, email, role, castCrewId));
+    public void addCrewMember(String name, String email) {
+        crewMemberList.add(new CrewMember(name, email));
         writeToFile(crewMemberFileName, crewMemberList);
     }
 
@@ -84,8 +84,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void updateCrewMember(String name, String email, String role,int castCrewId) {
-        CrewMember updatedCrewMember = new CrewMember(name, email, role, castCrewId);
+    public void updateCrewMember(String name, String email) {
+        CrewMember updatedCrewMember = new CrewMember(name, email);
         for (CrewMember c : crewMemberList) {
             if (c.getName().equals(updatedCrewMember.getName())){
                 crewMemberList.set(crewMemberList.indexOf(c), updatedCrewMember);
@@ -96,20 +96,21 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
 
     //For Loops are NICER!
     @Override
-    public void removeCrewMember(int id) {
-        int removeIndex = -1;
-        for (int i = 0; i < crewMemberList.size(); i++) {
-            if (crewMemberList.get(i).getCastCrewId() == id) {
-                removeIndex = i;
-                break;
-            }
-        }
-        if (removeIndex != -1) {
-           crewMemberList.remove(removeIndex);
-        } else {
-            System.out.println("Element not found.");
-        }
-        writeToFile(crewMemberFileName, crewMemberList);
+    public void removeCrewMember(String email) {
+        // THIS METHOD NEEDS NEW IMPLEMENTATION
+//        int removeIndex = -1;
+//        for (int i = 0; i < crewMemberList.size(); i++) {
+//            if (crewMemberList.get(i).getCastCrewId() == id) {
+//                removeIndex = i;
+//                break;
+//            }
+//        }
+//        if (removeIndex != -1) {
+//           crewMemberList.remove(removeIndex);
+//        } else {
+//            System.out.println("Element not found.");
+//        }
+//        writeToFile(crewMemberFileName, crewMemberList);
 
     }
 
