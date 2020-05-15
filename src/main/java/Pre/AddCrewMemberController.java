@@ -131,7 +131,6 @@ public class AddCrewMemberController implements Initializable {
         } else {
             System.out.println("Element not found");
         }
-
     }
 
     public void updateEmail(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {

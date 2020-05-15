@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -90,18 +89,10 @@ public class ProductionController implements Initializable {
     }
 
     public void openButtonOnAction(ActionEvent actionEvent) throws IOException {
-//        productionList = tableviewProduction.getSelectionModel().getSelectedItems();
-//        SelectedProductionController controller = new SelectedProductionController();
-//
-//        controller.titleFieldSelect.setText(titleField.getSelectedText());
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectedProduction"));
-//        SelectedProductionController controller = loader.getController();
-//        controller.titleFieldSelect;
-//        productionList = tableviewProduction.getSelectionModel().getSelectedItems();
-//        System.out.println(productionList.toString());
+        productionList = tableviewProduction.getSelectionModel().getSelectedItems();
+        System.out.println(productionList);
         App.setRoot("SelectedProduction");
     }
-
 
     public void backButtonOnAction(ActionEvent actionEvent) throws IOException {
         App.setRoot(App.getCurrentRoom());

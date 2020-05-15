@@ -32,8 +32,6 @@ public class CrewMembersController implements Initializable {
     public TableColumn<CrewMember, String> emailColunm;
     @FXML
     public TextField searchTextField;
-    @FXML
-    public AnchorPane anchorpane;
 
 
     ArrayList<CrewMember> crewMem = CreditSystemDatabaseRepository.getCsdio().getCrewMemberList();
@@ -101,7 +99,6 @@ public class CrewMembersController implements Initializable {
     public void exportdataButtonAction(ActionEvent actionEvent) throws IOException {
 
         FileChooser fileChooser = new FileChooser();
-        Window stage = anchorpane.getScene().getWindow();
         fileChooser.setTitle("Save Dialog");
         fileChooser.setInitialFileName("Crew Member List");
         fileChooser.getExtensionFilters().addAll(
@@ -111,7 +108,7 @@ public class CrewMembersController implements Initializable {
                 new FileChooser.ExtensionFilter("xml", "*.xml"),
                 new FileChooser.ExtensionFilter("xls", "*.xls"));
         try {
-            File file = fileChooser.showSaveDialog(stage);
+            File file = fileChooser.showSaveDialog(null);
             fileChooser.setInitialDirectory(file.getParentFile());
             Writer writer = new BufferedWriter(new FileWriter(file));
             for (CrewMember crewMember : crewMem) {
