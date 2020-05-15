@@ -1,19 +1,20 @@
 package Pre;
 
-import Domain.CreditSystem;
 import Domain.CrewMember;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -24,8 +25,6 @@ public class SelectedProductionController implements Initializable {
     @FXML public TableView<CrewMember> tableCM;
     @FXML public TableColumn<CrewMember, String>  nameColumn;
     @FXML public TableColumn<CrewMember, String>  roleColumn;
-    @FXML public TextField titleFieldSelect;
-    @FXML public TextField ownerFieldSelect;
     @FXML public TextField dateFieldSelect;
 
     private Date date;

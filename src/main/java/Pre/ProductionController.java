@@ -55,12 +55,22 @@ public class ProductionController implements Initializable {
     }
 
     public void addButtonOnAction(ActionEvent actionEvent) throws SQLException {
+        smartAddProduction();
+    }
+
+    public void smartAddProduction() throws SQLException {
         int productionId = CreditSystem.getCreditSystem().getProductionIdFromDatabse();
         Date date = CreditSystem.getCreditSystem().getProductionDateFromDatabase();
         CreditSystem.getCreditSystem().addProduction(titleField.getText(), ownerField.getText(), date, productionId);
         updateTableView();
         titleField.clear();
         ownerField.clear();
+    }
+
+    public void productionEnter(KeyEvent keyEvent) throws SQLException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            smartAddProduction();
+        }
     }
 
     public void DeleteButtonOnAction(ActionEvent actionEvent) {

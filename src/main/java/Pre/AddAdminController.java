@@ -66,6 +66,7 @@ public class AddAdminController implements Initializable {
         adminPassword.clear();
     }
 
+
     public ObservableList<User> getAdmin(ArrayList<User> fetch) {
 
         ObservableList<User> admins = FXCollections.observableArrayList();

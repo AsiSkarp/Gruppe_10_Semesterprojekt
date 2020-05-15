@@ -49,7 +49,6 @@ public class AddCrewMemberController implements Initializable {
     public Button searchButton;
 
 
-
     //ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
     ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
 
@@ -70,13 +69,16 @@ public class AddCrewMemberController implements Initializable {
 
     //Maybe if statementt use in addbutton tomorrow:
     public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        enterAddCrewMember();
+    }
+    public void enterAddCrewMember() throws SQLException {
         int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
         CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), crewMemId);
         resultLabel.setText("The information has been added to the Database");
         updateTableView();
         nameField.clear();
         emailField.clear();
-        }
+    }
 
     public ObservableList<CrewMember> getCrewMember(ArrayList<CrewMember> fetch) {
         ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
@@ -99,7 +101,7 @@ public class AddCrewMemberController implements Initializable {
         alert.setContentText("Are you sure, that you want to remove this Crew member?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             // ... user choose OK
             //Delete crew member from list:
             if (tempCrew != null) {
@@ -170,17 +172,23 @@ public class AddCrewMemberController implements Initializable {
     }
 
     public void searchEnter(KeyEvent keyEvent) {
-        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             search();
         }
     }
 
     public void searchBtn(ActionEvent actionEvent) {
-            search();
+        search();
     }
 
     public void updateTableView() {
         ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
         tableView.setItems(getCrewMember(dataList));
+    }
+
+    public void addEnter(KeyEvent keyEvent) throws SQLException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            enterAddCrewMember();
+        }
     }
 }
