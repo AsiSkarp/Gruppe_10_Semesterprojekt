@@ -25,13 +25,11 @@ import java.util.ResourceBundle;
 public class CrewMembersController implements Initializable {
     //tableview Colunms:
     @FXML
-    public TableView tableviewCrewmembers;
+    public TableView<CrewMember> tableviewCrewmembers;
     @FXML
-    public TableColumn nameColumn;
+    public TableColumn<CrewMember, String> nameColumn;
     @FXML
-    public TableColumn roleColumn;
-    @FXML
-    public TableColumn emailColunm;
+    public TableColumn<CrewMember, String> emailColunm;
     @FXML
     public TextField searchTextField;
     @FXML
@@ -59,21 +57,22 @@ public class CrewMembersController implements Initializable {
     public void search() {
         if (searchTextField.textProperty().get().isEmpty()) {
             updateTableView();
-        }
-        ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
-        ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableviewCrewmembers.getColumns();
-        for (int i = 0; i < crewMem.size(); i++) {
-            for (int j = 0; j < tableColumns.size(); j++) {
-                TableColumn tableColumn = tableColumns.get(j);
-                String cellValue = tableColumn.getCellData(crewMem.get(i)).toString();
-                cellValue = cellValue.toLowerCase();
-                if (cellValue.contains(searchTextField.textProperty().get().toLowerCase())) {
-                    tableData.add(crewMem.get(i));
+        } else {
+            ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
+            ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableviewCrewmembers.getColumns();
+            for (int i = 0; i < crewMem.size(); i++) {
+                for (int j = 0; j < tableColumns.size(); j++) {
+                    TableColumn tableColumn = tableColumns.get(j);
+                    var cellValue = tableColumn.getCellData(crewMem.get(i)).toString();
+                    cellValue = cellValue.toLowerCase();
+                    if (cellValue.contains(searchTextField.textProperty().get().toLowerCase())) {
+                        tableData.add(crewMem.get(i));
+                    }
                     break;
                 }
             }
+            tableviewCrewmembers.setItems(tableData);
         }
-        tableviewCrewmembers.setItems(tableData);
     }
 
     public void searchEnter(KeyEvent keyEvent) {

@@ -28,8 +28,6 @@ public class AddCrewMemberController implements Initializable {
     public TableColumn<CrewMember, String> firstNameColumn;
     @FXML
     public TableColumn<CrewMember, String> emailColumn;
-//    @FXML
-//    public TableColumn<CrewMember, String> roleColumn;
     @FXML
     public TableColumn<CrewMember, Integer> IdColumn;
 
