@@ -10,7 +10,7 @@
       <TableView fx:id="tableviewProduction" layoutX="31.0" layoutY="51.0" prefHeight="315.0" prefWidth="839.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
           <TableColumn fx:id="titleColumn" onEditCommit="#updateTitle" prefWidth="144.0" text="Title" />
-            <TableColumn fx:id="ownerColumn" onEditCommit="#updateOwner" prefWidth="326.0" text="Owner" />
+            <TableColumn fx:id="ownerColumn" editable="false" onEditCommit="#updateOwner" prefWidth="326.0" text="Owner" />
             <TableColumn fx:id="dateColumn" editable="false" minWidth="0.0" prefWidth="141.0" text="Date" />
             <TableColumn fx:id="productionColunm" editable="false" prefWidth="213.0" text="Production Id" />
         </columns>
@@ -30,11 +30,12 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="ownerField" layoutX="203.0" layoutY="373.0" onKeyPressed="#productionEnter" prefHeight="25.0" prefWidth="160.0" promptText="Owner">
+      <TextField fx:id="ownerField" layoutX="203.0" layoutY="373.0" prefHeight="25.0" prefWidth="160.0" promptText="Owner" visible="false">
          <font>
             <Font name="Segoe UI Italic" size="12.0" />
          </font>
       </TextField>
+      <Label fx:id="resultField" layoutX="373.0" layoutY="381.0" prefHeight="49.0" prefWidth="251.0" textFill="WHITE" wrapText="true" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

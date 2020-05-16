@@ -1,16 +1,14 @@
 package Pre;
 
 import Domain.CreditSystem;
+import Domain.CrewMember;
 import Domain.Production;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
@@ -34,6 +32,7 @@ public class ProductionController implements Initializable {
     @FXML public TextField searchField;
     @FXML public TextField titleField;
     @FXML public TextField ownerField;
+    public Label resultField;
 
     ArrayList<Production> productions = CreditSystem.getCreditSystem().getProductionList();
     ObservableList<Production> productionList = FXCollections.observableArrayList();
@@ -44,6 +43,9 @@ public class ProductionController implements Initializable {
         ownerColumn.setCellValueFactory(new PropertyValueFactory<Production, String>("owner"));
         productionColunm.setCellValueFactory(new PropertyValueFactory<Production, Integer>("productionId"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<Production, Date>("date"));
+        if (CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
+            ownerField.setVisible(true);
+        }
         updateTableView();
 
         //Edit the table data:
@@ -60,7 +62,13 @@ public class ProductionController implements Initializable {
     public void smartAddProduction() throws SQLException {
         int productionId = CreditSystem.getCreditSystem().getProductionIdFromDatabse();
         Date date = CreditSystem.getCreditSystem().getProductionDateFromDatabase();
-        CreditSystem.getCreditSystem().addProduction(titleField.getText(), ownerField.getText(), date, productionId);
+        String owner = CreditSystem.getCreditSystem().getCurrentUser().getName();
+        if (CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
+            CreditSystem.getCreditSystem().addProduction(titleField.getText(), ownerField.getText(), date, productionId);
+        } else {
+            CreditSystem.getCreditSystem().addProduction(titleField.getText(), owner, date, productionId);
+        }
+        resultField.setText(titleField.getText() + " has been added.");
         updateTableView();
         titleField.clear();
         ownerField.clear();
@@ -76,15 +84,22 @@ public class ProductionController implements Initializable {
         ObservableList<Production> selectedProduction = tableviewProduction.getSelectionModel().getSelectedItems();
         Production temp = tableviewProduction.getSelectionModel().getSelectedItem();
 
-        if(temp != null) {
-            CreditSystem.getCreditSystem().removeProductionFromSystem(temp.getProductionId());
-        } else {
-            System.out.println("Nothing selected");
-        }
 
-        if (selectedProduction != null) {
-            ArrayList<Production> rows = new ArrayList<>(selectedProduction);
-            rows.forEach(row -> tableviewProduction.getItems().remove(row));
+        if (temp.getOwner().equals(CreditSystem.getCreditSystem().getCurrentUser().getName()) || CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin())
+        {
+            if (temp != null) {
+                CreditSystem.getCreditSystem().removeProductionFromSystem(temp.getProductionId());
+                resultField.setText(temp.getTitle() + " has been removed.");
+            } else {
+                resultField.setText("Nothing selected");
+            }
+
+            if (selectedProduction != null) {
+                ArrayList<Production> rows = new ArrayList<>(selectedProduction);
+                rows.forEach(row -> tableviewProduction.getItems().remove(row));
+            }
+        } else {
+            resultField.setText("You are not the owner of this production.");
         }
     }
 
@@ -154,7 +169,7 @@ public class ProductionController implements Initializable {
             CreditSystem.getCreditSystem().updateProduction(newTitle, tempProduction.getOwner(), tempProduction.getDate(), tempProduction.getProductionId());
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultField.setText("Element not found");
         }
     }
 
@@ -165,7 +180,7 @@ public class ProductionController implements Initializable {
             CreditSystem.getCreditSystem().updateProduction(tempProduction.getTitle(), newOwner, tempProduction.getDate(), tempProduction.getProductionId());
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultField.setText("Element not found");
         }
     }
 }
