@@ -54,8 +54,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void addCrewMember(String name, String email) {
-        crewMemberList.add(new CrewMember(name, email));
+    public void addCrewMember(String name, String email, int castCrewId) {
+        crewMemberList.add(new CrewMember(name, email, castCrewId));
         writeToFile(crewMemberFileName, crewMemberList);
     }
 
@@ -84,8 +84,8 @@ public class CreditSystemFileRepository implements Serializable, AdminInterface,
     }
 
     @Override
-    public void updateCrewMember(String name, String email) {
-        CrewMember updatedCrewMember = new CrewMember(name, email);
+    public void updateCrewMember(String name, String email, int castCrewId) {
+        CrewMember updatedCrewMember = new CrewMember(name, email, castCrewId);
         for (CrewMember c : crewMemberList) {
             if (c.getName().equals(updatedCrewMember.getName())){
                 crewMemberList.set(crewMemberList.indexOf(c), updatedCrewMember);

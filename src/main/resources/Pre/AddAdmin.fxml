@@ -15,7 +15,7 @@
             <TableColumn fx:id="adminTableType" onEditCommit="#updatePassword" prefWidth="118.0" text="Type" />
         </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="24.0" layoutY="14.0" prefHeight="26.0" prefWidth="397.0" promptText="Search" />
+      <TextField fx:id="searchField" layoutX="24.0" layoutY="14.0" onKeyPressed="#searchEnter" prefHeight="26.0" prefWidth="397.0" promptText="Search" />
       <TextField fx:id="adminName" layoutX="655.0" layoutY="72.0" prefHeight="26.0" prefWidth="193.0" promptText="Name">
          <font>
             <Font name="System Italic" size="12.0" />

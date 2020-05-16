@@ -24,7 +24,7 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
 
     //CREWMEMBER METHODS:
     @Override
-    public void addCrewMember(String name, String email) {
+    public void addCrewMember(String name, String email, int castCrewId) {
         String sql = "insert into CrewMember(name, email) values('" + name + "', '" + email + "');";
         connectToDatabase(sql);
     }
@@ -38,7 +38,8 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
             while (resultSet.next()) {
                 crewMem.add(new CrewMember(
                         resultSet.getString("name"),
-                        resultSet.getString("email")));
+                        resultSet.getString("email"),
+                        resultSet.getInt("id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,7 +49,7 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
     }
 
     @Override
-    public void updateCrewMember(String name, String email) {
+    public void updateCrewMember(String name, String email, int castCrewId) {
         String sql = "update CrewMember set name = '" +name+ "' where email = '" + email + "' ";
         connectToDatabase(sql);
         sql = "update CrewMember set email = '" + email + "' where email = '" + email + "' ";
@@ -69,8 +70,8 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
         while(resultSet.next()) {
             temp = new CrewMember(
                     resultSet.getString("name"),
-                    resultSet.getString("email"));
-            id = resultSet.getInt("id");
+                    resultSet.getString("email"),
+            id = resultSet.getInt("id"));
         }
         return id;
     }

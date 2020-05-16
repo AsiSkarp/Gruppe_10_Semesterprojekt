@@ -28,8 +28,6 @@ public class AddCrewMemberController implements Initializable {
     public TableColumn<CrewMember, String> firstNameColumn;
     @FXML
     public TableColumn<CrewMember, String> emailColumn;
-//    @FXML
-//    public TableColumn<CrewMember, String> roleColumn;
     @FXML
     public TableColumn<CrewMember, Integer> IdColumn;
 
@@ -40,20 +38,15 @@ public class AddCrewMemberController implements Initializable {
     @FXML
     public TextField emailField;
     @FXML
-    public TextField roleField;
-    @FXML
     public TextField IdField;
     @FXML
     public Label resultLabel;
     @FXML
     public Button AddCrewButton;
     @FXML
-    public Button updateButton;
-    @FXML
     public Button backButton;
     @FXML
     public Button searchButton;
-
 
 
     //ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
@@ -64,8 +57,7 @@ public class AddCrewMemberController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
-        //roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
-        //IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
+        IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         updateTableView();
 
         //Edit the table data:
@@ -77,13 +69,16 @@ public class AddCrewMemberController implements Initializable {
 
     //Maybe if statementt use in addbutton tomorrow:
     public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        enterAddCrewMember();
+    }
+    public void enterAddCrewMember() throws SQLException {
         int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
-        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText());
+        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText(), crewMemId);
         resultLabel.setText("The information has been added to the Database");
         updateTableView();
         nameField.clear();
         emailField.clear();
-        }
+    }
 
     public ObservableList<CrewMember> getCrewMember(ArrayList<CrewMember> fetch) {
         ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
@@ -91,7 +86,8 @@ public class AddCrewMemberController implements Initializable {
         for (CrewMember c : fetchCrew) {
             String name = c.getName();
             String email = c.getEmail();
-            crewMembers.add(new CrewMember(name, email));
+            int id = c.getCastCrewId();
+            crewMembers.add(new CrewMember(name, email, id));
         }
         return crewMembers;
     }
@@ -105,8 +101,8 @@ public class AddCrewMemberController implements Initializable {
         alert.setContentText("Are you sure, that you want to remove this Crew member?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
+        if (result.get() == ButtonType.OK) {
+            // ... user choose OK
             //Delete crew member from list:
             if (tempCrew != null) {
                 CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
@@ -129,20 +125,19 @@ public class AddCrewMemberController implements Initializable {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newName = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
-            CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail());
+            CreditSystem.getCreditSystem().updateCrewMember(newName, tempCrew.getEmail(), tempCrew.getCastCrewId());
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
             resultLabel.setText("Element not found");
         }
-
     }
 
     public void updateEmail(TableColumn.CellEditEvent<CrewMember, String> crewMemberStringCellEditEvent) {
         CrewMember tempCrew = tableView.getSelectionModel().getSelectedItem();
         String newEmail = crewMemberStringCellEditEvent.getNewValue();
         if (tempCrew != null) {
-            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail);
+            CreditSystem.getCreditSystem().updateCrewMember(tempCrew.getName(), newEmail, tempCrew.getCastCrewId());
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
@@ -157,34 +152,42 @@ public class AddCrewMemberController implements Initializable {
     public void search() {
         if (searchCrewM.textProperty().get().isEmpty()) {
             updateTableView();
-        }
-        ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
-        ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableView.getColumns();
-        for (int i = 0; i < dataList.size(); i++) {
-            for (int j = 0; j < tableColumns.size(); j++) {
-                TableColumn tableColumn = tableColumns.get(j);
-                String cellValue = tableColumn.getCellData(dataList.get(i)).toString();
-                cellValue = cellValue.toLowerCase();
-                if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
-                    tableData.add(dataList.get(i));
+        } else {
+            ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
+            ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableView.getColumns();
+            for (int i = 0; i < dataList.size(); i++) {
+                for (int j = 0; j < tableColumns.size(); j++) {
+                    TableColumn tableColumn = tableColumns.get(j);
+                    String cellValue = tableColumn.getCellData(dataList.get(i)).toString();
+                    cellValue = cellValue.toLowerCase();
+                    if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
+                        tableData.add(dataList.get(i));
+                        break;
+                    }
                 }
             }
+            tableView.setItems(tableData);
         }
-        tableView.setItems(tableData);
     }
 
     public void searchEnter(KeyEvent keyEvent) {
-        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             search();
         }
     }
 
     public void searchBtn(ActionEvent actionEvent) {
-            search();
+        search();
     }
 
     public void updateTableView() {
         ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
         tableView.setItems(getCrewMember(dataList));
+    }
+
+    public void addEnter(KeyEvent keyEvent) throws SQLException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            enterAddCrewMember();
+        }
     }
 }

@@ -6,11 +6,21 @@ public class CrewMember implements Serializable {
 
     private String name;
     private String email;
+    private int castCrewId;
 
 
-    public CrewMember(String name, String email) {
+    public CrewMember(String name, String email, int castCrewId) {
         this.name = name;
         this.email = email;
+        this.castCrewId = castCrewId;
+    }
+
+    public int getCastCrewId() {
+        return castCrewId;
+    }
+
+    public void setCastCrewId(int castCrewId) {
+        this.castCrewId = castCrewId;
     }
 
     public String getName() {
@@ -31,6 +41,6 @@ public class CrewMember implements Serializable {
 
     @Override
     public String toString() {
-        return name + " " + email;
+        return name + " " + email + " " + castCrewId;
     }
 }

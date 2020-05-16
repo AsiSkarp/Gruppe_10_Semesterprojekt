@@ -1,8 +1,6 @@
 package Domain;
 
 import Persistance.CreditSystemDatabaseRepository;
-import Persistance.CreditSystemFileRepository;
-
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -131,10 +129,10 @@ public class CreditSystem implements Serializable {
 
 
     //CREWMEMBER METHODS:
-    public void addCrewMember(String name, String email) {
+    public void addCrewMember(String name, String email, int castCrewId) {
         if(currentUser.getIsProducer()) {
             //CreditSystemFileRepository.getCsfio().addCrewMember(name, email);
-            CreditSystemDatabaseRepository.getCsdio().addCrewMember(name, email);
+            CreditSystemDatabaseRepository.getCsdio().addCrewMember(name, email, castCrewId);
         } else {
             System.out.println("Access Restricted!");
         }
@@ -149,10 +147,10 @@ public class CreditSystem implements Serializable {
         }
     }
 
-    public void updateCrewMember(String name, String email) {
+    public void updateCrewMember(String name, String email, int id) {
         if(currentUser.getIsProducer()) {
             //CreditSystemFileRepository.getCsfio().updateCrewMember(name, email);
-            CreditSystemDatabaseRepository.getCsdio().updateCrewMember(name, email);
+            CreditSystemDatabaseRepository.getCsdio().updateCrewMember(name, email, id);
         } else {
             System.out.println("Access Restricted");
         }
