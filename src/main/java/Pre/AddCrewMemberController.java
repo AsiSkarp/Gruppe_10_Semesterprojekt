@@ -111,7 +111,7 @@ public class AddCrewMemberController implements Initializable {
             if (tempCrew != null) {
                 CreditSystem.getCreditSystem().removeCrewMember(tempCrew.getEmail());
             } else {
-                System.out.println("List is empty.");
+                resultLabel.setText("List is empty.");
             }
 
             if (selectedCrew != null) {
@@ -120,7 +120,7 @@ public class AddCrewMemberController implements Initializable {
             }
         } else {
             // ... user chose CANCEL or closed the dialog
-            System.out.println("user chose CANCEL or closed the dialog");
+            resultLabel.setText("user chose CANCEL or closed the dialog");
         }
 
     }
@@ -133,7 +133,7 @@ public class AddCrewMemberController implements Initializable {
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultLabel.setText("Element not found");
         }
 
     }
@@ -146,7 +146,7 @@ public class AddCrewMemberController implements Initializable {
             resultLabel.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultLabel.setText("Element not found");
         }
     }
 

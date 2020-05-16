@@ -85,7 +85,7 @@ public class AddProducerController implements Initializable {
             if (tempUser != null) {
                 CreditSystem.getCreditSystem().removeProducerFromSystem(tempUser.getEmail());
             } else {
-                System.out.println("List is empty.");
+                resultProducer.setText("List is empty.");
             }
 
             if (selectedUser != null) {
@@ -93,7 +93,7 @@ public class AddProducerController implements Initializable {
                 rows.forEach(row -> proTable.getItems().remove(row));
             }
         } else {
-            System.out.println("user chose CANCEL or closed the dialog");
+            resultProducer.setText("user chose CANCEL or closed the dialog");
         }
 
     }
@@ -111,7 +111,7 @@ public class AddProducerController implements Initializable {
             resultProducer.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultProducer.setText("Element not found");
         }
     }
 
@@ -124,7 +124,7 @@ public class AddProducerController implements Initializable {
             resultProducer.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultProducer.setText("Element not found");
         }
     }
 
@@ -137,7 +137,7 @@ public class AddProducerController implements Initializable {
             resultProducer.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultProducer.setText("Element not found");
         }
     }
 

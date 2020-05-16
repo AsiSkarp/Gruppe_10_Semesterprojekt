@@ -100,7 +100,7 @@ public class AddAdminController implements Initializable {
             if (tempUser != null && CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
                 CreditSystem.getCreditSystem().removeAdminFromSystem(tempUser.getEmail());
             } else {
-                System.out.println("You can not remove this Admin.");
+                resultField.setText("You can not remove this Admin.");
             }
 
             if (selectedUser != null) {
@@ -108,7 +108,7 @@ public class AddAdminController implements Initializable {
                 rows.forEach(row -> adminTable.getItems().remove(row));
             }
         } else {
-            System.out.println("user chose CANCEL or closed the dialog");
+            resultField.setText("user chose CANCEL or closed the dialog");
         }
     }
 
@@ -118,39 +118,39 @@ public class AddAdminController implements Initializable {
     public void updateName(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
         User tempAdmin = adminTable.getSelectionModel().getSelectedItem();
         String newName = adminStringCellEditEvent.getNewValue();
-        System.out.println(adminStringCellEditEvent.getTableColumn().toString());
+        resultField.setText(adminStringCellEditEvent.getTableColumn().toString());
         if (tempAdmin != null) {
             CreditSystem.getCreditSystem().updateAdmin(newName, tempAdmin.getEmail(), tempAdmin.getPassword());
             resultField.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultField.setText("Element not found");
         }
     }
 
     public void updatePassword(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
         User tempAdmin = adminTable.getSelectionModel().getSelectedItem();
         String newPassword = adminStringCellEditEvent.getNewValue();
-        System.out.println(adminStringCellEditEvent.getTableColumn().toString());
+        resultField.setText(adminStringCellEditEvent.getTableColumn().toString());
         if (tempAdmin != null) {
             CreditSystem.getCreditSystem().updateAdmin(tempAdmin.getName(), tempAdmin.getEmail(), newPassword);
             resultField.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultField.setText("Element not found");
         }
     }
 
     public void updateEmail(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
         User tempAdmin = adminTable.getSelectionModel().getSelectedItem();
         String newEmail = adminStringCellEditEvent.getNewValue();
-        System.out.println(adminStringCellEditEvent.getTableColumn().toString());
+        resultField.setText(adminStringCellEditEvent.getTableColumn().toString());
         if (tempAdmin != null) {
             CreditSystem.getCreditSystem().updateAdmin(tempAdmin.getName(), newEmail, tempAdmin.getPassword());
             resultField.setText("The data is updated in Database");
             updateTableView();
         } else {
-            System.out.println("Element not found");
+            resultField.setText("Element not found");
         }
     }
 
