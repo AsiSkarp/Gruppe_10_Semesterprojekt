@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -29,13 +30,14 @@ public class loginController {
     public Button btnGuest;
     @FXML
     public TextField passwordText;
+    public Label resultLabel;
 
     private ActionEvent actionEvent;
     public boolean isHelpOpen;
 
     public void login() throws IOException {
         if(emailText.getText().equals("") || passwordText.getText().equals("")){
-            System.out.println("You need to enter email and password");
+            resultLabel.setText("You need to enter email and password");
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
@@ -57,7 +59,7 @@ public class loginController {
                     App.setRoot("PSystem");
                 }
             } else {
-                System.out.println("Email and password doesn't match");
+                resultLabel.setText("Email and password doesn't match");
 
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning Dialog");

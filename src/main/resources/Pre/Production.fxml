@@ -21,8 +21,8 @@
          </font></Label>
       <Button layoutX="770.0" layoutY="400.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="26.0" prefWidth="100.0" text="Back" />
       <Button layoutX="506.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="26.0" prefWidth="80.0" text="Search" />
-      <Button layoutX="203.0" layoutY="404.0" mnemonicParsing="false" onAction="#DeleteButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Delete" />
-      <Button layoutX="33.0" layoutY="404.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Add" />
+      <Button fx:id="deleteBtn" layoutX="203.0" layoutY="404.0" mnemonicParsing="false" onAction="#DeleteButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Delete" />
+      <Button fx:id="addBtn" layoutX="33.0" layoutY="404.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="160.0" text="Add" />
       <Button layoutX="637.0" layoutY="400.0" mnemonicParsing="false" onAction="#openButtonOnAction" prefHeight="26.0" prefWidth="100.0" text="Open" />
       <TextField fx:id="searchField" layoutX="31.0" layoutY="14.0" onKeyPressed="#searchEnter" prefHeight="26.0" prefWidth="469.0" promptText="Search " />
       <TextField fx:id="titleField" layoutX="33.0" layoutY="373.0" prefHeight="25.0" prefWidth="160.0" promptText="Title">

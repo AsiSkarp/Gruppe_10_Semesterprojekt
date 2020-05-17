@@ -47,6 +47,7 @@ public class AddCrewMemberController implements Initializable {
     public Button backButton;
     @FXML
     public Button searchButton;
+    public Button deleteButtonButton;
 
 
     //ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
@@ -59,6 +60,9 @@ public class AddCrewMemberController implements Initializable {
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         updateTableView();
+        if (CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()) {
+            deleteButtonButton.setVisible(true);
+        }
 
         //Edit the table data:
         tableView.setEditable(true);
