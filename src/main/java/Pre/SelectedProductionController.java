@@ -53,7 +53,8 @@ public class SelectedProductionController implements Initializable {
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
-        if(!CreditSystem.getCreditSystem().getCurrentUser().getName().equals(production.getOwner()) || !CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()) {
+        if(!CreditSystem.getCreditSystem().getCurrentUser().getName().equals(production.getOwner()) &&
+                !CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()) {
             nameField.setVisible(false);
             emailField.setVisible(false);
             roleField.setVisible(false);
