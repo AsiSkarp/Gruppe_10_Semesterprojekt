@@ -32,6 +32,9 @@ public class SelectedProductionController implements Initializable {
     public Label titleLabel;
     public Label ownerLable;
     public Label dateLabel;
+    public TextField nameField;
+    public TextField emailField;
+    public TextField roleField;
     private Date date;
 
 
@@ -59,7 +62,16 @@ public class SelectedProductionController implements Initializable {
     }
 
     public void addCM(ActionEvent actionEvent) {
-
+        if(nameField.getText().isEmpty() || emailField.getText().isEmpty() || roleField.getText().isEmpty()) {
+            System.out.println("you must enter values");
+        } else {
+            CreditSystem.getCreditSystem().addCrewToProduction(nameField.getText(), emailField.getText(), roleField.getText(), production.getProductionId());
+            System.out.println("added to database");
+        }
+        updateTableView(production.getProductionId());
+        nameField.clear();
+        emailField.clear();
+        roleField.clear();
     }
 
     public void deleteCM(ActionEvent actionEvent) {
