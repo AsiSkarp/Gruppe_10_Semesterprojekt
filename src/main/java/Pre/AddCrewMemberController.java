@@ -77,13 +77,17 @@ public class AddCrewMemberController implements Initializable {
 
     //Maybe if statementt use in addbutton tomorrow:
     public void addbtnhandler(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        int crewMemId = CreditSystem.getCreditSystem().getCrewMemIdFromDatabase();
-        CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText());
-        resultLabel.setText("The information has been added to the Database");
+        if (!nameField.getText().isEmpty() || !emailField.getText().isEmpty()){
+            CreditSystem.getCreditSystem().addCrewMember(nameField.getText(), emailField.getText());
+            resultLabel.setText("The information has been added to the Database");
+        } else {
+            resultLabel.setText("you must enter values");
+        }
         updateTableView();
         nameField.clear();
         emailField.clear();
         }
+
 
     public ObservableList<CrewMember> getCrewMember(ArrayList<CrewMember> fetch) {
         ObservableList<CrewMember> crewMembers = FXCollections.observableArrayList();
