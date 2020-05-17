@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CreditSystemDatabaseRepository implements AdminInterface, CrewMemberInterface, ProductionInterface, ProducerInterface, SuperAdminInterface, UserInterface {
+public class CreditSystemDatabaseRepository implements AdminInterface, CrewMemberInterface, CrewProductionInterface,
+        ProductionInterface, ProducerInterface, SuperAdminInterface, UserInterface {
     private static CreditSystemDatabaseRepository csdio = null;
     private Connection connection = DatabaseConn.getConnection();
 
@@ -36,9 +37,11 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
         try {
             ResultSet resultSet = connection.createStatement().executeQuery("select * from CrewMember");
             while (resultSet.next()) {
-                crewMem.add(new CrewMember(
-                        resultSet.getString("name"),
-                        resultSet.getString("email")));
+                CrewMember c = new CrewMember("", "");
+                c.setName(resultSet.getString("name"));
+                c.setEmail(resultSet.getString("name"));
+                c.setId(resultSet.getInt("id"));
+                crewMem.add(c);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -239,6 +242,7 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
     }
 
     //CREWPRODUCTION METHODS
+    @Override
     public void addCrewToProduction(String name, String email, String role, int productionId) throws SQLException {
         boolean alreadyExist = false;
         boolean roleExist = false;
@@ -276,6 +280,7 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
         connectToDatabase(sql);
     }
 
+    @Override
     public ArrayList<CrewProduction> getCrewProduction(int id) {
         ArrayList<CrewProduction> cast = new ArrayList<>();
 

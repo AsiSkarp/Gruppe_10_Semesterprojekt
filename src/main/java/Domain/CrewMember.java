@@ -6,6 +6,7 @@ public class CrewMember implements Serializable {
 
     private String name;
     private String email;
+    private int id;
 
 
     public CrewMember(String name, String email) {
@@ -29,8 +30,16 @@ public class CrewMember implements Serializable {
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return name + " " + email;
+        return name + " " + email + " " + id;
     }
 }

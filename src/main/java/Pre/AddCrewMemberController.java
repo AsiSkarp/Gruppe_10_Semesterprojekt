@@ -65,7 +65,7 @@ public class AddCrewMemberController implements Initializable {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         //roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
-        //IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
+        IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("id"));
         updateTableView();
 
         //Edit the table data:
@@ -95,7 +95,10 @@ public class AddCrewMemberController implements Initializable {
         for (CrewMember c : fetchCrew) {
             String name = c.getName();
             String email = c.getEmail();
-            crewMembers.add(new CrewMember(name, email));
+            int id = c.getId();
+            CrewMember returnCrew = new CrewMember(name, email);
+            returnCrew.setId(id);
+            crewMembers.add(returnCrew);
         }
         return crewMembers;
     }
