@@ -64,8 +64,6 @@ public class AddCrewMemberController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
-        //roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
-        //IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("castCrewId"));
         updateTableView();
 
         //Edit the table data:

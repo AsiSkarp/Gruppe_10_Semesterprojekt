@@ -35,11 +35,16 @@ public class AddProducerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        proTableName.setCellValueFactory(new PropertyValueFactory<Producer, String>("name"));
-        proTableEmail.setCellValueFactory(new PropertyValueFactory<Producer, String>("email"));
-        proTablePassword.setCellValueFactory(new PropertyValueFactory<Producer, String>("password"));
+       if (CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
+           proTableName.setCellValueFactory(new PropertyValueFactory<Producer, String>("name"));
+           proTableEmail.setCellValueFactory(new PropertyValueFactory<Producer, String>("email"));
+           proTablePassword.setCellValueFactory(new PropertyValueFactory<Producer, String>("password"));
+       }else {
+           proTableName.setCellValueFactory(new PropertyValueFactory<Producer, String>("name"));
+           proTableEmail.setCellValueFactory(new PropertyValueFactory<Producer, String>("email"));
+           proTablePassword.setVisible(false);
+       }
         updateTableView();
-
         proTable.setEditable(true);
         proTableName.setCellFactory(TextFieldTableCell.forTableColumn());
         proTableEmail.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -49,12 +54,17 @@ public class AddProducerController implements Initializable {
 
 
     public void addButtonAction(ActionEvent actionEvent) {
-        CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
-        resultProducer.setText("The information has been added to the Database");
-        updateTableView();
-        proName.clear();
-        proEmail.clear();
-        proPassword.clear();
+        if (!proName.getText().isEmpty() || !proEmail.getText().isEmpty() || !proPassword.getText().isEmpty()) {
+            CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
+            resultProducer.setText("The information has been added to the Database");
+        } else {
+            resultProducer.setText("you must enter values");
+            updateTableView();
+            proName.clear();
+            proEmail.clear();
+            proPassword.clear();
+        }
+
     }
 
     public ObservableList<User> getProducer(ArrayList<User> fetch) {

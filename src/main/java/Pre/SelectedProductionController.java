@@ -24,14 +24,16 @@ public class SelectedProductionController implements Initializable {
     @FXML public TextArea titleArea;
     @FXML public TextArea ownerArea;
     @FXML public TextArea dateArea;
-    @FXML public TextField nameCM;
-    @FXML public TextField roleCM;
+    @FXML public TextField nameField;
+    @FXML public TextField roleField;
     @FXML public TableView<CrewProduction> tableCM;
     @FXML public TableColumn<CrewProduction, String>  nameColumn;
     @FXML public TableColumn<CrewProduction, String>  roleColumn;
-    public Label titleLabel;
-    public Label ownerLable;
-    public Label dateLabel;
+    @FXML public Label titleLabel;
+    @FXML public Label ownerLable;
+    @FXML public Label dateLabel;
+    @FXML public Button deleteCMBT;
+    @FXML public Button addCMBT;
     private Date date;
 
 
@@ -47,15 +49,31 @@ public class SelectedProductionController implements Initializable {
         dateLabel.setText("Date:\n" + production.getDate());
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("name"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String >("role"));
-
+        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("role"));
         updateTableView(production.getProductionId());
 
-        //Edit the table data:
-        tableCM.setEditable(true);
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableCM.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        if (CreditSystem.getCreditSystem().getCurrentUser() != null) {
+            if (CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()
+            || CreditSystem.getCreditSystem().getCurrentUser().getIsAdmin()
+            || CreditSystem.getCreditSystem().getCurrentUser().getIsProducer()) {
+                nameField.setVisible(true);
+                roleField.setVisible(true);
+
+                deleteCMBT.setVisible(true);
+                addCMBT.setVisible(true);
+
+                //Edit the table data:
+                tableCM.setEditable(true);
+                nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+                roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+                tableCM.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            }
+        } else {
+            nameField.setVisible(false);
+            roleField.setVisible(false);
+            deleteCMBT.setVisible(false);
+            addCMBT.setVisible(false);
+        }
     }
 
     public void addCM(ActionEvent actionEvent) {

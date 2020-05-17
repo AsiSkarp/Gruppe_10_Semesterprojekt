@@ -80,7 +80,7 @@ public class ProductionController implements Initializable {
                 CreditSystem.getCreditSystem().addProduction(titleField.getText(), ownerField.getText(), date, productionId);
             }
         } else {
-            resultLabel.setText("You must enter a title.");
+            resultLabel.setText("You must enter values");
         }
         updateTableView();
         titleField.clear();

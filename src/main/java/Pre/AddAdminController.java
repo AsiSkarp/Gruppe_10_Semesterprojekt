@@ -35,6 +35,7 @@ public class AddAdminController implements Initializable {
     ArrayList<User> adminList = CreditSystem.getCreditSystem().getUserList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         adminTableName.setCellValueFactory(new PropertyValueFactory<Admin, String>("name"));
         adminTableEmail.setCellValueFactory(new PropertyValueFactory<Admin, String>("email"));
         adminTablePassword.setCellValueFactory(new PropertyValueFactory<Admin, String>("password"));

@@ -11,14 +11,14 @@
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <TextField fx:id="emailField" layoutX="660.0" layoutY="121.0" prefHeight="25.0" prefWidth="177.0" promptText="Email">
+      <TextField fx:id="emailField" layoutX="660.0" layoutY="121.0" prefHeight="25.0" prefWidth="177.0" promptText="Email" visible="false">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
       <TextField fx:id="roleField" layoutX="660.0" layoutY="155.0" prefHeight="25.0" prefWidth="177.0" promptText="Role" />
-      <Button layoutX="671.0" layoutY="211.0" mnemonicParsing="false" onAction="#addCM" prefHeight="26.0" prefWidth="165.0" text="Add" />
-      <Button layoutX="671.0" layoutY="246.0" mnemonicParsing="false" onAction="#deleteCM" prefHeight="26.0" prefWidth="165.0" text="Delete" />
+      <Button fx:id="addCMBT" layoutX="671.0" layoutY="211.0" mnemonicParsing="false" onAction="#addCM" prefHeight="26.0" prefWidth="165.0" text="Add" />
+      <Button fx:id="deleteCMBT" layoutX="671.0" layoutY="246.0" mnemonicParsing="false" onAction="#deleteCM" prefHeight="26.0" prefWidth="165.0" text="Delete" />
       <Button contentDisplay="TOP" layoutX="737.0" layoutY="282.0" mnemonicParsing="false" onAction="#eksportereCM" prefHeight="73.0" prefWidth="99.0" text="Export data" />
       <Button layoutX="737.0" layoutY="364.0" mnemonicParsing="false" onAction="#backCM" prefHeight="26.0" prefWidth="99.0" text="Back" />
       <Label fx:id="titleLabel" layoutX="32.0" layoutY="13.0" prefHeight="61.0" prefWidth="153.0" text="Title: " textFill="#fffefe">
@@ -35,8 +35,8 @@
          </font></Label>
       <TableView fx:id="tableCM" layoutX="19.0" layoutY="85.0" prefHeight="346.0" prefWidth="587.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="294.0" text="Name" />
-          <TableColumn fx:id="roleColumn" prefWidth="279.0" text="Role" />
+          <TableColumn fx:id="nameColumn" editable="false" prefWidth="294.0" text="Name" />
+          <TableColumn fx:id="roleColumn" editable="false" prefWidth="279.0" text="Role" />
         </columns>
       </TableView>
       <Label fx:id="resultLabel" layoutX="632.0" layoutY="395.0" prefHeight="36.0" prefWidth="203.0" text=" " textFill="WHITE" wrapText="true" />
