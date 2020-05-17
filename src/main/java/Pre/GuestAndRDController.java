@@ -12,7 +12,7 @@ public class GuestAndRDController {
 
     @FXML
     public void switchToProduction(ActionEvent actionEvent) throws IOException {
-        App.setRoot("AllProductions");
+        App.setRoot("Production");
     }
     @FXML
     public void switchToCrewMember(ActionEvent actionEvent) throws IOException {

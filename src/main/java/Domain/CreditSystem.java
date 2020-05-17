@@ -181,6 +181,10 @@ public class CreditSystem implements Serializable {
         return CreditSystemDatabaseRepository.getCsdio().getUserList();
     }
 
+    public ArrayList<CrewProduction> getCrewProduction(int id) {
+        return CreditSystemDatabaseRepository.getCsdio().getCrewProduction(id);
+    }
+
     public void logout() {
         currentUser = null;
         System.out.println("The current user is: <NULL> ");
