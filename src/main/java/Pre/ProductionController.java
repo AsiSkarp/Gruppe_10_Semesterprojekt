@@ -176,6 +176,7 @@ public class ProductionController implements Initializable {
     public void updateTitle(TableColumn.CellEditEvent<Production, String> productionStringCellEditEvent) {
         Production tempProduction = tableviewProduction.getSelectionModel().getSelectedItem();
         String newTitle = productionStringCellEditEvent.getNewValue();
+
         if (tempProduction != null) {
             CreditSystem.getCreditSystem().updateProduction(newTitle, tempProduction.getOwner(), tempProduction.getDate(), tempProduction.getProductionId());
             updateTableView();
