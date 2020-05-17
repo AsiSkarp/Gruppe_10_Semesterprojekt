@@ -105,7 +105,7 @@ public class CrewMembersController implements Initializable {
 
     public void backbtn(ActionEvent actionEvent) throws IOException {
         if (CreditSystem.getCreditSystem().getCurrentUser() != null) {
-            App.setRoot(App.getCurrentRoom());
+            App.setRoot("AddCrewMember");
         } else {
             App.setRoot("GuestAndRD");
         }
