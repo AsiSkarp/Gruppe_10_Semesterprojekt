@@ -187,6 +187,5 @@ public class CreditSystem implements Serializable {
 
     public void logout() {
         currentUser = null;
-        System.out.println("The current user is: <NULL> ");
     }
 }
