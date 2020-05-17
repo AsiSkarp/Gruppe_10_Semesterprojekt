@@ -2,6 +2,8 @@ package Pre;
 
 import Domain.CreditSystem;
 import Domain.CrewMember;
+import Domain.CrewProduction;
+import Domain.Production;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,25 +26,30 @@ public class SelectedProductionController implements Initializable {
     @FXML public TextArea dateArea;
     @FXML public TextField nameCM;
     @FXML public TextField roleCM;
-    @FXML public TableView<CrewMember> tableCM;
-    @FXML public TableColumn<CrewMember, String>  nameColumn;
-    @FXML public TableColumn<CrewMember, String>  roleColumn;
+    @FXML public TableView<CrewProduction> tableCM;
+    @FXML public TableColumn<CrewProduction, String>  nameColumn;
+    @FXML public TableColumn<CrewProduction, String>  roleColumn;
+    public Label titleLabel;
+    public Label ownerLable;
+    public Label dateLabel;
     private Date date;
 
 
     //ArrayList<CrewMember> fetchList = CreditSystem.getCreditSystem().getCrewMemberList();
     ObservableList<CrewMember> crewM = FXCollections.observableArrayList();
+    private Production production;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        production = ProductionController.getSelectedProduction();
+        titleLabel.setText("Title:\n" + production.getTitle());
+        ownerLable.setText("Owner:\n" + production.getOwner());
+        dateLabel.setText("Date:\n" + production.getDate());
 
-        dateArea.setText(String.valueOf(date));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("name"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String >("role"));
 
-        nameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
-
-       // tableCM.setItems((ObservableList<CrewMember>) fetchList);
-        tableCM.setItems(crewM);
+        updateTableView(production.getProductionId());
 
         //Edit the table data:
         tableCM.setEditable(true);
@@ -58,7 +65,21 @@ public class SelectedProductionController implements Initializable {
     public void deleteCM(ActionEvent actionEvent) {
     }
 
+    public ObservableList<CrewProduction> getCrewProduction(ArrayList<CrewProduction> fetch){
+        ObservableList<CrewProduction> cast = FXCollections.observableArrayList();
+        for (CrewProduction c : fetch) {
+            CrewMember crewMember = c.getCrewMember();
+            Production production = c.getProduction();
+            String role = c.getRole();
+            cast.add(new CrewProduction(crewMember, production, role, crewMember.getName()));
+        }
+        return cast;
+    }
 
+    public void updateTableView(int id) {
+        ArrayList<CrewProduction> cast = CreditSystem.getCreditSystem().getCrewProduction(id);
+        tableCM.setItems(getCrewProduction(cast));
+    }
 
     public void eksportereCM(ActionEvent actionEvent) {
     }
