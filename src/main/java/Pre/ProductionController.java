@@ -1,8 +1,6 @@
 package Pre;
 
-
 import Domain.CreditSystem;
-import Domain.CrewMember;
 import Domain.Production;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,11 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
-import java.io.IOException;
+import javafx.stage.FileChooser;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -39,10 +36,9 @@ public class ProductionController implements Initializable {
     public Button addBtn;
     public Button deleteBtn;
 
-
-    private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-
+    ArrayList<Production> productions = CreditSystem.getCreditSystem().getProductionList();
     ObservableList<Production> productionList = FXCollections.observableArrayList();
+    private static Production selectedProduction;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,11 +62,14 @@ public class ProductionController implements Initializable {
         tableviewProduction.setEditable(true);
         titleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         ownerColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        //dateColumn.setCellFactory();
         tableviewProduction.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     public void addButtonOnAction(ActionEvent actionEvent) throws SQLException {
+        smartAddProduction();
+    }
+
+    public void smartAddProduction() throws SQLException {
         int productionId = CreditSystem.getCreditSystem().getProductionIdFromDatabse();
         Date date = CreditSystem.getCreditSystem().getProductionDateFromDatabase();
         String owner = CreditSystem.getCreditSystem().getCurrentUser().getName();
@@ -86,6 +85,12 @@ public class ProductionController implements Initializable {
         updateTableView();
         titleField.clear();
         ownerField.clear();
+    }
+
+    public void productionEnter(KeyEvent keyEvent) throws SQLException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            smartAddProduction();
+        }
     }
 
     public void DeleteButtonOnAction(ActionEvent actionEvent) {
@@ -109,13 +114,7 @@ public class ProductionController implements Initializable {
     }
 
     public void openButtonOnAction(ActionEvent actionEvent) throws IOException {
-        productionList = tableviewProduction.getSelectionModel().getSelectedItems();
-
-        productionList.get(0).getTitle();
-        productionList.get(0).getOwner();
-        productionList.get(0).getDate();
-        System.out.println(productionList.toString());
-
+        selectedProduction = tableviewProduction.getSelectionModel().getSelectedItem();
         App.setRoot("SelectedProduction");
     }
 
@@ -140,20 +139,22 @@ public class ProductionController implements Initializable {
     public void search() {
         if (searchField.textProperty().get().isEmpty()) {
             updateTableView();
-        }
-        ObservableList<Production> tableData = FXCollections.observableArrayList();
-        ObservableList<TableColumn<Production, ?>> tableColumns = tableviewProduction.getColumns();
-        for (int i = 0; i < productionList.size(); i++) {
-            for (int j = 0; j < tableColumns.size(); j++) {
-                TableColumn tableColumn = tableColumns.get(j);
-                String cellValue = tableColumn.getCellData(productionList.get(i)).toString();
-                cellValue = cellValue.toLowerCase();
-                if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
-                    tableData.add(productionList.get(i));
+        } else {
+            ObservableList<Production> tableData = FXCollections.observableArrayList();
+            ObservableList<TableColumn<Production, ?>> tableColumns = tableviewProduction.getColumns();
+            for (int i = 0; i < productions.size(); i++) {
+                for (int j = 0; j < tableColumns.size(); j++) {
+                    TableColumn tableColumn = tableColumns.get(j);
+                    String cellValue = tableColumn.getCellData(productions.get(i)).toString();
+                    cellValue = cellValue.toLowerCase();
+                    if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
+                        tableData.add(productions.get(i));
+                        break;
+                    }
                 }
             }
+            tableviewProduction.setItems(tableData);
         }
-        tableviewProduction.setItems(tableData);
     }
 
     public void updateTableView() {
@@ -169,7 +170,6 @@ public class ProductionController implements Initializable {
             String owner = c.getOwner();
             Date date = c.getDate();
             int productionId = c.getProductionId();
-//            Java.sql.Date Date = c.getDate()
             productions.add(new Production(title, owner, date, productionId));
         }
         return productions;
@@ -195,5 +195,33 @@ public class ProductionController implements Initializable {
         } else {
             resultLabel.setText("Element not found");
         }
+    }
+
+    public void exportProduction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Dialog");
+        fileChooser.setInitialFileName("Production List");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("text file", "*.txt"),
+                new FileChooser.ExtensionFilter("csv", "*.csv"),
+                new FileChooser.ExtensionFilter("doc", "*.doc"),
+                new FileChooser.ExtensionFilter("xml", "*.xml"),
+                new FileChooser.ExtensionFilter("xls", "*.xls"));
+        try {
+            File file = fileChooser.showSaveDialog(null);
+            fileChooser.setInitialDirectory(file.getParentFile());
+            Writer writer = new BufferedWriter(new FileWriter(file));
+            for (Production production : productions) {
+                String text = production.getTitle() + ", " + production.getOwner() + ", " + production.getProductionId() + ", " + production.getDate() + "\n";
+                writer.write(text);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Production getSelectedProduction() {
+        return selectedProduction;
     }
 }

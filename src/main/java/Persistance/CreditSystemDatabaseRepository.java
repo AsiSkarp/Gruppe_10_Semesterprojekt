@@ -240,6 +240,30 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
 
     @Override
     public void updateSuperAdmin(String name, String email, String password) {
+    }
 
+    public ArrayList<CrewProduction> getCrewProduction(int id) {
+        ArrayList<CrewProduction> cast = new ArrayList<>();
+
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery(
+                    "select cm.name, cm.email, pr.title, pr.owner, pr.created, pr.id as production_id, roles.role " +
+                            "from roletable, crewmember as cm, production as pr, roles " +
+                            "where cm.id = roletable.crewMemberId " +
+                            "and roles.id = roletable.roleId " +
+                            "and pr.id = roletable.productionId " +
+                            "and productionId = " + id);
+            while (resultSet.next()) {
+                CrewProduction temp = new CrewProduction(
+                        new CrewMember(resultSet.getString("name"), resultSet.getString("email")),
+                        new Production(resultSet.getString("title"), resultSet.getString("owner"), resultSet.getDate("created"),
+                                resultSet.getInt("production_id")),
+                        resultSet.getString("role"), resultSet.getString("name"));
+                cast.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cast;
     }
 }
