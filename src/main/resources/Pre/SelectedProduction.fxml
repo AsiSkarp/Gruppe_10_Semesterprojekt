@@ -7,18 +7,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.SelectedProductionController">
    <children>
-      <TextField fx:id="nameField" layoutX="660.0" layoutY="86.0" prefHeight="25.0" prefWidth="177.0" promptText="Name">
+      <TextField fx:id="nameField" layoutX="660.0" layoutY="86.0" prefHeight="25.0" prefWidth="177.0" promptText="Name" visible="false">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <TextField fx:id="emailField" layoutX="660.0" layoutY="121.0" prefHeight="25.0" prefWidth="177.0" promptText="Email">
+      <TextField fx:id="emailField" layoutX="660.0" layoutY="121.0" prefHeight="25.0" prefWidth="177.0" promptText="Email" visible="false">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="roleField" layoutX="660.0" layoutY="155.0" prefHeight="25.0" prefWidth="177.0" promptText="Role" />
-      <Button fx:id="addBtn" layoutX="671.0" layoutY="211.0" mnemonicParsing="false" onAction="#addCM" prefHeight="26.0" prefWidth="165.0" text="Add" />
-      <Button fx:id="deleteBtn" layoutX="671.0" layoutY="246.0" mnemonicParsing="false" onAction="#deleteCM" prefHeight="26.0" prefWidth="165.0" text="Delete" />
+      <TextField fx:id="roleField" layoutX="660.0" layoutY="155.0" prefHeight="25.0" prefWidth="177.0" promptText="Role" visible="false" />
+      <Button fx:id="addBtn" layoutX="671.0" layoutY="211.0" mnemonicParsing="false" onAction="#addCM" prefHeight="26.0" prefWidth="165.0" text="Add" visible="false" />
+      <Button fx:id="deleteBtn" layoutX="671.0" layoutY="246.0" mnemonicParsing="false" onAction="#deleteCM" prefHeight="26.0" prefWidth="165.0" text="Delete" visible="false" />
       <Button contentDisplay="TOP" layoutX="737.0" layoutY="282.0" mnemonicParsing="false" onAction="#eksportereCM" prefHeight="73.0" prefWidth="99.0" text="Export data" />
       <Button layoutX="737.0" layoutY="364.0" mnemonicParsing="false" onAction="#backCM" prefHeight="26.0" prefWidth="99.0" text="Back" />
       <Label fx:id="titleLabel" layoutX="32.0" layoutY="13.0" prefHeight="61.0" prefWidth="153.0" text="Title: " textFill="#fffefe">

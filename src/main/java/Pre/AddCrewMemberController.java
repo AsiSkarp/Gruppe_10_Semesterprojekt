@@ -172,7 +172,11 @@ public class AddCrewMemberController implements Initializable {
     }
 
     public void backBtnHandler(ActionEvent actionEvent) throws IOException {
-        App.setRoot(App.getCurrentRoom());
+        if (CreditSystem.getCreditSystem().getCurrentUser() != null) {
+            App.setRoot(App.getCurrentRoom());
+        } else {
+            App.setRoot("GuestAndRD");
+        }
     }
 
     public void search() {

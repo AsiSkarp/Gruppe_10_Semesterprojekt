@@ -39,7 +39,7 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
             while (resultSet.next()) {
                 CrewMember c = new CrewMember("", "");
                 c.setName(resultSet.getString("name"));
-                c.setEmail(resultSet.getString("name"));
+                c.setEmail(resultSet.getString("email"));
                 c.setId(resultSet.getInt("id"));
                 crewMem.add(c);
             }
