@@ -36,6 +36,8 @@ public class ProductionController implements Initializable {
     @FXML public TextField titleField;
     @FXML public TextField ownerField;
     public Label resultLabel;
+    public Button addBtn;
+    public Button deleteBtn;
 
 
     private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
@@ -49,9 +51,16 @@ public class ProductionController implements Initializable {
         productionColunm.setCellValueFactory(new PropertyValueFactory<Production, Integer>("productionId"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<Production, Date>("date"));
         updateTableView();
-        if (CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
-            ownerField.setVisible(true);
+        if (CreditSystem.getCreditSystem().getCurrentUser() != null) {
+            if (CreditSystem.getCreditSystem().getCurrentUser().getIsSuperAdmin()) {
+                ownerField.setVisible(true);
+            }
+        } else {
+            titleField.setVisible(false);
+            addBtn.setVisible(false);
+            deleteBtn.setVisible(false);
         }
+
 
         //Edit the table data:
         tableviewProduction.setEditable(true);
@@ -111,7 +120,11 @@ public class ProductionController implements Initializable {
     }
 
     public void backButtonOnAction(ActionEvent actionEvent) throws IOException {
-        App.setRoot(App.getCurrentRoom());
+        if (CreditSystem.getCreditSystem().getCurrentUser() != null) {
+            App.setRoot(App.getCurrentRoom());
+        } else {
+            App.setRoot("GuestAndRD");
+        }
     }
 
     public void searchButton(ActionEvent actionEvent) {
