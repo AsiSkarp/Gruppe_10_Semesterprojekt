@@ -3,13 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="anchorpane" prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.CrewMembersController">
    <children>
-      <TableView fx:id="tableviewCrewmembers" layoutX="18.0" layoutY="48.0" prefHeight="383.0" prefWidth="686.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
+      <TableView fx:id="tableViewCrewMembers" layoutX="18.0" layoutY="90.0" prefHeight="341.0" prefWidth="684.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="190.00001525878906" text="Name" />
+          <TableColumn fx:id="productionColumn" prefWidth="190.00001525878906" text="Production" />
             <TableColumn fx:id="roleColumn" prefWidth="255.0" text="Role" />
             <TableColumn fx:id="emailColunm" prefWidth="226.0" text="E-mail" />
         </columns>
@@ -24,10 +23,9 @@
             </ImageView>
          </graphic></Button>
       <TextField fx:id="searchTextField" layoutX="18.0" layoutY="15.0" onKeyPressed="#searchEnter" prefHeight="26.0" prefWidth="431.0" promptText="Search" />
-      <Label layoutX="754.0" layoutY="69.0" text="Crew Members" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
       <Button layoutX="455.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchbtn" prefHeight="8.0" prefWidth="122.0" text="Search" />
+      <Label fx:id="nameLabel" layoutX="18.0" layoutY="53.0" prefHeight="26.0" prefWidth="221.0" textFill="WHITE" />
+      <Label layoutX="220.0" layoutY="53.0" textFill="WHITE" />
+      <Label layoutX="318.0" layoutY="57.0" prefHeight="18.0" prefWidth="205.0" />
    </children>
 </AnchorPane>

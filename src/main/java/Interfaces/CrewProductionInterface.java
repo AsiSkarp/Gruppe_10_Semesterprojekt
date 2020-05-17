@@ -13,4 +13,6 @@ public interface CrewProductionInterface {
 
     public void addCrewToProduction(String name, String email, String role, int productionId) throws SQLException;
 
+    public ArrayList<CrewProduction> getPersonalRecord(int id);
+
 }

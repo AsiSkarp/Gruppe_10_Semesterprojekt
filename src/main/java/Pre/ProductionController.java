@@ -178,12 +178,18 @@ public class ProductionController implements Initializable {
     public void updateTitle(TableColumn.CellEditEvent<Production, String> productionStringCellEditEvent) {
         Production tempProduction = tableviewProduction.getSelectionModel().getSelectedItem();
         String newTitle = productionStringCellEditEvent.getNewValue();
-        if (tempProduction != null) {
-            CreditSystem.getCreditSystem().updateProduction(newTitle, tempProduction.getOwner(), tempProduction.getDate(), tempProduction.getProductionId());
-            updateTableView();
+        if (tempProduction.getOwner().equals(CreditSystem.getCreditSystem().getCurrentUser().getName())) {
+            if (tempProduction != null) {
+                CreditSystem.getCreditSystem().updateProduction(newTitle, tempProduction.getOwner(), tempProduction.getDate(), tempProduction.getProductionId());
+                updateTableView();
+            } else {
+                resultLabel.setText("Element not found");
+            }
         } else {
-            resultLabel.setText("Element not found");
+            updateTableView();
+            resultLabel.setText("You don't own this production");
         }
+
     }
 
     public void updateOwner(TableColumn.CellEditEvent<Production, String> productionStringCellEditEvent) {

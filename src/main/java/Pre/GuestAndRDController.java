@@ -16,7 +16,7 @@ public class GuestAndRDController {
     }
     @FXML
     public void switchToCrewMember(ActionEvent actionEvent) throws IOException {
-        App.setRoot("CrewMembers");
+        App.setRoot("AddCrewMember");
     }
 
     public void backButtonguest(ActionEvent actionEvent) throws IOException {

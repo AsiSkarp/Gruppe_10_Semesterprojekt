@@ -49,13 +49,13 @@ public class SelectedProductionController implements Initializable {
         ownerLable.setText("Owner:\n" + production.getOwner());
         dateLabel.setText("Date:\n" + production.getDate());
 
-        nameColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("name"));
-        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String >("role"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
 
         updateTableView(production.getProductionId());
 
         //Edit the table data:
-        tableCM.setEditable(true);
+        tableCM.setEditable(false);
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         tableCM.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

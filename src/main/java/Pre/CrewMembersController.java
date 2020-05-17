@@ -2,16 +2,17 @@ package Pre;
 
 import Domain.CreditSystem;
 import Domain.CrewMember;
+import Domain.CrewProduction;
+import Domain.Production;
 import Persistance.DatabaseConn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,44 +28,56 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CrewMembersController implements Initializable {
-    //tableview Colunms:
-    @FXML public TableView tableviewCrewmembers;
-    @FXML public TableColumn nameColumn;
-    @FXML public TableColumn roleColumn;
+
+
+
+    //Tableview Colunms:
+    @FXML public TableView<CrewProduction> tableViewCrewMembers;
+    @FXML public TableColumn<CrewProduction, String> productionColumn;
+    @FXML public TableColumn<CrewProduction, String> roleColumn;
     @FXML public TableColumn emailColunm;
     @FXML public TextField searchTextField;
     @FXML public AnchorPane anchorpane;
+    public Label nameLabel;
 
     private Connection connection = DatabaseConn.getConnection();
+    private CrewMember crewMember;
     ObservableList<CrewMember> crewMem = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        try {
-//            ResultSet resultSet = connection.createStatement().executeQuery("select * from CrewMember");
-//            while (resultSet.next()) {
-//                crewMem.add(new CrewMember(
-//                        resultSet.getString("name"),
-//                        resultSet.getString("role"),
-//                        resultSet.getString("email"),
-//                        resultSet.getInt("id"))); }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        nameColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("name"));
-//        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
-//        emailColunm.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
-//        tableviewCrewmembers.setItems(crewMem);
-//
-//
-//    }
+        crewMember = AddCrewMemberController.getSelectedCrewMember();
+        nameLabel.setText("Name: " + crewMember.getName());
 
-//    public void searchbtn(ActionEvent actionEvent) {
-//        search();
-//    }
-//
-//    public void exportdataButtonAction(ActionEvent actionEvent) throws IOException {
+        productionColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("productionTitle"));
+        roleColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("role"));
+
+        updateTableView(crewMember.getId());
+
+        tableViewCrewMembers.setEditable(false);
+        productionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableViewCrewMembers.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
+
+
+    public void searchbtn(ActionEvent actionEvent) {
+        search();
+    }
+
+    public ObservableList<CrewProduction> getCrewProduction(ArrayList<CrewProduction> fetch){
+        ObservableList<CrewProduction> cast = FXCollections.observableArrayList();
+        for (CrewProduction c : fetch) {
+            CrewMember crewMember = c.getCrewMember();
+            Production production = c.getProduction();
+            String role = c.getRole();
+            cast.add(new CrewProduction(crewMember, production, role, crewMember.getName()));
+        }
+        return cast;
+    }
+
+    public void exportdataButtonAction(ActionEvent actionEvent) throws IOException {
 //
 //        FileChooser fileChooser = new FileChooser();
 //        Window stage = anchorpane.getScene().getWindow();
@@ -89,11 +102,17 @@ public class CrewMembersController implements Initializable {
 //        }
     }
 
-//    public void backbtn(ActionEvent actionEvent) throws IOException {
-//        App.setRoot("GuestAndRD");
-//    }
 
-//    public void search() {
+    public void backbtn(ActionEvent actionEvent) throws IOException {
+        if (CreditSystem.getCreditSystem().getCurrentUser() != null) {
+            App.setRoot(App.getCurrentRoom());
+        } else {
+            App.setRoot("GuestAndRD");
+        }
+
+    }
+
+    public void search() {
 //        if (searchTextField.textProperty().get().isEmpty()) {
 //            updateTableView();
 //        }
@@ -111,27 +130,19 @@ public class CrewMembersController implements Initializable {
 //            }
 //        }
 //        tableviewCrewmembers.setItems(tableData);
-//    }
-//
-//    public void searchEnter(KeyEvent keyEvent) {
-//        if(keyEvent.getCode().equals(KeyCode.ENTER)){
-//            search();
-//        }
-//    }
-//    public void updateTableView() {
-//        ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
-//        tableviewCrewmembers.setItems(getCrewMember(dataList));
-//    }
-//    public ObservableList<CrewMember> getCrewMember(ArrayList<CrewMember> fetch) {
-//        ObservableList<CrewMember> crewMemberList = FXCollections.observableArrayList();
-//        ArrayList<CrewMember> fetchCrew = fetch;
-//        for (CrewMember c : fetchCrew) {
-//            String name = c.getName();
-//            String email = c.getEmail();
-//            String role = c.getRole();
-//            int id = c.getCastCrewId();
-//            crewMemberList.add(new CrewMember(name, email, role, id));
-//        }
-//        return crewMemberList;
-//    }
+    }
+
+    public void searchEnter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            search();
+        }
+    }
+
+    public void updateTableView(int id) {
+        ArrayList<CrewProduction> record = CreditSystem.getCreditSystem().getPersonalRecord(id);
+        tableViewCrewMembers.setItems(getCrewProduction(record));
+    }
+
+
+
 }

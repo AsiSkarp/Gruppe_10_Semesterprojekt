@@ -24,8 +24,8 @@
          </font>
       </TextField>
 
-      <Button fx:id="AddCrewButton" layoutX="703.0" layoutY="239.0" mnemonicParsing="false" onAction="#addbtnhandler" prefHeight="25.0" prefWidth="171.0" text="Add" />
-      <Button layoutX="703.0" layoutY="278.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="171.0" text="Del" />
+      <Button fx:id="addCrewButton" layoutX="703.0" layoutY="239.0" mnemonicParsing="false" onAction="#addbtnhandler" prefHeight="25.0" prefWidth="171.0" text="Add" />
+      <Button fx:id="deleteBtn" layoutX="703.0" layoutY="278.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="25.0" prefWidth="171.0" text="Del" />
       <Button fx:id="backButton" layoutX="809.0" layoutY="410.0" mnemonicParsing="false" onAction="#backBtnHandler" prefHeight="25.0" prefWidth="68.0" text="Back" />
       <TextField fx:id="searchCrewM" layoutX="14.0" layoutY="14.0" onKeyPressed="#searchEnter" prefHeight="25.0" prefWidth="445.0" />
       <Label layoutX="702.0" layoutY="42.0" text="Insert the following information" textFill="WHITE" />
@@ -35,5 +35,6 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="btnOpenSelected" layoutX="703.0" layoutY="198.0" mnemonicParsing="false" onAction="#openBtnHandler" prefHeight="26.0" prefWidth="171.0" text="Open" />
    </children>
 </AnchorPane>

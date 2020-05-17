@@ -28,4 +28,8 @@ public class CrewProduction {
     public String getName() {
         return name;
     }
+
+    public String getProductionTitle() {
+        return production.getTitle();
+    }
 }

@@ -46,19 +46,22 @@ public class AddCrewMemberController implements Initializable {
     @FXML
     public Label resultLabel;
     @FXML
-    public Button AddCrewButton;
+    public Button addCrewButton;
     @FXML
     public Button updateButton;
     @FXML
     public Button backButton;
     @FXML
     public Button searchButton;
-
+    @FXML
+    public Button btnOpenSelected;
+    @FXML
+    public Button deleteBtn;
 
 
     //ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
     ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
-
+    public static CrewMember selectedCrewMember;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,13 +69,24 @@ public class AddCrewMemberController implements Initializable {
         emailColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String>("email"));
         //roleColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, String >("role"));
         IdColumn.setCellValueFactory(new PropertyValueFactory<CrewMember, Integer>("id"));
+        if (CreditSystem.getCreditSystem().getCurrentUser() == null) {
+            addCrewButton.setVisible(false);
+            deleteBtn.setVisible(false);
+            nameField.setVisible(false);
+            emailField.setVisible(false);
+        }
         updateTableView();
 
         //Edit the table data:
-        tableView.setEditable(true);
+        tableView.setEditable(false);
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
+
+    public void openBtnHandler(ActionEvent actionEvent) throws IOException{
+        selectedCrewMember = tableView.getSelectionModel().getSelectedItem();
+        App.setRoot("CrewMembers");
     }
 
     //Maybe if statementt use in addbutton tomorrow:
@@ -194,4 +208,10 @@ public class AddCrewMemberController implements Initializable {
         ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
         tableView.setItems(getCrewMember(dataList));
     }
+
+    public static CrewMember getSelectedCrewMember() {
+        return selectedCrewMember;
+    }
+
+
 }

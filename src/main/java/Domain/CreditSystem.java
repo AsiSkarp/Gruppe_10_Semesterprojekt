@@ -182,6 +182,10 @@ public class CreditSystem implements Serializable {
         return CreditSystemDatabaseRepository.getCsdio().getCrewProduction(id);
     }
 
+    public ArrayList<CrewProduction> getPersonalRecord (int id) {
+        return CreditSystemDatabaseRepository.getCsdio().getPersonalRecord(id);
+    }
+
 
     public void addCrewToProduction(String name, String email, String role, int productionId) {
         try {
