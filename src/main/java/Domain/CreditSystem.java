@@ -158,10 +158,6 @@ public class CreditSystem implements Serializable {
         }
     }
 
-    public int getCrewMemIdFromDatabase() throws SQLException {
-        return CreditSystemDatabaseRepository.getCsdio().getCMIdFromDatabse();
-    }
-
     public ArrayList<CrewMember> getCrewMembers() {
         //return CreditSystemFileRepository.getCsfio().getCrewMemberList();
         return CreditSystemDatabaseRepository.getCsdio().getCrewMemberList();
@@ -181,12 +177,21 @@ public class CreditSystem implements Serializable {
         return CreditSystemDatabaseRepository.getCsdio().getUserList();
     }
 
+
     public ArrayList<CrewProduction> getCrewProduction(int id) {
         return CreditSystemDatabaseRepository.getCsdio().getCrewProduction(id);
     }
 
+
+    public void addCrewToProduction(String name, String email, String role, int productionId) {
+        try {
+            CreditSystemDatabaseRepository.getCsdio().addCrewToProduction(name, email, role, productionId);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void logout() {
         currentUser = null;
-        System.out.println("The current user is: <NULL> ");
     }
 }
