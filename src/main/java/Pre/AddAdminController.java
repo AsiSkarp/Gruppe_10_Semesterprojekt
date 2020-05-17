@@ -52,9 +52,7 @@ public class AddAdminController implements Initializable {
     public void addBtnHandler(ActionEvent actionEvent) {
        if (!adminName.getText().isEmpty() || !adminEmail.getText().isEmpty() || !adminPassword.getText().isEmpty())
         if (!chkBoxSuperAdmin.isSelected()) {
-            if(adminName.getText().equals("") || adminEmail.getText().equals("") || adminPassword.getText().equals("")){
-                resultField.setText("enter name,\n email and password");
-            }
+
             CreditSystem.getCreditSystem().addAdminToSystem(adminName.getText(), adminEmail.getText(), adminPassword.getText());
             resultField.setText("The information has been added to the Database");
         } else {

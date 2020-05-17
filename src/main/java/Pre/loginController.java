@@ -34,6 +34,7 @@ public class loginController {
     public boolean isHelpOpen;
 
     public void login() throws IOException {
+        CreditSystem.getCreditSystem().logout();
         if(emailText.getText().equals("") || passwordText.getText().equals("")){
             System.out.println("You need to enter email and password");
 
@@ -76,6 +77,7 @@ public class loginController {
 
     @FXML
     public void btnGuestonAction(ActionEvent actionEvent) throws IOException {
+        CreditSystem.getCreditSystem().logout();
         App.setRoot("GuestAndRD");
     }
 
