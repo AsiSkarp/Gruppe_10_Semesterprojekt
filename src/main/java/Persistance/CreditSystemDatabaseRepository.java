@@ -62,14 +62,10 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
         }
 
     //???
-    public int getCMIdFromDatabse() throws SQLException {
-        CrewMember temp = null;
+    public int getCMIdFromDatabse(String email) throws SQLException {
         int id = 0;
-        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM CrewMember ORDER BY id DESC LIMIT 1");
+        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM CrewMember WHERE email = '" + email + "';");
         while(resultSet.next()) {
-            temp = new CrewMember(
-                    resultSet.getString("name"),
-                    resultSet.getString("email"));
             id = resultSet.getInt("id");
         }
         return id;
@@ -242,6 +238,44 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
     public void updateSuperAdmin(String name, String email, String password) {
     }
 
+    //CREWPRODUCTION METHODS
+    public void addCrewToProduction(String name, String email, String role, int productionId) throws SQLException {
+        boolean alreadyExist = false;
+        boolean roleExist = false;
+        ArrayList<CrewMember> cast = getCrewMemberList();
+        ArrayList<String> roles = getRoles();
+
+        for(int i = 0; i < cast.size(); i++) {
+            if(cast.get(i).getEmail().equalsIgnoreCase(email)){
+                alreadyExist = true;
+                break;
+            }
+        }
+
+        if(!alreadyExist) {
+            String sql = "insert into CrewMember(name, email) values('" + name + "', '" + email + "');";
+            connectToDatabase(sql);
+        }
+
+        for(int i = 0; i < roles.size(); i++) {
+            if(roles.get(i).equalsIgnoreCase(role)) {
+                roleExist = true;
+                break;
+            }
+        }
+
+        if(!roleExist) {
+            String sql = "insert into roles(role) values('" + role + "');";
+            connectToDatabase(sql);
+        }
+
+        int crewMemberId = getCMIdFromDatabse(email);
+        int roleId = getRolesId(role);
+
+        String sql = "insert into roletable(crewMemberId, ProductionId, roleId) values(" + crewMemberId + ", " + productionId + ", " + roleId + ");";
+        connectToDatabase(sql);
+    }
+
     public ArrayList<CrewProduction> getCrewProduction(int id) {
         ArrayList<CrewProduction> cast = new ArrayList<>();
 
@@ -265,5 +299,28 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
             e.printStackTrace();
         }
         return cast;
+    }
+
+    public ArrayList<String> getRoles() {
+        ArrayList<String> roleList = new ArrayList<>();
+
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("select * from roles");
+            while (resultSet.next()) {
+                roleList.add(resultSet.getString("role"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return roleList;
+    }
+
+    public int getRolesId(String role) throws SQLException {
+        int id = 0;
+        ResultSet resultSet = connection.createStatement().executeQuery("select id from roles where role = '" + role + "';");
+        while(resultSet.next()) {
+            id = resultSet.getInt("id");
+        }
+        return id;
     }
 }
