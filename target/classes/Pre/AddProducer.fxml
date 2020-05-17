@@ -8,9 +8,9 @@
    <children>
       <TableView fx:id="proTable" layoutX="16.0" layoutY="47.0" prefHeight="386.0" prefWidth="583.0" style="-fx-background-color: #7a9ca6;" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="proTableName" onEditCommit="#updateName" prefWidth="131.0" text="Name" />
-          <TableColumn fx:id="proTableEmail" onEditCommit="#updateEmail" prefWidth="263.0" text="E-mail" />
-            <TableColumn fx:id="proTablePassword" onEditCommit="#updatePassword" prefWidth="175.0" text="Password" />
+          <TableColumn fx:id="proTableName" editable="false" onEditCommit="#updateName" prefWidth="196.2000026702881" text="Name" />
+          <TableColumn fx:id="proTableEmail" editable="false" onEditCommit="#updateEmail" prefWidth="219.4000244140625" text="E-mail" />
+            <TableColumn fx:id="proTablePassword" editable="false" onEditCommit="#updatePassword" prefWidth="154.19992065429688" text="Password" />
         </columns>
       </TableView>
       <TextField layoutX="17.0" layoutY="14.0" prefHeight="26.0" prefWidth="370.0" promptText="Search" />

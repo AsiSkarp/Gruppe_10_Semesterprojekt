@@ -7,15 +7,15 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #2d5b70;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.AddAdminController">
    <children>
-      <TableView fx:id="adminTable" layoutX="24.0" layoutY="45.0" prefHeight="376.0" prefWidth="585.0" style="-fx-background-color: #7a9ca6;">
+      <TableView fx:id="adminTable" layoutX="24.0" layoutY="45.0" prefHeight="376.0" prefWidth="600.0" style="-fx-background-color: #7a9ca6;">
         <columns>
-          <TableColumn fx:id="adminTableName" onEditCommit="#updateName" prefWidth="128.0" text="Name" />
-          <TableColumn fx:id="adminTableEmail" onEditCommit="#updateEmail" prefWidth="206.0" text="E-mail" />
-            <TableColumn fx:id="adminTablePassword" onEditCommit="#updatePassword" prefWidth="118.0" text="Password" />
-            <TableColumn fx:id="adminTableType" onEditCommit="#updatePassword" prefWidth="118.0" text="Type" />
+          <TableColumn fx:id="adminTableName" editable="false" onEditCommit="#updateName" prefWidth="164.59999084472656" text="Name" />
+          <TableColumn fx:id="adminTableEmail" editable="false" onEditCommit="#updateEmail" prefWidth="199.4000244140625" text="E-mail" />
+            <TableColumn fx:id="adminTablePassword" editable="false" onEditCommit="#updatePassword" prefWidth="129.4000244140625" text="Password" />
+            <TableColumn fx:id="adminTableType" editable="false" onEditCommit="#updatePassword" prefWidth="107.5999755859375" text="Type" />
         </columns>
       </TableView>
-      <TextField fx:id="searchField" layoutX="24.0" layoutY="14.0" prefHeight="26.0" prefWidth="397.0" promptText="Search" />
+      <TextField fx:id="searchField" layoutX="24.0" layoutY="14.0" prefHeight="26.0" prefWidth="516.0" promptText="Search" />
       <TextField fx:id="adminName" layoutX="655.0" layoutY="72.0" prefHeight="26.0" prefWidth="193.0" promptText="Name">
          <font>
             <Font name="System Italic" size="12.0" />
@@ -24,7 +24,7 @@
          <font>
             <Font name="System Italic" size="12.0" />
          </font></TextField>
-      <Button layoutX="424.0" layoutY="14.0" mnemonicParsing="false" onAction="#SearchBtnhandler" prefHeight="26.0" prefWidth="78.0" text="Search" />
+      <Button layoutX="545.0" layoutY="14.0" mnemonicParsing="false" onAction="#SearchBtnhandler" prefHeight="26.0" prefWidth="78.0" text="Search" />
       <Button layoutX="655.0" layoutY="213.0" mnemonicParsing="false" onAction="#addBtnHandler" prefHeight="26.0" prefWidth="194.0" text="Add" />
       <Button layoutX="779.0" layoutY="395.0" mnemonicParsing="false" onAction="#backBtnHanlder" prefHeight="26.0" prefWidth="70.0" text="Back" />
       <Button layoutX="656.0" layoutY="256.0" mnemonicParsing="false" onAction="#deleteBtnHandler" prefHeight="26.0" prefWidth="193.0" text="Delete" />
