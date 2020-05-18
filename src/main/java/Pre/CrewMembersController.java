@@ -16,16 +16,14 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
+import javafx.stage.FileChooser;
+import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CrewMembersController implements Initializable {
-
-
 
     //Tableview Colunms:
     @FXML public TableView<CrewProduction> tableViewCrewMembers;
@@ -38,8 +36,8 @@ public class CrewMembersController implements Initializable {
 
     private Connection connection = DatabaseConn.getConnection();
     private CrewMember crewMember;
+    ArrayList<CrewProduction> crewProductions = CreditSystem.getCreditSystem().getCrewProduction(1);
     ObservableList<CrewMember> crewMem = FXCollections.observableArrayList();
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,53 +72,49 @@ public class CrewMembersController implements Initializable {
     }
 
     public void exportdataButtonAction(ActionEvent actionEvent) throws IOException {
-//
-//        FileChooser fileChooser = new FileChooser();
-//        Window stage = anchorpane.getScene().getWindow();
-//        fileChooser.setTitle("Save Dialog");
-//        fileChooser.setInitialFileName("Crew Member List");
-//        fileChooser.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("text file", "*.txt"),
-//                new FileChooser.ExtensionFilter("csv", "*.csv"),
-//                new FileChooser.ExtensionFilter("doc", "*.doc"),
-//                new FileChooser.ExtensionFilter("xml", "*.xml"),
-//                new FileChooser.ExtensionFilter("xls", "*.xls"));
-//        try {
-//            File file = fileChooser.showSaveDialog(stage);
-//            fileChooser.setInitialDirectory(file.getParentFile());
-//            Writer writer = new BufferedWriter(new FileWriter(file));
-//            for (CrewMember crewMember : crewMem) {
-//                String text = crewMember.getName() + ",  " + crewMember.getRole() + ",  " + crewMember.getEmail() + "\n";
-//                writer.write(text);
-//            } writer.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-    }
 
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Dialog");
+        fileChooser.setInitialFileName("");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("text file", "*.txt"),
+                new FileChooser.ExtensionFilter("csv", "*.csv"),
+                new FileChooser.ExtensionFilter("doc", "*.doc"));
+        try {
+            File file = fileChooser.showSaveDialog(null);
+            fileChooser.setInitialDirectory(file.getParentFile());
+            Writer writer = new BufferedWriter(new FileWriter(file));
+            for (CrewProduction crewMember : crewProductions) {
+                String text = crewMember.getProductionTitle() + ",  " + crewMember.getRole()  + "\n";
+                writer.write(text);
+            } writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void backbtn(ActionEvent actionEvent) throws IOException {
             App.setRoot("AddCrewMember");
     }
 
     public void search() {
-//        if (searchTextField.textProperty().get().isEmpty()) {
-//            updateTableView();
-//        }
-//        ObservableList<CrewMember> tableData = FXCollections.observableArrayList();
-//        ObservableList<TableColumn<CrewMember, ?>> tableColumns = tableviewCrewmembers.getColumns();
-//        for (int i = 0; i < crewMem.size(); i++) {
-//            for (int j = 0; j < tableColumns.size(); j++) {
-//                TableColumn tableColumn = tableColumns.get(j);
-//                String cellValue = tableColumn.getCellData(crewMem.get(i)).toString();
-//                cellValue = cellValue.toLowerCase();
-//                if (cellValue.contains(searchTextField.textProperty().get().toLowerCase())) {
-//                    tableData.add(crewMem.get(i));
-//                    break;
-//                }
-//            }
-//        }
-//        tableviewCrewmembers.setItems(tableData);
+        if (searchTextField.textProperty().get().isEmpty()) {
+            updateTableView(0);
+        }
+        ObservableList<CrewProduction> tableData = FXCollections.observableArrayList();
+        ObservableList<TableColumn<CrewProduction, ?>> tableColumns = tableViewCrewMembers.getColumns();
+        for (int i = 0; i < crewMem.size(); i++) {
+            for (int j = 0; j < tableColumns.size(); j++) {
+                TableColumn tableColumn = tableColumns.get(j);
+                String cellValue = tableColumn.getCellData(crewMem.get(i)).toString();
+                cellValue = cellValue.toLowerCase();
+                if (cellValue.contains(searchTextField.textProperty().get().toLowerCase())) {
+                    tableData.add(crewProductions.get(i));
+                    break;
+                }
+            }
+        }
+        tableViewCrewMembers.setItems(tableData);
     }
 
     public void searchEnter(KeyEvent keyEvent) {
@@ -133,7 +127,4 @@ public class CrewMembersController implements Initializable {
         ArrayList<CrewProduction> record = CreditSystem.getCreditSystem().getPersonalRecord(id);
         tableViewCrewMembers.setItems(getCrewProduction(record));
     }
-
-
-
 }

@@ -9,7 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddAdminController implements Initializable {
-
 
 
     @FXML public TableView<User> adminTable;
@@ -30,6 +30,7 @@ public class AddAdminController implements Initializable {
     @FXML public PasswordField adminPassword;
     @FXML public Label resultField;
     @FXML public CheckBox chkBoxSuperAdmin;
+    @FXML public TextField searchField;
 
 
     ArrayList<User> adminList = CreditSystem.getCreditSystem().getUserList();
@@ -119,6 +120,26 @@ public class AddAdminController implements Initializable {
     }
 
     public void SearchBtnhandler(ActionEvent actionEvent) {
+        search();
+    }
+    public void search() {
+        if (searchField.textProperty().get().isEmpty()) {
+            updateTableView();
+        }
+        ObservableList<User> tableData = FXCollections.observableArrayList();
+        ObservableList<TableColumn<User, ?>> tableColumns = adminTable.getColumns();
+        for (int i = 0; i < adminList.size(); i++) {
+            for (int j = 0; j < tableColumns.size(); j++) {
+                TableColumn tableColumn = tableColumns.get(j);
+                String cellValue = tableColumn.getCellData(adminList.get(i)).toString();
+                cellValue = cellValue.toLowerCase();
+                if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
+                    tableData.add(adminList.get(i));
+                    break;
+                }
+            }
+        }
+        adminTable.setItems(tableData);
     }
 
     public void updateName(TableColumn.CellEditEvent<Admin, String> adminStringCellEditEvent) {
@@ -163,5 +184,11 @@ public class AddAdminController implements Initializable {
     public void updateTableView() {
         ArrayList<User> userList = CreditSystem.getCreditSystem().getUserDatabase();
         adminTable.setItems(getAdmin(userList));
+    }
+
+    public void searchEnter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            search();
+        }
     }
 }
