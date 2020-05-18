@@ -1,0 +1,99 @@
+--Create CrewMember Table
+
+create table CrewMember (
+    id serial primary key,
+    name varchar(50) not null,
+    email varchar(50) unique not null
+);
+
+--Occupy CrewMembertable
+
+insert into CrewMember(name, email)
+values('Hamid', 'mmm@gmail.com');
+insert into CrewMember(name, email)
+values('Casper', 'uio@live.com');
+insert into CrewMember(name, email)
+values('mmmmmm', 'lol@live.com');
+insert into CrewMember(name, email)
+values('Lone', 'lol@gmail.com');
+
+
+--If CrewMember Table already made, run this to drop "role column"
+
+ALTER TABLE Crewmember
+DROP COLUMN "role";
+
+
+--Select and Drop querys
+
+select * from CrewMember;
+
+drop table CrewMember;
+
+--Create Productions Table 
+
+create table Production (
+    id serial primary key not null,
+    title varchar(100) not null,
+    owner varchar(100) not null,
+    created timestamp not null 
+);
+
+--Occupy Production Table
+
+insert into Production(title, owner, created)
+values ('Film', 'SDU', NOW());
+insert into Production(title, owner, created)
+values('Avengers', 'USA', NOW());
+
+--Create Users Table
+
+create table Users (
+    id serial primary key,
+    name varchar(50) not null,
+    email varchar(50) unique not null,
+    password varchar(100) not null,
+    usertype varchar (50) not null
+);
+
+--Occupy Users Table
+
+insert into Users(name, email, password, usertype)
+values('SuperAdmin', 'system','admin', 'SuperAdmin');
+insert into Users(name, email, password, usertype)
+values('Kevin', 'email1', '123', 'Admin');
+insert into Users(name, email, password, usertype)
+values('Asbjørn', 'email2', '456', 'Admin');
+insert into Users(name, email, password, usertype)
+values('Lone', 'email3', '789', 'Admin');
+
+--THIS SCRIPT MUST BE RUN TO LOGIN
+
+insert into Users(name, email, password, usertype)
+values('Prodcuctionsselskabet A/S', 'email4', 'password', 'Producer');
+drop table CrewMember;
+drop table Production;
+drop table Users;
+
+create table roles(
+	id serial primary key,
+	role varchar(50) not null
+);
+
+create table roletable(
+	crewMemberId int references CrewMember(id),
+	ProductionId int references Production(id),
+	roleId int references roles(id)
+);
+
+
+insert into roles(role) values ('Lydmand');
+insert into roles(role) values ('Skuespiller');
+insert into roles(role) values ('Producer');
+
+insert into roletable(crewMemberId, ProductionId, roleId) values(1, 2, 1);
+insert into roletable(crewMemberId, ProductionId, roleId) values(4, 2, 2);
+insert into roletable(crewMemberId, ProductionId, roleId) values(2, 6, 3);
+insert into roletable(crewMemberId, ProductionId, roleId) values(3, 6, 2);
+
+
