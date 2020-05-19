@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.PSystemController">
    <children>
-      <Button contentDisplay="TOP" layoutX="199.0" layoutY="148.0" mnemonicParsing="false" onAction="#switchToProductionSystem" prefHeight="96.0" prefWidth="151.0" text="Production System">
+      <Button contentDisplay="TOP" layoutX="148.0" layoutY="148.0" mnemonicParsing="false" onAction="#switchToProductionSystem" prefHeight="116.0" prefWidth="200.0" text="Production System">
          <graphic>
             <ImageView fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -15,7 +15,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button contentDisplay="TOP" layoutX="529.0" layoutY="148.0" mnemonicParsing="false" onAction="#SswitchToCrewMembersSystem" prefHeight="96.0" prefWidth="151.0" text="CrewMember System">
+      <Button contentDisplay="TOP" layoutX="549.0" layoutY="148.0" mnemonicParsing="false" onAction="#SswitchToCrewMembersSystem" prefHeight="116.0" prefWidth="200.0" text="CrewMember System">
          <graphic>
             <ImageView fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,8 +23,8 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="749.0" layoutY="366.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="86.0" text="Log ud" />
-      <ImageView fitHeight="138.0" fitWidth="329.0" layoutX="202.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="638.0" layoutY="361.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="111.0" text="Log ud" />
+      <ImageView fitHeight="138.0" fitWidth="329.0" layoutX="108.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />
          </image>

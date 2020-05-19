@@ -28,8 +28,6 @@ public class AddCrewMemberController implements Initializable {
     public TableColumn<CrewMember, String> firstNameColumn;
     @FXML
     public TableColumn<CrewMember, String> emailColumn;
-//    @FXML
-//    public TableColumn<CrewMember, String> roleColumn;
     @FXML
     public TableColumn<CrewMember, Integer> IdColumn;
 
@@ -57,6 +55,8 @@ public class AddCrewMemberController implements Initializable {
     public Button btnOpenSelected;
     @FXML
     public Button deleteBtn;
+    @FXML
+    public Label infoLabel;
 
 
     //ArrayList<CrewMember> fileList = CreditSystem.getCreditSystem().getCrewMemberList();
@@ -74,6 +74,7 @@ public class AddCrewMemberController implements Initializable {
             deleteBtn.setVisible(false);
             nameField.setVisible(false);
             emailField.setVisible(false);
+            infoLabel.setVisible(false);
         }
         updateTableView();
 
@@ -192,6 +193,7 @@ public class AddCrewMemberController implements Initializable {
                 cellValue = cellValue.toLowerCase();
                 if (cellValue.contains(searchCrewM.textProperty().get().toLowerCase())) {
                     tableData.add(dataList.get(i));
+                    break;
                 }
             }
         }
@@ -216,6 +218,4 @@ public class AddCrewMemberController implements Initializable {
     public static CrewMember getSelectedCrewMember() {
         return selectedCrewMember;
     }
-
-
 }

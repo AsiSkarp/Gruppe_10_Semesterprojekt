@@ -206,7 +206,7 @@ public class ProductionController implements Initializable {
     public void exportProduction(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Dialog");
-        fileChooser.setInitialFileName("Production List");
+        fileChooser.setInitialFileName("");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("text file", "*.txt"),
                 new FileChooser.ExtensionFilter("csv", "*.csv"),

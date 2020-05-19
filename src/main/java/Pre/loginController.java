@@ -3,20 +3,14 @@ package Pre;
 import Domain.CreditSystem;
 import Domain.Login;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-
-import static Pre.App.loadFXML;
 
 
 public class loginController {

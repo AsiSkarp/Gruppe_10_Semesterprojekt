@@ -1,7 +1,6 @@
 package Pre;
 
 import Domain.CreditSystem;
-import Domain.CrewMember;
 import Domain.Producer;
 import Domain.User;
 import javafx.collections.FXCollections;
@@ -12,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,7 @@ public class AddProducerController implements Initializable {
     @FXML public TextField proEmail;
     @FXML public PasswordField proPassword;
     @FXML public Label resultProducer;
+    @FXML public TextField searchField;
 
     ArrayList<User> proList = CreditSystem.getCreditSystem().getUserList();
 
@@ -39,6 +41,7 @@ public class AddProducerController implements Initializable {
            proTableName.setCellValueFactory(new PropertyValueFactory<Producer, String>("name"));
            proTableEmail.setCellValueFactory(new PropertyValueFactory<Producer, String>("email"));
            proTablePassword.setCellValueFactory(new PropertyValueFactory<Producer, String>("password"));
+
        }else {
            proTableName.setCellValueFactory(new PropertyValueFactory<Producer, String>("name"));
            proTableEmail.setCellValueFactory(new PropertyValueFactory<Producer, String>("email"));
@@ -57,12 +60,13 @@ public class AddProducerController implements Initializable {
         if (!proName.getText().isEmpty() || !proEmail.getText().isEmpty() || !proPassword.getText().isEmpty()) {
             CreditSystem.getCreditSystem().addProducerToSystem(proName.getText(), proEmail.getText(), proPassword.getText());
             resultProducer.setText("The information has been added to the Database");
-        } else {
-            resultProducer.setText("you must enter values");
-            updateTableView();
             proName.clear();
             proEmail.clear();
             proPassword.clear();
+            updateTableView();
+        } else {
+            resultProducer.setText("you must enter values");
+            updateTableView();
         }
 
     }
@@ -157,4 +161,33 @@ public class AddProducerController implements Initializable {
     }
 
 
+    public void searchButton(ActionEvent actionEvent) {
+        search();
+    }
+    public void search() {
+        if (searchField.textProperty().get().isEmpty()) {
+            updateTableView();
+        } else {
+            ObservableList<User> tableData = FXCollections.observableArrayList();
+            ObservableList<TableColumn<User, ?>> tableColumns = proTable.getColumns();
+            for (int i = 0; i < proList.size(); i++) {
+                for (int j = 0; j < tableColumns.size(); j++) {
+                    TableColumn tableColumn = tableColumns.get(j);
+                    String cellValue = tableColumn.getCellData(proList.get(i)).toString();
+                    cellValue = cellValue.toLowerCase();
+                    if (cellValue.contains(searchField.textProperty().get().toLowerCase())) {
+                        tableData.add(proList.get(i));
+                        break;
+                    }
+                }
+            }
+            proTable.setItems(tableData);
+        }
+    }
+    public void searchEnter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            search();
+        }
+    }
 }
+

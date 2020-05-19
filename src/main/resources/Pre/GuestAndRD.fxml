@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="900.0" style="-fx-background-color: #00455e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pre.GuestAndRDController">
    <children>
-      <Button contentDisplay="TOP" layoutX="191.0" layoutY="150.0" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="106.0" prefWidth="167.0" text="Programs">
+      <Button contentDisplay="TOP" layoutX="191.0" layoutY="132.0" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="106.0" prefWidth="167.0" text="Programs">
          <graphic>
             <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -15,7 +15,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button contentDisplay="TOP" layoutX="535.0" layoutY="150.0" mnemonicParsing="false" onAction="#switchToCrewMember" prefHeight="106.0" prefWidth="167.0" text="Crew Members">
+      <Button contentDisplay="TOP" layoutX="535.0" layoutY="132.0" mnemonicParsing="false" onAction="#switchToCrewMember" prefHeight="106.0" prefWidth="167.0" text="Crew Members">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,12 +23,12 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ImageView fitHeight="106.0" fitWidth="272.0" layoutX="139.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="106.0" fitWidth="272.0" layoutX="505.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/sdu-logo-png-3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="125.0" fitWidth="297.0" layoutX="462.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="125.0" fitWidth="297.0" layoutX="114.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/TV2Logo.png" />
          </image>
@@ -37,6 +37,6 @@
          <font>
             <Font name="Verdana" size="18.0" />
          </font></Label>
-      <Button layoutX="761.0" layoutY="363.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="70.0" text="Log ud" />
+      <Button layoutX="617.0" layoutY="377.0" mnemonicParsing="false" onAction="#backButtonguest" prefHeight="25.0" prefWidth="85.0" text="Log ud" />
    </children>
 </AnchorPane>

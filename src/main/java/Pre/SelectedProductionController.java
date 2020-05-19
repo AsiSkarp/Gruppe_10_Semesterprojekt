@@ -12,8 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-
-import java.io.IOException;
+import javafx.stage.FileChooser;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,11 +21,6 @@ import java.util.ResourceBundle;
 
 public class SelectedProductionController implements Initializable {
 
-    @FXML public TextArea titleArea;
-    @FXML public TextArea ownerArea;
-    @FXML public TextArea dateArea;
-    @FXML public TextField nameCM;
-    @FXML public TextField roleCM;
     @FXML public TableView<CrewProduction> tableCM;
     @FXML public TableColumn<CrewProduction, String>  nameColumn;
     @FXML public TableColumn<CrewProduction, String>  roleColumn;
@@ -40,7 +35,7 @@ public class SelectedProductionController implements Initializable {
     private Date date;
 
 
-    //ArrayList<CrewMember> fetchList = CreditSystem.getCreditSystem().getCrewMemberList();
+    ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
     ObservableList<CrewMember> crewM = FXCollections.observableArrayList();
     private Production production;
 
@@ -107,6 +102,25 @@ public class SelectedProductionController implements Initializable {
     }
 
     public void eksportereCM(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Dialog");
+        fileChooser.setInitialFileName("");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("text file", "*.txt"),
+                new FileChooser.ExtensionFilter("csv", "*.csv"),
+                new FileChooser.ExtensionFilter("doc", "*.doc"));
+        try {
+            File file = fileChooser.showSaveDialog(null);
+            fileChooser.setInitialDirectory(file.getParentFile());
+            Writer writer = new BufferedWriter(new FileWriter(file));
+            for (CrewMember crewProduction : dataList) {
+                String text = crewProduction.getName() + ", " + crewProduction.getEmail() + ", " + crewProduction.getId() + "\n";
+                writer.write(text);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void backCM(ActionEvent actionEvent) throws IOException {
