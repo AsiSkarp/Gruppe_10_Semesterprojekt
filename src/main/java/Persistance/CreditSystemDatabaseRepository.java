@@ -110,7 +110,8 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
 
     @Override
     public void removeProduction(int id) {
-        String sql = "delete from Production where id = '" + id + "'";
+        String sql =  "Delete from roletable where productionid = '" + id + "'; " +
+                      "Delete from production where id = '" + id + "' ";
         connectToDatabase(sql);
     }
 
