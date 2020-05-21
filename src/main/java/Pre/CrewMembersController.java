@@ -66,7 +66,7 @@ public class CrewMembersController implements Initializable {
             CrewMember crewMember = c.getCrewMember();
             Production production = c.getProduction();
             String role = c.getRole();
-            cast.add(new CrewProduction(crewMember, production, role, crewMember.getName()));
+            cast.add(new CrewProduction(crewMember, production, role));
         }
         return cast;
     }

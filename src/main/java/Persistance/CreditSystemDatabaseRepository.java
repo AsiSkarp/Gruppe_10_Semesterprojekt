@@ -298,7 +298,7 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
                         new CrewMember(resultSet.getString("name"), resultSet.getString("email")),
                         new Production(resultSet.getString("title"), resultSet.getString("owner"), resultSet.getDate("created"),
                                 resultSet.getInt("production_id")),
-                        resultSet.getString("role"), resultSet.getString("name"));
+                        resultSet.getString("role"));
                 cast.add(temp);
             }
         } catch (SQLException e) {
@@ -324,7 +324,7 @@ public class CreditSystemDatabaseRepository implements AdminInterface, CrewMembe
                         new CrewMember(resultSet.getString("name"), resultSet.getString("email")),
                         new Production(resultSet.getString("title"), resultSet.getString("owner"), resultSet.getDate("created"),
                                 resultSet.getInt("production_id")),
-                        resultSet.getString("role"), resultSet.getString("name"));
+                        resultSet.getString("role"));
 
                 cast.add(temp);
             }

@@ -4,13 +4,11 @@ public class CrewProduction {
     private CrewMember crewMember;
     private Production production;
     private String role;
-    private String name;
 
-    public CrewProduction(CrewMember crewMember, Production production, String role, String name) {
+    public CrewProduction(CrewMember crewMember, Production production, String role) {
         this.crewMember = crewMember;
         this.production = production;
         this.role = role;
-        this.name = name;
     }
 
     public CrewMember getCrewMember() {
@@ -26,7 +24,7 @@ public class CrewProduction {
     }
 
     public String getName() {
-        return name;
+        return crewMember.getName();
     }
 
     public String getProductionTitle() {
