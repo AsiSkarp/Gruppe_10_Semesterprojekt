@@ -35,13 +35,14 @@ public class CrewMembersController implements Initializable {
     public Label nameLabel;
     
     private CrewMember crewMember;
-    ArrayList<CrewProduction> crewProductions = CreditSystem.getCreditSystem().getCrewProduction(1);
+    ArrayList<CrewProduction> crewProductions;
     ObservableList<CrewMember> crewMem = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         crewMember = AddCrewMemberController.getSelectedCrewMember();
         nameLabel.setText("Name: " + crewMember.getName());
+        crewProductions = CreditSystem.getCreditSystem().getPersonalRecord(crewMember.getId());
 
         productionColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("productionTitle"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<CrewProduction, String>("role"));
@@ -83,6 +84,7 @@ public class CrewMembersController implements Initializable {
             File file = fileChooser.showSaveDialog(null);
             fileChooser.setInitialDirectory(file.getParentFile());
             Writer writer = new BufferedWriter(new FileWriter(file));
+            writer.write(crewMember.getName() + "\n\nRoles:\n");
             for (CrewProduction crewMember : crewProductions) {
                 String text = crewMember.getProductionTitle() + ",  " + crewMember.getRole()  + "\n";
                 writer.write(text);

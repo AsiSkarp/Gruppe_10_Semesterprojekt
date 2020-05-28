@@ -35,7 +35,7 @@ public class SelectedProductionController implements Initializable {
     private Date date;
 
 
-    ArrayList<CrewMember> dataList = CreditSystem.getCreditSystem().getCrewMembers();
+    ArrayList<CrewProduction> dataList;
     ObservableList<CrewMember> crewM = FXCollections.observableArrayList();
     private Production production;
 
@@ -45,6 +45,7 @@ public class SelectedProductionController implements Initializable {
         titleLabel.setText("Title:\n" + production.getTitle());
         ownerLable.setText("Owner:\n" + production.getOwner());
         dateLabel.setText("Date:\n" + production.getDate());
+        dataList = CreditSystem.getCreditSystem().getCrewProduction(production.getProductionId());
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
@@ -113,8 +114,10 @@ public class SelectedProductionController implements Initializable {
             File file = fileChooser.showSaveDialog(null);
             fileChooser.setInitialDirectory(file.getParentFile());
             Writer writer = new BufferedWriter(new FileWriter(file));
-            for (CrewMember crewProduction : dataList) {
-                String text = crewProduction.getName() + ", " + crewProduction.getEmail() + ", " + crewProduction.getId() + "\n";
+            writer.write(production.getTitle() + " by " + production.getOwner() + "\n");
+            writer.write("\nCredits: \n");
+            for (CrewProduction crewProduction : dataList) {
+                String text = crewProduction.getName() + ", " + crewProduction.getRole() + "\n";
                 writer.write(text);
             }
             writer.close();
