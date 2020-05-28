@@ -33,8 +33,7 @@ public class CrewMembersController implements Initializable {
     @FXML public TextField searchTextField;
     @FXML public AnchorPane anchorpane;
     public Label nameLabel;
-
-    private Connection connection = DatabaseConn.getConnection();
+    
     private CrewMember crewMember;
     ArrayList<CrewProduction> crewProductions = CreditSystem.getCreditSystem().getCrewProduction(1);
     ObservableList<CrewMember> crewMem = FXCollections.observableArrayList();
